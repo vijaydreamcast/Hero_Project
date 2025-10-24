@@ -32,8 +32,7 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
     private void OnDisable()
     {
         inputData.RightUIButtonClickedEvent -= RightBrakeClicked;
-        canITransistion = false;
-        isFading = false;
+ 
     }
 
 
@@ -41,6 +40,14 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(audioSource.clip.length);
         canITransistion = true;
+    }
+
+
+    private void LeftBrakeClicked(float val)
+    {
+        if (!isFading && canITransistion) {
+            StartCoroutine(SwitchPanels(prevPanel));
+        }
     }
 
     private void RightBrakeClicked(float val)

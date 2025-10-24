@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -12,8 +11,6 @@ public class UIManager : MonoBehaviour
     [Header(" Fade Settings ")]
     public CanvasGroup FadeCanvas;
     public CanvasGroup RaceCompletedPanel;
-    public TMP_Text fadeInText;
-    
     public float fadeDuration = 0.5f;
     public float duration = 0.5f;
     private Coroutine fadeRoutine;
@@ -51,7 +48,6 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator FadeCanvasCoroutine(int endAlpha)
     {
-        Debug.Log("Fading Canvas to alpha: " + endAlpha);
         float startAlpha = FadeCanvas.alpha;
         float targetAlpha = Mathf.Clamp01(endAlpha);
         float elapsed = 0f;

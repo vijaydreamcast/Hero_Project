@@ -27,13 +27,11 @@ public class HUDDisplayPanel : MonoBehaviour
     private void OnEnable()
     {
         sensorData.LeftBlindSpotTriggerEnterEvent += BlindSpotTriggerEnter;
-        sensorData.RightBlindSpotTriggerEnterEvent += RightBlindSpotTriggerEnter;
         sensorData.FrontCollisionTriggerEnterEvent += FrontCollisionEnter;
         sensorData.RearCollisionTriggerEnterEvent += RearCollisionEnter;
 
 
         sensorData.LeftBlindSpotTriggerExitEvent += ClearMessage;
-        sensorData.RightBlindSpotTriggerExitEvent += ClearMessage;
         sensorData.FrontCollisionTriggerExitEvent += ClearMessage;
         sensorData.RearCollisionTriggerExitEvent += ClearMessage;
 
@@ -49,13 +47,11 @@ public class HUDDisplayPanel : MonoBehaviour
     {
 
         sensorData.LeftBlindSpotTriggerEnterEvent -= BlindSpotTriggerEnter;
-        sensorData.RightBlindSpotTriggerEnterEvent -= RightBlindSpotTriggerEnter;
         sensorData.FrontCollisionTriggerEnterEvent -= FrontCollisionEnter;
         sensorData.RearCollisionTriggerEnterEvent -= RearCollisionEnter;
 
 
         sensorData.LeftBlindSpotTriggerExitEvent -= ClearMessage;
-        sensorData.RightBlindSpotTriggerExitEvent -= ClearMessage;
         sensorData.FrontCollisionTriggerExitEvent -= ClearMessage;
         sensorData.RearCollisionTriggerExitEvent -= ClearMessage;
 
@@ -91,12 +87,6 @@ public class HUDDisplayPanel : MonoBehaviour
     {
         beepSoundAS.Play();
         blinkIconRoutine = StartCoroutine(FadeCoroutine(LeftCollisionImage,true));
-    }
-
-    private void RightBlindSpotTriggerEnter()
-    {
-        beepSoundAS.Play();
-        blinkIconRoutine = StartCoroutine(FadeCoroutine(RightCollisionImage,true));
     }
 
     private void FrontCollisionEnter()
@@ -146,24 +136,19 @@ public class HUDDisplayPanel : MonoBehaviour
 
     private void ResetIcons()
     {
-        if (LeftCollisionImage.alpha > 0)
+        if (LeftCollisionImage.alpha == 1)
         {
             StartCoroutine(FadeCoroutine(LeftCollisionImage, false));
         }
 
-        if (FrontCollisionImage.alpha > 0)
+        if (FrontCollisionImage.alpha == 1)
         {
             StartCoroutine(FadeCoroutine(FrontCollisionImage, false));
         }
 
-        if (RearCollisionImage.alpha > 0)
+        if (RearCollisionImage.alpha == 1)
         {
             StartCoroutine(FadeCoroutine(RearCollisionImage, false));
-        }
-
-        if (RightCollisionImage.alpha > 0)
-        {
-            StartCoroutine(FadeCoroutine(RightCollisionImage, false));
         }
 
     }

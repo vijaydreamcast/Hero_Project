@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 16
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1076909084687142367
 Transform:
@@ -48,7 +48,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 16
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2156247175586125167
 Transform:
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8999030782748810407}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
@@ -150,10 +150,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2156247175586125167}
     m_Modifications:
-    - target: {fileID: -9050188985001294380, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -202,17 +198,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -5908802639778619012, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
       propertyPath: m_Name
       value: nisan fairlady final
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1154339393334287743, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
       propertyPath: m_Name
@@ -222,10 +210,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1154339393334287743, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 6284297131453012441, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
       propertyPath: m_Name
       value: Wheel4
@@ -234,14 +218,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6284297131453012441, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6569710911100203790, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 7488049167639846254, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
       propertyPath: m_Name
       value: Wheel1
@@ -249,10 +225,6 @@ PrefabInstance:
     - target: {fileID: 7488049167639846254, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7488049167639846254, guid: 573f2fe14a714524fa30437fee4e9d7f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

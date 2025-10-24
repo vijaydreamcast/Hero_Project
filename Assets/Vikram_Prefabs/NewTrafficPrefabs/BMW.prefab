@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 16
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2464037772665041913
 Transform:
@@ -48,7 +48,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 16
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &9143765277601133073
 Transform:
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071744887251028004}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
@@ -190,17 +190,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4725976701019860263, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: -2627870247053648953, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
       propertyPath: m_Name
       value: Wheel3
-      objectReference: {fileID: 0}
-    - target: {fileID: -2627870247053648953, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
       propertyPath: m_Name
@@ -210,33 +202,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 3554189617647370119, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
       propertyPath: m_Name
       value: Wheel4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3554189617647370119, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8653909006750398859, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
       propertyPath: m_Name
       value: Wheel2
       objectReference: {fileID: 0}
-    - target: {fileID: 8653909006750398859, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 8716696373277586248, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
       propertyPath: m_Name
       value: Wheel1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8716696373277586248, guid: dca707f67bed3d04993ed0be950cd0fc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

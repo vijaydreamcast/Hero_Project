@@ -2,7 +2,6 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ReSpawnManager : MonoBehaviour
@@ -11,7 +10,6 @@ public class ReSpawnManager : MonoBehaviour
     public BikeDataSO bikeData;
     public InputDataSO inputData;
     public UIDataSO uiData;
-    public GameDataSO gameData;
 
     [Header("Game Objects")]
     public GameObject HeroBike;
@@ -23,22 +21,12 @@ public class ReSpawnManager : MonoBehaviour
     {
         bikeData.TrafficZoneEnterEvent += TrafficZoneEntered;
         bikeData.OutsideZoneEnteredEvent += OutsideEntered;
-        gameData.RestartGameEvent += Restart;
     }
 
     private void OnDisable()
     {
         bikeData.TrafficZoneEnterEvent -= TrafficZoneEntered;
         bikeData.OutsideZoneEnteredEvent -= OutsideEntered;
-        gameData.RestartGameEvent -= Restart;
-    }
-
-    private void Restart()
-    {
-        for (int i = 1; i < zonePropeties.Count; i++)
-        {
-            zonePropeties[i].isCrossed = false;
-        }
     }
 
     private void OutsideEntered(string name)
@@ -66,23 +54,21 @@ public class ReSpawnManager : MonoBehaviour
             {
                 if (zone.isCrossed)
                 {
-                    Debug.Log(" Zone already crossed "+name);
-               
+                    Debug.Log(" Zone already crossed ");
+                    bikeData.ResetSpeed();
+                    inputData.DeactivateInput();
+                    StartCoroutine(WaitAndReSpawn(zone.SpawnPoint.transform));
+
                     // Reset isCrossed for the next zone if it exists
                     int nextIndex = i + 1;
                     if (nextIndex < zonePropeties.Count)
                     {
                         zonePropeties[nextIndex].isCrossed = false;
                     }
-
-                    bikeData.ResetSpeed();
-                    inputData.DeactivateInput();
-                    StartCoroutine(WaitAndReSpawn(zone.SpawnPoint.transform));
-
                 }
                 else
                 {
-                    Debug.Log(" Zone  crossed first time"+name);
+                    Debug.Log(" Zone  crossed first time");
                     zone.isCrossed = true;
                 }
             }

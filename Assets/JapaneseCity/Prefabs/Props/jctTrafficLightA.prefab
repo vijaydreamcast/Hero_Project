@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4610098097454556246}
   - component: {fileID: 600527266815192051}
   - component: {fileID: 3436658935529234233}
+  - component: {fileID: 5165932788471288379}
   m_Layer: 0
   m_Name: jctTrafficLightA
   m_TagString: Untagged
@@ -88,3 +89,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5165932788471288379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3796969238783852268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4452f4f24e50baf43838c10872cebcf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightType: 0
+  frontLightState: 0
+  backLightState: 0
+  meshRenderer: {fileID: 3436658935529234233}
+  redMat: {fileID: 2100000, guid: 2328955ff0f1b404fb4dc5448b52b390, type: 2}
+  yellowMat: {fileID: 2100000, guid: d4e395dc33198ff4387fdad7d533d126, type: 2}
+  greenMat: {fileID: 2100000, guid: 1669577a7dff0bc4db8e83b7dae7515e, type: 2}
+  redMatW: {fileID: 2100000, guid: 68c44eb1775e27a44b6bab48dc952e32, type: 2}
+  greenMatW: {fileID: 2100000, guid: f2fc0c5a67ff3054fa4b9042e963569f, type: 2}

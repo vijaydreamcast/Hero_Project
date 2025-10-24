@@ -35,7 +35,6 @@ public class InstructionPopUpScreen : MonoBehaviour
         inputData.RightUIButtonClickedEvent -= RightBrakeClicked;
         inputData.LeftUIButtonClickedEvent -= LeftBrakeClicked;
         canITransistion = false;
-        isFading = false;
     }
 
     private IEnumerator WaitAndTransistion()

@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6192991530640824766}
   - component: {fileID: 7088163789766809115}
   - component: {fileID: 5024539580452741841}
+  - component: {fileID: 5045641542508063134}
   m_Layer: 0
   m_Name: jctTrafficLightB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6192991530640824766
 Transform:
@@ -88,3 +89,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5045641542508063134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825834502253249284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4452f4f24e50baf43838c10872cebcf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightType: 0
+  frontLightState: 0
+  backLightState: 0
+  meshRenderer: {fileID: 5024539580452741841}
+  redMat: {fileID: 2100000, guid: 2328955ff0f1b404fb4dc5448b52b390, type: 2}
+  yellowMat: {fileID: 2100000, guid: d4e395dc33198ff4387fdad7d533d126, type: 2}
+  greenMat: {fileID: 2100000, guid: 1669577a7dff0bc4db8e83b7dae7515e, type: 2}
+  redMatW: {fileID: 2100000, guid: 68c44eb1775e27a44b6bab48dc952e32, type: 2}
+  greenMatW: {fileID: 2100000, guid: f2fc0c5a67ff3054fa4b9042e963569f, type: 2}

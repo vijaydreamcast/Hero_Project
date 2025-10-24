@@ -13,7 +13,7 @@ public class TrafficManager : MonoBehaviour
         foreach (var trafficPath in AllTrafficPaths)
         {
             trafficPath.SetActive(true);
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(1);
         }
     }
 }

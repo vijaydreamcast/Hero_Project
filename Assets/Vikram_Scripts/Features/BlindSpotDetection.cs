@@ -22,7 +22,7 @@ public class BlindSpotDetection : MonoBehaviour
     public BSDCarMovement LeftLaneCarMovement;
     public BSDCarMovement RightLaneCarMovement;
     public BSDCarMovement HeroBikeMovement;
-
+ 
 
     [Header(" Game Objects")]
     public GameObject HeroBike;
@@ -89,11 +89,13 @@ public class BlindSpotDetection : MonoBehaviour
 
     private void BlindSpotTriggerEnter()
     {
-        Debug.Log("Blind spot trigger enter ");
         if (!isBikeinBlindSpotZone)
         {
             inputData.ActivateInput();
             uiData.TakeAction();
+
+            Debug.Log("Blind spot trigger enter ");
+      
             isBikeinBlindSpotZone = true;
         }
     }
@@ -101,9 +103,10 @@ public class BlindSpotDetection : MonoBehaviour
 
     private void BlindSpotTriggerExit()
     {
-        Debug.Log("Blind spot trigger exit ");
+        
+        isBikeinBlindSpotZone = false;
 
-        if (!isBikeCollided && isBikeinBlindSpotZone)
+        if(!isBikeCollided)
         {
             Debug.Log("Correct Action ");
             triggerEndAudioAs.Play();
@@ -115,9 +118,10 @@ public class BlindSpotDetection : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
+
+
         }
 
-        isBikeinBlindSpotZone = false;
         isBikeCollided = false;
 
     }
@@ -150,6 +154,7 @@ public class BlindSpotDetection : MonoBehaviour
 
     private void Reset()
     {
+        LeftLaneCarMovement.gameObject.SetActive(false);
 
         LeftLaneCarMovement.currentSpeed = 0;
         RightLaneCarMovement.currentSpeed = 0;
@@ -157,24 +162,11 @@ public class BlindSpotDetection : MonoBehaviour
         LeftLaneCarMovement.progress = 0;
         RightLaneCarMovement.progress = 0;
 
-        LeftLaneCarMovement.SetMovement(true);
-        RightLaneCarMovement.SetMovement(true);
+        LeftLaneCarMovement.enabled = false;
+        RightLaneCarMovement.enabled = false;
 
         isBikeCollided = false;
         isBikeinBlindSpotZone = false;
-
-        StartCoroutine(WaitAndDisable());
-
-    }
-
-    private IEnumerator WaitAndDisable()
-    {
-        yield return new WaitForSeconds(2f);
-        LeftLaneCarMovement.SetMovement(false);
-        RightLaneCarMovement.SetMovement(false);
-        LeftLaneCarMovement.enabled = false;
-        RightLaneCarMovement.enabled = false;
-        LeftLaneCarMovement.gameObject.SetActive(false);
     }
 
     private void StartCarsAndBikeAnimation()
@@ -183,7 +175,7 @@ public class BlindSpotDetection : MonoBehaviour
         uiData.ShowZoneEnterPopUp(FeatureType.BlindSpot);
         inputData.SendHapticFeedBack();
         LeftLaneCarMovement.gameObject.SetActive(true);
-
+       
         AnimateBike();
         AnimateCarsAlongSpline();
     }
@@ -217,7 +209,7 @@ public class BlindSpotDetection : MonoBehaviour
         Quaternion initialSteerLocalRot = Quaternion.identity;
         if (BikeSteering != null)
             initialSteerLocalRot = BikeSteering.transform.localRotation;
-
+   
 
         float elapsed = 0f;
 
@@ -265,9 +257,8 @@ public class BlindSpotDetection : MonoBehaviour
 
         HeroBikeMovement.splineContainer = BikeTrack;
         HeroBikeMovement.progress = 0.0001f;
-        HeroBikeMovement.SetMovement(true);
         HeroBikeMovement.enabled = true;
-     
+        HeroBikeMovement.SetMovement(true);
 
         triggerStartAudioAs.Play();
         float totalTime = bikeMovementDuration;
@@ -289,22 +280,15 @@ public class BlindSpotDetection : MonoBehaviour
         }
 
         HeroBikeMovement.progress = bikeEnd;
+        HeroBikeMovement.enabled = false;
 
-        HeroBikeMovement.SetMovement(true);
+       
         bikeController.SetConstantSpeed(true);
         bikeController.MaintainConstantSpeed(bikeConstantSpeed);
 
-        HeroBikeMovement.enabled = false;
+
         bikeAnimRoutine = null;
 
-        sensorData.LeftBlindSpotTriggerEnterEvent?.Invoke();
-        StartCoroutine(WaitAndDeactivateSensor());
-    }
-
-    private IEnumerator WaitAndDeactivateSensor()
-    {
-         yield return new WaitForSeconds(4f);
-        sensorData.LeftBlindSpotTriggerExitEvent?.Invoke();
     }
     public void AnimateCarsAlongSpline()
     {
@@ -319,9 +303,6 @@ public class BlindSpotDetection : MonoBehaviour
         float totalTime = bikePositioningDuration + bikeMovementDuration;
         float elapsed = 0f;
 
-        LeftLaneCarMovement.SetMovement(true);
-        RightLaneCarMovement.SetMovement(true);
-
         float leftStart = LeftLaneCarMovement.progress;
         float leftEnd = leftCarFinalProgress;
         float rightStart = RightLaneCarMovement.progress;
@@ -333,6 +314,9 @@ public class BlindSpotDetection : MonoBehaviour
         RightLaneCarMovement.enabled = true;
 
 
+        LeftLaneCarMovement.SetMovement(true);
+        RightLaneCarMovement.SetMovement(true);
+
         while (elapsed < totalTime)
         {
             float t = elapsed / totalTime;
@@ -343,20 +327,15 @@ public class BlindSpotDetection : MonoBehaviour
 
             elapsed += Time.deltaTime;
             yield return null;
-
-            // Ensure final progress is set
-            LeftLaneCarMovement.progress = leftEnd;
-            RightLaneCarMovement.progress = rightEnd;
-
-
         }
 
+        // Ensure final progress is set
+        LeftLaneCarMovement.progress = leftEnd;
+        RightLaneCarMovement.progress = rightEnd;
 
-    
 
         // Now apply a constant speed for both
         LeftLaneCarMovement.currentSpeed = leftCarConstantSpeed;
         RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
     }
-
 }

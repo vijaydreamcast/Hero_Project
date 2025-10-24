@@ -13,16 +13,15 @@ public class BikeCollision : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(" collision with "+collision.gameObject.name);
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 7 || collision.gameObject.layer == 8)
         {
-     
+           
             bikeData.BikeCollided(collision.gameObject);
 
-            //// Determine collision side
-            //CollisionType type = GetCollisionSide(collision);
+            // Determine collision side
+            CollisionType type = GetCollisionSide(collision);
 
-            //bikeData.BikeCollidedDirection(type);
+            bikeData.BikeCollidedDirection(type);
             collisionSoundAS.Play();
            
         }

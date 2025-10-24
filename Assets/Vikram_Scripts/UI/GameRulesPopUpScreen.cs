@@ -21,7 +21,7 @@ public class GameRulesPopUpScreen : MonoBehaviour
 
     private void OnEnable()
     {
-        canITransistion = false;
+        canITransistion = true;
         isFading = false;
         inputData.RightUIButtonClickedEvent += RightBrakeClicked;
         inputData.LeftUIButtonClickedEvent += LeftBrakeClicked;
@@ -32,8 +32,6 @@ public class GameRulesPopUpScreen : MonoBehaviour
     {
         inputData.RightUIButtonClickedEvent -= RightBrakeClicked;
         inputData.LeftUIButtonClickedEvent -= LeftBrakeClicked;
-        canITransistion = false;
-        isFading = false;
     }
 
     private IEnumerator WaitAndTransistion()
@@ -55,9 +53,7 @@ public class GameRulesPopUpScreen : MonoBehaviour
     private void RightBrakeClicked(float val)
     {
         if (!isFading && canITransistion)
-        {
             StartCoroutine(SwitchPanels(nextPanel));
-        }
     }
 
     private IEnumerator SwitchPanels(GameObject nextObject)

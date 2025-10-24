@@ -1,5 +1,6 @@
-using CurvedUI;
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +13,6 @@ public class GameManager : MonoBehaviour
     [Header("Game Elements")]
     public GameObject HeroBike;
     public GameObject BikeStartTransform;
-    public GameObject CurvedCanvas;
 
     private void OnEnable()
     {
@@ -22,13 +22,6 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         gameData.RestartGameEvent -= Restart;
-    }
-
-
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(1.0f);
-        CurvedCanvas.GetComponent<CurvedUIRaycaster>().enabled = false;
     }
 
     private void Restart()
@@ -44,6 +37,6 @@ public class GameManager : MonoBehaviour
         HeroBike.transform.position = BikeStartTransform.transform.position;
         HeroBike.transform.rotation = BikeStartTransform.transform.rotation;
         uiData.FadeCanvas(0);
-        
+        inputData.ActivateInput();
     }
 }

@@ -14,11 +14,6 @@ public class VehicleManager : MonoBehaviour
     public int poolSizePerPrefab = 10; // how many per prefab type
     private Dictionary<GameObject, Queue<GameObject>> vehiclePools = new Dictionary<GameObject, Queue<GameObject>>();
 
-    [Header(" Prewarm Settings (avoid single-frame spikes)")]
-    public bool prewarmPools = true;
-    [Tooltip("Number of Instantiate operations per frame when prewarming")]
-    public int instantiationsPerFrame = 10;
-
     [Header(" Spawn Settings")]
     public int maxVehicles = 10;
     public float minSpawnInterval = 3f;
@@ -33,62 +28,30 @@ public class VehicleManager : MonoBehaviour
 
     Vector3 halfExtents;
 
-    // state
-    private bool poolsReady = false;
-
     private void Start()
     {
         halfExtents = new Vector3(2 * vehicleHalfLength, vehicleHalfBreadth, vehicleHalfHeight);
-        StartCoroutine(InitializePoolsRoutine());
+        InitializePools();
+        StartCoroutine(SpawnVehicleRoutine());
     }
 
-    private IEnumerator InitializePoolsRoutine()
+    private void InitializePools()
     {
-        vehiclePools.Clear();
-        if (vehiclePrefabs == null || vehiclePrefabs.Count == 0)
-        {
-            poolsReady = true;
-            StartCoroutine(SpawnVehicleRoutine());
-            yield break;
-        }
-
-        int counter = 0;
         foreach (var prefab in vehiclePrefabs)
         {
             Queue<GameObject> pool = new Queue<GameObject>();
             for (int i = 0; i < poolSizePerPrefab; i++)
             {
-                // Instantiate inactive clone parented to this manager to keep hierarchy clean
                 GameObject obj = Instantiate(prefab, transform);
                 obj.SetActive(false);
                 pool.Enqueue(obj);
-
-                counter++;
-                if (prewarmPools && counter % Mathf.Max(1, instantiationsPerFrame) == 0)
-                {
-                    // yield to next frame to spread CPU and GC pressure
-                    yield return null;
-                }
             }
             vehiclePools[prefab] = pool;
-
-            // small yield between types to reduce hiccups when many prefabs
-            if (prewarmPools)
-                yield return null;
         }
-
-        poolsReady = true;
-        // now it's safe to start spawning
-        StartCoroutine(SpawnVehicleRoutine());
-        yield break;
     }
 
     private IEnumerator SpawnVehicleRoutine()
     {
-        // Wait until pools are ready (safety)
-        while (!poolsReady)
-            yield return null;
-
         while (true)
         {
             TrySpawnVehicle();
@@ -99,8 +62,6 @@ public class VehicleManager : MonoBehaviour
 
     private void TrySpawnVehicle()
     {
-        if (!poolsReady) return;
-
         if (vehiclePrefabs.Count == 0 || activeVehicles.Count >= maxVehicles || spawnPoint == null)
             return;
 

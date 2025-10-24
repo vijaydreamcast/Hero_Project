@@ -19,12 +19,13 @@ public class ZoneDetection : MonoBehaviour
 
     public void OnTriggerEnter(Collider zone)
     {
-        //Debug.Log(" collision with " + zone.gameObject.name);
+
         if (zone.gameObject.name == BlindSpotDetectionZone.name)
         {
             Debug.Log("Blind spot zone Entered");
             inputData.DeactivateInput();
-            bikeData.ResetSpeed();           
+            bikeData.ResetSpeed();
+            
             bikeData.BlindSpotZoneEntered();
         }
         else if (zone.gameObject.name == FrontCollisionDetectionZone.name)
@@ -48,7 +49,6 @@ public class ZoneDetection : MonoBehaviour
 
         if(zone.gameObject.tag == "Zone")
         {
-            Debug.Log("Traffic zone Entered: " + zone.gameObject.GetInstanceID());
             bikeData.TraffifZoneEntered(zone.gameObject.name);
         }
 

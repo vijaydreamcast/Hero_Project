@@ -144,22 +144,14 @@ public class RearCollisionDetection : MonoBehaviour
     }
     private void Reset()
     {
+
+        RightLaneCarMovement.gameObject.SetActive(false);
+        RightLaneCarMovement.progress = 0; 
         RightLaneCarMovement.currentSpeed = 0;
-        RightLaneCarMovement.progress = 0;
-        RightLaneCarMovement.SetMovement(true);
+        RightLaneCarMovement.enabled = false;
 
         isBikeCollided = false;
         isBikeinRearCollisionZone = false;
-
-        StartCoroutine(WaitAndDisable());
-    }
-
-    private IEnumerator WaitAndDisable()
-    {
-        yield return new WaitForSeconds(2f);
-        RightLaneCarMovement.SetMovement(false);
-        RightLaneCarMovement.enabled = false;
-        RightLaneCarMovement.gameObject.SetActive(false);
     }
 
 

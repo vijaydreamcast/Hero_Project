@@ -105,7 +105,7 @@ public class FrontCollisionDetection : MonoBehaviour
             Debug.Log("Correct Action FCD");
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
-            RightLaneCarMovement.currentSpeed = 10;
+
             triggerEndAudioAs.Play();
          
             featureDetectionPanel.ShowFeatureResult(FeatureType.FrontVehicle, FeatureResult.Correct);
@@ -130,7 +130,7 @@ public class FrontCollisionDetection : MonoBehaviour
 
             bikeController.SetConstantSpeed(false);
             HeroBikeMovement.SetMovement(false);
-            RightLaneCarMovement.currentSpeed = 10;
+
             isBikeCollided = true;
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.FrontVehicle, FeatureResult.Wrong);
@@ -142,22 +142,13 @@ public class FrontCollisionDetection : MonoBehaviour
     }
     private void Reset()
     {
-       
-        RightLaneCarMovement.currentSpeed = 0;
-        RightLaneCarMovement.progress = 0;
-        RightLaneCarMovement.SetMovement(true);
 
-        StartCoroutine(WaitAndDisable());
+        RightLaneCarMovement.progress = 0;
+        RightLaneCarMovement.currentSpeed = 0;
+        RightLaneCarMovement.enabled = false;
 
         isBikeCollided = false;
         isBikeinFrontCollisionZone = false;
-    }
-
-    private IEnumerator WaitAndDisable()
-    {
-        yield return new WaitForSeconds(2f);
-        RightLaneCarMovement.SetMovement(false);
-        RightLaneCarMovement.enabled = false;
     }
 
     private void StartCarsAndBikeAnimation()

@@ -15,7 +15,14 @@ public class AdvisoryScreen : MonoBehaviour
     // local variables
     private bool isFading = false;
 
-
+    private void Awake()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (!canvasGroup)
+        {
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+    }
 
     private void OnEnable()
     {       
@@ -26,7 +33,6 @@ public class AdvisoryScreen : MonoBehaviour
     private void OnDisable()
     {    
         inputData.RightUIButtonClickedEvent -= RightClicked;
-        isFading = false;
     }
 
 
@@ -43,7 +49,7 @@ public class AdvisoryScreen : MonoBehaviour
 
         // Fade out current
         yield return FadeCanvas(canvasGroup, 1f, 0f, fadeDuration);
-       
+        gameObject.SetActive(false);
 
         // Fade in next
         if (nextPanel)
@@ -55,8 +61,6 @@ public class AdvisoryScreen : MonoBehaviour
         }
 
         isFading = false;
-        gameObject.SetActive(false);
-       
     }
 
     private IEnumerator FadeCanvas(CanvasGroup group, float startAlpha, float endAlpha, float duration)

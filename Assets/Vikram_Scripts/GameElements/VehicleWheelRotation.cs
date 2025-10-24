@@ -4,12 +4,9 @@ using UnityEngine;
 public class VehicleWheelRotation : MonoBehaviour
 {
     [Header("Wheels")]
-    public List<Transform> wheels;
-    public float X = 1;
-    public float Y = 0;
-    public float Z = 0;
     public float currentSpeed = 0f; // in meters per second
     public float wheelRadius = 0.3f; // in meters
+    public List<Transform> wheels;
     public float rotationAngle = 0;
 
 
@@ -21,7 +18,7 @@ public class VehicleWheelRotation : MonoBehaviour
         // Rotate each wheel around its local X-axis
         foreach (Transform wheel in wheels)
         {
-            wheel.transform.localEulerAngles = new Vector3(X*rotationAngle, Y * rotationAngle, Z * rotationAngle);
+            wheel.transform.localEulerAngles = new Vector3(rotationAngle, 0, 0);
         }
 
         if (rotationAngle >= 360f)

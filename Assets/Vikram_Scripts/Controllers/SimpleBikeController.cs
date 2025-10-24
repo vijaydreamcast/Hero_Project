@@ -96,9 +96,11 @@ public class SimpleBikeController : MonoBehaviour
     {
         isBikeStarted = false;
     }
+
+
+
     private void ApplyLeftBrake(float strength)
     {
-      
         leftBrakeInput = Mathf.Clamp01(strength);
     }
 

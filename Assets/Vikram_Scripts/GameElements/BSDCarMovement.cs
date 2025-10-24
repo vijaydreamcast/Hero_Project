@@ -83,7 +83,6 @@ public class BSDCarMovement : MonoBehaviour
         {
             
             isMoving = false;
-            currentSpeed = 0;
         }
     }
 }
