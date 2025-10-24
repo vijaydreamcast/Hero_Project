@@ -94,7 +94,7 @@ MonoBehaviour:
   maxRayCastDistance: 3
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 0
   movementDirection: 0
   forwardDirection: 1
   upDirection: 1
@@ -134,13 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.2
   wheels:
   - {fileID: 4905338291449235521}
   - {fileID: 8870492166318667235}
   - {fileID: 8472275513157066436}
   - {fileID: 3448040812886533968}
+  X: 1
+  Y: 0
+  Z: 0
+  currentSpeed: 0
+  wheelRadius: 0.2
   rotationAngle: 0
 --- !u!1001 &790296439907857796
 PrefabInstance:

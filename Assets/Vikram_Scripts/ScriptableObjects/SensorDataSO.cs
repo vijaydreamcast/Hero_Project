@@ -63,6 +63,7 @@ public class SensorDataSO : ScriptableObject
 
     public void ActivateRearCollisionSensor()
     {
+        Debug.Log(" Activating Rear Sensor");
         ActivateRearCollisionSensorEvent?.Invoke();
     }
 
