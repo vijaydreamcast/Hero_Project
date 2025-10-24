@@ -52,10 +52,19 @@ public class BlindSpotDetection : MonoBehaviour
 
 
     // local variables
+    private Quaternion initialSteerLocalRot;
     public FeatureDisplayPanel featureDetectionPanel;
     public bool isBikeinBlindSpotZone = false;
     private bool isBikeCollided = false;
     private Coroutine bikeAnimRoutine;
+
+    private void Start()
+    {
+        // Store initial steering local rotation
+        if (BikeSteering != null)
+            initialSteerLocalRot = BikeSteering.transform.localRotation;
+
+    }
 
     private void OnEnable()
     {
@@ -110,15 +119,12 @@ public class BlindSpotDetection : MonoBehaviour
         {
             Debug.Log("Correct Action ");
             triggerEndAudioAs.Play();
-
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
-
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
-
 
         }
 
@@ -134,14 +140,11 @@ public class BlindSpotDetection : MonoBehaviour
 
             triggerEndAudioAs.Play();
 
-
             LeftLaneCarMovement.currentSpeed = 10;
             RightLaneCarMovement.currentSpeed = 10;
 
-
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
-
 
             isBikeCollided = true;
 
@@ -204,12 +207,6 @@ public class BlindSpotDetection : MonoBehaviour
         Vector3 toTarget = (endPos - startPos).normalized;
         Quaternion pathDirectionRot = Quaternion.LookRotation(toTarget, Vector3.up);
 
-
-        // Store initial steering local rotation
-        Quaternion initialSteerLocalRot = Quaternion.identity;
-        if (BikeSteering != null)
-            initialSteerLocalRot = BikeSteering.transform.localRotation;
-   
 
         float elapsed = 0f;
 

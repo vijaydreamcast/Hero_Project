@@ -48,10 +48,18 @@ public class FrontCollisionDetection : MonoBehaviour
 
 
     // local variables
+    private Quaternion initialSteerLocalRot;
     public FeatureDisplayPanel featureDetectionPanel;
     public bool isBikeinFrontCollisionZone = false;
     private bool isBikeCollided = false;
     private Coroutine bikeAnimRoutine;
+
+    private void Start()
+    {
+        // Store initial steering local rotation
+        if (BikeSteering != null)
+            initialSteerLocalRot = BikeSteering.transform.localRotation;
+    }
 
     private void OnEnable()
     {
@@ -182,11 +190,6 @@ public class FrontCollisionDetection : MonoBehaviour
         Vector3 toTarget = (endPos - startPos).normalized;
         Quaternion pathDirectionRot = Quaternion.LookRotation(toTarget, Vector3.up);
 
-
-        // Store initial steering local rotation
-        Quaternion initialSteerLocalRot = Quaternion.identity;
-        if (BikeSteering != null)
-            initialSteerLocalRot = BikeSteering.transform.localRotation;
 
         float elapsed = 0f;
 
