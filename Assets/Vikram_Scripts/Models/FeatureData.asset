@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146fc4fce1d443040a4de85daf81d27f, type: 3}
+  m_Name: FeatureData
+  m_EditorClassIdentifier: 
+  BlindSpotData:
+    featureType: 0
+    featureName: "BSD \u2014Blind Spot Detection"
+    featureDescription: 
+    correctAction: When a vehicle slips out of your mirror, BSD signals your blind
+      zone. Holding your line keeps  everyone safe
+    wrongAction: "BSD warns when a vehicle enters your blind zone. Avoid drifting
+      or stopping in live traffic\u2014hold lane  until clear."
+    safetyMessage: "Vehicle beside you\u2014hold lane."
+    featureIcon: {fileID: 21300000, guid: 7214e8a1ed5df554bbcb84018cbb80f0, type: 3}
+  FrontCollisionData:
+    featureType: 1
+    featureName: "FCW \u2014Forward Collision Warning"
+    featureDescription: 
+    correctAction: FCW gives critical seconds before a sudden stop ahead. Smooth,
+      early control protects you and others.
+    wrongAction: "When FCW activates, respond promptly and smoothly. Sudden stops
+      happen\u2014measured control  prevents collisions."
+    safetyMessage: "Brake\u2014smooth and early."
+    featureIcon: {fileID: 21300000, guid: 76f48dc53fba6a64099d1de1c1a4926d, type: 3}
+  RearCollisionData:
+    featureType: 2
+    featureName: "RCW \u2014Rear Collision Warning"
+    featureDescription: 
+    correctAction: RCW warns of fast traffic approaching from behind. Staying predictable
+      helps others pass you safely
+    wrongAction: When RCW activates, avoid sudden braking or swerving. Predictable
+      movement reduces rear-end risk
+    safetyMessage: "Rear traffic closing\u2014steady line."
+    featureIcon: {fileID: 21300000, guid: 4edc10fb11bb87044854bec6a513616d, type: 3}
+  CloseVehicleData:
+    featureType: 3
+    featureName: "CVW \u2014Close Vehicle Warning"
+    featureDescription: 
+    correctAction: "CVW highlights vehicles edging in\u2014stay centered, create
+      space."
+    wrongAction: "Don\u2019t move into the threat. CVW shows which side is closing
+      in."
+    safetyMessage: "Space is safety\u2014stay centred."
+    featureIcon: {fileID: 21300000, guid: a5c4bb4f6253c6747aa7c66db0c3f48b, type: 3}
