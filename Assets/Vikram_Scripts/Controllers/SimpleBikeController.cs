@@ -222,7 +222,7 @@ public class SimpleBikeController : MonoBehaviour
     {
         if (speed > 1)
         {
-            float volume = Normalize(speed, 0, maxSpeed);
+            float volume = Normalize(speed, 0, maxSpeed)*0.75f;
             bikeRacingSound.volume = volume;
             bikeIdleSound.volume = 0;
         }
