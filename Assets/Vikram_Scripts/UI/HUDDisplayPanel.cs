@@ -27,6 +27,7 @@ public class HUDDisplayPanel : MonoBehaviour
     private void OnEnable()
     {
         sensorData.LeftBlindSpotTriggerEnterEvent += BlindSpotTriggerEnter;
+        sensorData.RightBlindSpotTriggerEnterEvent += RightBlindSpotTriggerEnter;
         sensorData.FrontCollisionTriggerEnterEvent += FrontCollisionEnter;
         sensorData.RearCollisionTriggerEnterEvent += RearCollisionEnter;
 
@@ -34,14 +35,10 @@ public class HUDDisplayPanel : MonoBehaviour
         sensorData.LeftBlindSpotTriggerExitEvent += ClearMessage;
         sensorData.FrontCollisionTriggerExitEvent += ClearMessage;
         sensorData.RearCollisionTriggerExitEvent += ClearMessage;
-
+        sensorData.RightBlindSpotTriggerExitEvent += ClearMessage;
         uiData.ClearAllTextEvent += ClearMessage;
 
-   
-
     }
-
-
 
     private void OnDisable()
     {
@@ -49,44 +46,27 @@ public class HUDDisplayPanel : MonoBehaviour
         sensorData.LeftBlindSpotTriggerEnterEvent -= BlindSpotTriggerEnter;
         sensorData.FrontCollisionTriggerEnterEvent -= FrontCollisionEnter;
         sensorData.RearCollisionTriggerEnterEvent -= RearCollisionEnter;
+        sensorData.RightBlindSpotTriggerEnterEvent -= RightBlindSpotTriggerEnter;
 
 
         sensorData.LeftBlindSpotTriggerExitEvent -= ClearMessage;
         sensorData.FrontCollisionTriggerExitEvent -= ClearMessage;
         sensorData.RearCollisionTriggerExitEvent -= ClearMessage;
-
+        sensorData.RightBlindSpotTriggerExitEvent -= ClearMessage;
         uiData.ClearAllTextEvent -= ClearMessage;
 
-
-
     }
-
-    //private void ShowCollisionImage(CollisionType type)
-    //{
-      
-    //    if (type == CollisionType.Front)
-    //    {
-    //        StartCoroutine(ShowAllCollisionImages(FrontCollisionImage.gameObject));
-    //    }
-    //    else if (type == CollisionType.Rear)
-    //    {
-    //        StartCoroutine(ShowAllCollisionImages(RearCollisionImage.gameObject));
-    //    }
-    //    if (type == CollisionType.Left)
-    //    {
-    //        StartCoroutine(ShowAllCollisionImages(LeftCollisionImage.gameObject));
-    //    }
-    //    if (type == CollisionType.Right)
-    //    {
-    //        StartCoroutine(ShowAllCollisionImages(RightCollisionImage.gameObject));
-    //    }
-       
-    //}
 
     private void BlindSpotTriggerEnter()
     {
         beepSoundAS.Play();
         blinkIconRoutine = StartCoroutine(FadeCoroutine(LeftCollisionImage,true));
+    }
+
+    private void RightBlindSpotTriggerEnter()
+    {
+        beepSoundAS.Play();
+        blinkIconRoutine = StartCoroutine(FadeCoroutine(RightCollisionImage,true));
     }
 
     private void FrontCollisionEnter()
@@ -104,7 +84,7 @@ public class HUDDisplayPanel : MonoBehaviour
 
     private void ClearMessage()
     {
-        Debug.Log(" Clearing Icons");
+     
         StopAllCoroutines();
         ResetIcons();
         beepSoundAS.Stop();
@@ -136,19 +116,24 @@ public class HUDDisplayPanel : MonoBehaviour
 
     private void ResetIcons()
     {
-        if (LeftCollisionImage.alpha == 1)
+        if (LeftCollisionImage.alpha > 0.5f)
         {
             StartCoroutine(FadeCoroutine(LeftCollisionImage, false));
         }
 
-        if (FrontCollisionImage.alpha == 1)
+        if (FrontCollisionImage.alpha > 0.5f)
         {
             StartCoroutine(FadeCoroutine(FrontCollisionImage, false));
         }
 
-        if (RearCollisionImage.alpha == 1)
+        if (RearCollisionImage.alpha > 0.5f)
         {
             StartCoroutine(FadeCoroutine(RearCollisionImage, false));
+        }
+
+        if(RightCollisionImage.alpha > 0.5f)
+        {
+            StartCoroutine(FadeCoroutine(RightCollisionImage, false));
         }
 
     }

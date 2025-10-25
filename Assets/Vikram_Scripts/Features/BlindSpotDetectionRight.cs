@@ -259,7 +259,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
         HeroBike.transform.position = endPos;
         HeroBike.transform.rotation = endRot;
 
-        sensorData.ActivateLeftBlindSpotSensor();
+        sensorData.ActivateRightBlindSpotSensor();
 
         HeroBikeMovement.splineContainer = BikeTrack;
         HeroBikeMovement.progress = 0.0001f;

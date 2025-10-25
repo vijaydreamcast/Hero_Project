@@ -21,7 +21,7 @@ public class GameRulesPopUpScreen : MonoBehaviour
 
     private void OnEnable()
     {
-        canITransistion = true;
+        canITransistion = false;
         isFading = false;
         inputData.RightUIButtonClickedEvent += RightBrakeClicked;
         inputData.LeftUIButtonClickedEvent += LeftBrakeClicked;
