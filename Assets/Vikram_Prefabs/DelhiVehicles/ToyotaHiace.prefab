@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6235788164552945192}
   - component: {fileID: 1515868202485008468}
   - component: {fileID: 6791168123306017964}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ToyotaHiace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,16 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.2
   wheels:
   - {fileID: 1443285560729446979}
   - {fileID: 4989224567011557029}
   - {fileID: 5641636923152623454}
   - {fileID: 1946894424702668383}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.2
   rotationAngle: 0
 --- !u!1001 &3140787663301201374
 PrefabInstance:

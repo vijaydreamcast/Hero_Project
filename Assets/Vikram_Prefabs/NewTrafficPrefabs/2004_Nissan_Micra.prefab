@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8546372424350263635}
   - component: {fileID: 7072920888399728703}
   - component: {fileID: 6140877648922534314}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: 2004_Nissan_Micra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   maxRayCastDistance: 3
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 0
   movementDirection: 0
   forwardDirection: 1
   upDirection: 1
@@ -89,8 +89,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 4.5}
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Size: {x: 2, y: 1.2076684, z: 4.5}
+  m_Center: {x: 0, y: 0.70383424, z: 0}
 --- !u!114 &6140877648922534314
 MonoBehaviour:
   m_ObjectHideFlags: 0

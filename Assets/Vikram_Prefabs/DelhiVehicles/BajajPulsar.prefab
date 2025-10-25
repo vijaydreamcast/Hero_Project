@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6980171928104695422}
   - component: {fileID: 2393620467472046708}
   - component: {fileID: 1037993760815796455}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: BajajPulsar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,14 +103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.3
   wheels:
   - {fileID: 2907633452488824828}
   - {fileID: 3057585860818321574}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.3
   rotationAngle: 0
 --- !u!1 &8042981447237454782
 GameObject:

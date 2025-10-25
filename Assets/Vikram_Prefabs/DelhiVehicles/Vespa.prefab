@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8054381117085295058}
   - component: {fileID: 3167622191307585396}
   - component: {fileID: 9210303267882457375}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Vespa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,14 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.3
   wheels:
   - {fileID: 0}
   - {fileID: 0}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.3
   rotationAngle: 0
 --- !u!1001 &7956700662522435520
 PrefabInstance:

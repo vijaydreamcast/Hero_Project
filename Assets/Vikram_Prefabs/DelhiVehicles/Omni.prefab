@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3230673770628866910}
   - component: {fileID: 6666755772531352891}
   - component: {fileID: 1951578259887386041}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Omni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,16 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.2
   wheels:
   - {fileID: 2371459116143469465}
   - {fileID: 6008514162732033764}
   - {fileID: 3731318123172248204}
   - {fileID: 377862061428871827}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.2
   rotationAngle: 0
 --- !u!1001 &9037269747984216392
 PrefabInstance:

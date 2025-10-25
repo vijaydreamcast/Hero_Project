@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6854754127915974430}
   - component: {fileID: 4772933751079659922}
   - component: {fileID: 4125037417981014427}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: HondaCivic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   frontTransform: {fileID: 54804177838011062}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 9
+  maxSpeed: 8
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
@@ -94,7 +94,7 @@ MonoBehaviour:
   maxRayCastDistance: 3
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 0
   movementDirection: 0
   forwardDirection: 1
   upDirection: 1

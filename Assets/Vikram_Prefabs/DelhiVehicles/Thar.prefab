@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1452581515413813050}
   - component: {fileID: 2341446056889106782}
   - component: {fileID: 5853750770502123125}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Thar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,16 +103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.2
   wheels:
   - {fileID: 4560024392463014158}
   - {fileID: 8782987506124756500}
   - {fileID: 2912374296085990569}
   - {fileID: 2653616111082315329}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.2
   rotationAngle: 0
 --- !u!1 &3077950970536806198
 GameObject:

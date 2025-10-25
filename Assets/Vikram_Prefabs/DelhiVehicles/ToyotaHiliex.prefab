@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7339721208677114341}
   - component: {fileID: 1696430484208437246}
   - component: {fileID: 4030269055258881483}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ToyotaHiliex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,16 +103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.2
   wheels:
   - {fileID: 5599228535804715504}
   - {fileID: 1580536938628666910}
   - {fileID: 4165471778099260549}
   - {fileID: 3843613808937591092}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.2
   rotationAngle: 0
 --- !u!1 &8883968855916009146
 GameObject:

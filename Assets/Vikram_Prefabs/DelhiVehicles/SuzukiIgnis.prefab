@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4282187217081634448}
   - component: {fileID: 4702865578794548095}
   - component: {fileID: 7664105595720296123}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SuzukiIgnis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,16 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.2
   wheels:
   - {fileID: 2305248322628910407}
   - {fileID: 195402423319340930}
   - {fileID: 6155040238451799580}
   - {fileID: 3265341433175260352}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.2
   rotationAngle: 0
 --- !u!1001 &5890376943926341803
 PrefabInstance:

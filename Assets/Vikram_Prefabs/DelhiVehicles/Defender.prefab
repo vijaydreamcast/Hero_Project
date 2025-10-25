@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6928741537611088307}
   - component: {fileID: 1509145674336456695}
   - component: {fileID: 7453667432468933197}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Defender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,16 +103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
+  wheelRadius: 0.2
   wheels:
   - {fileID: 4500750595398457314}
   - {fileID: 2725323003716048346}
   - {fileID: 3240555821053740355}
   - {fileID: 2618167590853506546}
-  X: 1
-  Y: 0
-  Z: 0
-  currentSpeed: 0
-  wheelRadius: 0.2
   rotationAngle: 0
 --- !u!1 &8837055922240173278
 GameObject:
