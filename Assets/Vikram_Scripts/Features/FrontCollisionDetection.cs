@@ -106,11 +106,10 @@ public class FrontCollisionDetection : MonoBehaviour
     private void FrontCollisionTriggerExit()
     {
    
-        isBikeinFrontCollisionZone = false;
-
-        if (!isBikeCollided)
+      
+        if (!isBikeCollided && isBikeinFrontCollisionZone)
         {
-
+            isBikeinFrontCollisionZone = false;
             Debug.Log("Correct Action FCD");
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
@@ -130,12 +129,9 @@ public class FrontCollisionDetection : MonoBehaviour
     private void BikeCollidedWithVehicle(GameObject collidedObject)
     {
        
-
         if (isBikeinFrontCollisionZone && (collidedObject.tag == "RightCar" || collidedObject.tag == "LeftCar"))
         {
             Debug.Log("Wrong Action FCD");
-
-
             triggerEndWrongAudioAs.Play();
 
             bikeController.SetConstantSpeed(false);
@@ -270,6 +266,7 @@ public class FrontCollisionDetection : MonoBehaviour
         bikeController.MaintainConstantSpeed(bikeConstantSpeed);
 
         sensorData.FrontCollisionTriggerEnterEvent?.Invoke();
+        Debug.Log("Front Collision Sensor Activated");
         bikeAnimRoutine = null;
         StartCoroutine(WaitAndDeactivateSensor());
 
@@ -279,6 +276,7 @@ public class FrontCollisionDetection : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         sensorData.FrontCollisionTriggerExitEvent?.Invoke();
+        Debug.Log("Front Collision Sensor DeActivated");
     }
     public void AnimateCarsAlongSpline()
     {

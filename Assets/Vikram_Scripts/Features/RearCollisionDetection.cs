@@ -110,11 +110,11 @@ public class RearCollisionDetection : MonoBehaviour
     private void RearCollisionTriggerExit()
     {
     
-        isBikeinRearCollisionZone = false;
 
-        if (!isBikeCollided)
+        if (!isBikeCollided && isBikeinRearCollisionZone)
         {
 
+            isBikeinRearCollisionZone = false;
             Debug.Log("Correct Action in RCD");
 
             triggerEndCorrectAudioAs.Play();
