@@ -14,9 +14,8 @@ public class BlindSpotDetection : MonoBehaviour
 
     [Header(" Audio Sources")]
     public AudioSource triggerStartAudioAs;
-    public AudioSource triggerEndAudioAs;
-
-
+    public AudioSource triggerEndCorrectAudioAs;
+    public AudioSource triggerEndWrongAudioAs;
 
     [Header(" Movement Objects")]
     public BSDCarMovement LeftLaneCarMovement;
@@ -118,7 +117,7 @@ public class BlindSpotDetection : MonoBehaviour
         if(!isBikeCollided)
         {
             Debug.Log("Correct Action ");
-            triggerEndAudioAs.Play();
+            triggerEndCorrectAudioAs.Play();
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
 
@@ -138,7 +137,7 @@ public class BlindSpotDetection : MonoBehaviour
         {
             Debug.Log(" Wrong Action ");
 
-            triggerEndAudioAs.Play();
+            triggerEndWrongAudioAs.Play();
 
             LeftLaneCarMovement.currentSpeed = 10;
             RightLaneCarMovement.currentSpeed = 10;

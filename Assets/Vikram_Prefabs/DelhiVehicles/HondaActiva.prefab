@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6931515578831060066}
   - component: {fileID: 6259207277195313735}
   - component: {fileID: 8186925467886670763}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: HondaActiva
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   frontTransform: {fileID: 2686262177253584063}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 6
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
@@ -134,12 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.3
   wheels:
   - {fileID: 0}
   - {fileID: 0}
+  currentSpeed: 0
+  wheelRadius: 0.3
   rotationAngle: 0
+  movementDirection: 0
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1001 &535983081319902214
 PrefabInstance:
   m_ObjectHideFlags: 0

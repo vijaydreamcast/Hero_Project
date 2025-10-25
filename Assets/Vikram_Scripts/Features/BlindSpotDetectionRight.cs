@@ -14,7 +14,8 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
     [Header(" Audio Sources")]
     public AudioSource triggerStartAudioAs;
-    public AudioSource triggerEndAudioAs;
+    public AudioSource triggerEndCorrectAudioAs;
+    public AudioSource triggerEndWrongAudioAs;
 
 
 
@@ -84,9 +85,10 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
     private void BlindSpotTriggerEnter()
     {
-        Debug.Log("Blind spot trigger enter ");
+
         if (!isBikeinBlindSpotZone)
         {
+            Debug.Log("Blind spot trigger enter ");
             inputData.ActivateInput();
             uiData.TakeAction();
             isBikeinBlindSpotZone = true;
@@ -96,12 +98,12 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
     private void BlindSpotTriggerExit()
     {
-        Debug.Log("Blind spot trigger exit ");
+       
 
         if (!isBikeCollided && isBikeinBlindSpotZone)
         {
             Debug.Log("Correct Action ");
-            triggerEndAudioAs.Play();
+            triggerEndCorrectAudioAs.Play();
 
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
@@ -123,7 +125,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
         {
             Debug.Log(" Wrong Action ");
 
-            triggerEndAudioAs.Play();
+            triggerEndWrongAudioAs.Play();
 
 
             LeftLaneCarMovement.currentSpeed = 10;
@@ -174,6 +176,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
     private void StartCarsAndBikeAnimation()
     {
+     
 
         uiData.ShowZoneEnterPopUp(FeatureType.BlindSpot);
         inputData.SendHapticFeedBack();

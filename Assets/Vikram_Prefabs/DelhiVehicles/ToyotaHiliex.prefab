@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7339721208677114341}
   - component: {fileID: 1696430484208437246}
   - component: {fileID: 4030269055258881483}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: ToyotaHiliex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,14 +52,14 @@ MonoBehaviour:
   frontTransform: {fileID: 2921063490683345195}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 9
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
   toleranceDistance: 0.5
   vehicleHalfLength: 1
   vehicleHalfBreadth: 0.4
-  vehicleHalfHeight: 0.3
+  vehicleHalfHeight: 0.5
   maxRayCastDistance: 3
   obstacleMask:
     serializedVersion: 2
@@ -103,14 +103,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.2
   wheels:
   - {fileID: 5599228535804715504}
   - {fileID: 1580536938628666910}
   - {fileID: 4165471778099260549}
   - {fileID: 3843613808937591092}
+  currentSpeed: 0
+  wheelRadius: 0.2
   rotationAngle: 0
+  movementDirection: 0
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1 &8883968855916009146
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 8883968855916009146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 0.6, z: 2.6}
+  m_LocalPosition: {x: 0.06, y: 0.6, z: 3.294}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

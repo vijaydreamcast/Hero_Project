@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7829301307714131172}
   - component: {fileID: 8257251661167958221}
   - component: {fileID: 4808201089519136685}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Bus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,14 +52,14 @@ MonoBehaviour:
   frontTransform: {fileID: 7603589373570001125}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 9
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
   toleranceDistance: 0.5
-  vehicleHalfLength: 1
-  vehicleHalfBreadth: 0.4
-  vehicleHalfHeight: 0.3
+  vehicleHalfLength: 1.6
+  vehicleHalfBreadth: 1
+  vehicleHalfHeight: 1
   maxRayCastDistance: 3
   obstacleMask:
     serializedVersion: 2
@@ -103,14 +103,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.2
   wheels:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  currentSpeed: 0
+  wheelRadius: 0.2
   rotationAngle: 0
+  movementDirection: 0
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1 &3603508751302653792
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 3603508751302653792}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 0.6, z: 7.82}
+  m_LocalPosition: {x: 0.06, y: 1.17, z: 7.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

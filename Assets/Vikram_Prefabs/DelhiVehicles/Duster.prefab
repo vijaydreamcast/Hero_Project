@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2863265886306106744}
   - component: {fileID: 2833547273522633672}
   - component: {fileID: 4685990018409161085}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Duster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   frontTransform: {fileID: 5854072454605996722}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 9
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
@@ -134,14 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.2
   wheels:
   - {fileID: 9002220788719737886}
   - {fileID: 4853824119640814130}
   - {fileID: 5581258901506823333}
   - {fileID: 7094065315555991478}
+  currentSpeed: 0
+  wheelRadius: 0.2
   rotationAngle: 0
+  movementDirection: 0
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1001 &905333808988827633
 PrefabInstance:
   m_ObjectHideFlags: 0

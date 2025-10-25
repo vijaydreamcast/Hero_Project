@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6701778803593971595}
   - component: {fileID: 3027428036825736998}
   - component: {fileID: 4601669155984337816}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Duke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   frontTransform: {fileID: 1093652776934951089}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 6
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
@@ -103,12 +103,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.3
   wheels:
   - {fileID: 0}
   - {fileID: 0}
+  currentSpeed: 0
+  wheelRadius: 0.3
   rotationAngle: 0
+  movementDirection: 0
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1 &5677434759372875133
 GameObject:
   m_ObjectHideFlags: 0

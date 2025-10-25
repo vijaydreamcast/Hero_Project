@@ -15,7 +15,8 @@ public class RearCollisionDetection : MonoBehaviour
 
     [Header(" Audio Sources")]
     public AudioSource triggerStartAudioAs;
-    public AudioSource triggerEndAudioAs;
+    public AudioSource triggerEndCorrectAudioAs;
+    public AudioSource triggerEndWrongAudioAs;
 
     [Header(" Movement Objects")]
     public BSDCarMovement RightLaneCarMovement;
@@ -96,7 +97,7 @@ public class RearCollisionDetection : MonoBehaviour
 
     private void RearCollisionTriggerEnter()
     {
-        Debug.Log(" In RC Zone");
+  
         if (!isBikeinRearCollisionZone)
         {
             uiData.TakeAction();
@@ -116,7 +117,7 @@ public class RearCollisionDetection : MonoBehaviour
 
             Debug.Log("Correct Action in RCD");
 
-            triggerEndAudioAs.Play();
+            triggerEndCorrectAudioAs.Play();
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
  
@@ -137,7 +138,7 @@ public class RearCollisionDetection : MonoBehaviour
         {
             Debug.Log("Wrong Action in RCD");
 
-            triggerEndAudioAs.Play();
+            triggerEndWrongAudioAs.Play();
 
             RightLaneCarMovement.currentSpeed = 0;
             HeroBikeMovement.SetMovement(false);
@@ -272,9 +273,18 @@ public class RearCollisionDetection : MonoBehaviour
         bikeController.SetConstantSpeed(true);
         bikeController.MaintainConstantSpeed(bikeConstantSpeed);
 
+        sensorData.RearCollisionTriggerEnterEvent?.Invoke();
         bikeAnimRoutine = null;
+        StartCoroutine(WaitAndDeactivateSensor());
 
     }
+
+    private IEnumerator WaitAndDeactivateSensor()
+    {
+        yield return new WaitForSeconds(5f);
+        sensorData.RearCollisionTriggerExitEvent?.Invoke();
+    }
+
     public void AnimateCarsAlongSpline()
     {
         if (RightLaneCarMovement == null)

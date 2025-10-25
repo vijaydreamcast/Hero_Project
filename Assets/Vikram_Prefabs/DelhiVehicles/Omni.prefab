@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 713638934684970460}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.48, z: 3.79}
+  m_LocalPosition: {x: 0.05, y: 1.53, z: 3.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3230673770628866910}
   - component: {fileID: 6666755772531352891}
   - component: {fileID: 1951578259887386041}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Omni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.93, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8854197303482177187}
@@ -83,14 +83,14 @@ MonoBehaviour:
   frontTransform: {fileID: 499922138596644375}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 9
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
   toleranceDistance: 0.5
   vehicleHalfLength: 1
   vehicleHalfBreadth: 0.4
-  vehicleHalfHeight: 0.3
+  vehicleHalfHeight: 0.7
   maxRayCastDistance: 3
   obstacleMask:
     serializedVersion: 2
@@ -134,14 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.2
   wheels:
   - {fileID: 2371459116143469465}
   - {fileID: 6008514162732033764}
   - {fileID: 3731318123172248204}
   - {fileID: 377862061428871827}
+  currentSpeed: 0
+  wheelRadius: 0.2
   rotationAngle: 0
+  movementDirection: 1
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1001 &9037269747984216392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e3293536f9ee4f64f85a83ac776a986a, type: 3}
       propertyPath: m_Name
-      value: Omni (1)
+      value: Omni
       objectReference: {fileID: 0}
     - target: {fileID: 8513859187771203891, guid: e3293536f9ee4f64f85a83ac776a986a, type: 3}
       propertyPath: m_Name

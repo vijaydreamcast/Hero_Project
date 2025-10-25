@@ -3,7 +3,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header(" AudioSources")]
-    public AudioSource welcomeAudio;
+    public AudioSource backGroundAS;
+    public AudioSource freeRideAS;
 
     public static AudioManager instance;
 
@@ -14,8 +15,24 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void PlayWelcomeSound()
+    public void PlayBG()
     {
-        welcomeAudio.Play();
+        backGroundAS.Play();
     }
+
+    public void StopBG()
+    {
+        backGroundAS.Stop();
+    }
+
+    public void PlayFreeRide()
+    {
+        freeRideAS.Play();
+    }
+
+    public void StopFreeRide()
+    {
+        freeRideAS.Stop();
+    }
+
 }

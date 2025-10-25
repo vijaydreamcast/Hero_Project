@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6980171928104695422}
   - component: {fileID: 2393620467472046708}
   - component: {fileID: 1037993760815796455}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: BajajPulsar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   frontTransform: {fileID: 8250457563587222960}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 6
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
@@ -103,12 +103,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.3
   wheels:
   - {fileID: 2907633452488824828}
   - {fileID: 3057585860818321574}
+  currentSpeed: 0
+  wheelRadius: 0.3
   rotationAngle: 0
+  movementDirection: 0
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1 &8042981447237454782
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +138,7 @@ Transform:
   m_GameObject: {fileID: 8042981447237454782}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.6, z: 1.136}
+  m_LocalPosition: {x: -0, y: 0.94, z: 1.136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

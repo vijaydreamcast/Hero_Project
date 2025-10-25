@@ -15,7 +15,8 @@ public class FrontCollisionDetection : MonoBehaviour
 
     [Header(" Audio Sources")]
     public AudioSource triggerStartAudioAs;
-    public AudioSource triggerEndAudioAs;
+    public AudioSource triggerEndCorrectAudioAs;
+    public AudioSource triggerEndWrongAudioAs;
 
     [Header(" Movement Objects")]
     public BSDCarMovement RightLaneCarMovement;
@@ -92,7 +93,7 @@ public class FrontCollisionDetection : MonoBehaviour
 
     private void FrontCollisionTriggerEnter()
     {
-        Debug.Log(" In FC Zone");
+      
         if (!isBikeinFrontCollisionZone)
         {
             uiData.TakeAction();
@@ -114,8 +115,9 @@ public class FrontCollisionDetection : MonoBehaviour
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
 
-            triggerEndAudioAs.Play();
-         
+            triggerEndCorrectAudioAs.Play();
+            RightLaneCarMovement.currentSpeed = 10f;
+
             featureDetectionPanel.ShowFeatureResult(FeatureType.FrontVehicle, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
@@ -134,10 +136,11 @@ public class FrontCollisionDetection : MonoBehaviour
             Debug.Log("Wrong Action FCD");
 
 
-            triggerEndAudioAs.Play();
+            triggerEndWrongAudioAs.Play();
 
             bikeController.SetConstantSpeed(false);
             HeroBikeMovement.SetMovement(false);
+            RightLaneCarMovement.currentSpeed = 10f;
 
             isBikeCollided = true;
 
@@ -266,8 +269,16 @@ public class FrontCollisionDetection : MonoBehaviour
         bikeController.SetConstantSpeed(true);
         bikeController.MaintainConstantSpeed(bikeConstantSpeed);
 
+        sensorData.FrontCollisionTriggerEnterEvent?.Invoke();
         bikeAnimRoutine = null;
+        StartCoroutine(WaitAndDeactivateSensor());
 
+    }
+
+    private IEnumerator WaitAndDeactivateSensor()
+    {
+        yield return new WaitForSeconds(5f);
+        sensorData.FrontCollisionTriggerExitEvent?.Invoke();
     }
     public void AnimateCarsAlongSpline()
     {

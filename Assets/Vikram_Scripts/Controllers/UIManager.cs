@@ -9,10 +9,14 @@ public class UIManager : MonoBehaviour
     public BikeDataSO bikeData;
 
     [Header(" Fade Settings ")]
+    public AudioSource raceCompletedAS;
     public CanvasGroup FadeCanvas;
     public CanvasGroup RaceCompletedPanel;
     public float fadeDuration = 0.5f;
     public float duration = 0.5f;
+
+
+    // local
     private Coroutine fadeRoutine;
     private bool isFading = false;
 
@@ -32,6 +36,7 @@ public class UIManager : MonoBehaviour
     {
         if (!isFading)
         {
+            raceCompletedAS.Play();
             StartCoroutine(SwitchPanels(RaceCompletedPanel));
         }
     }

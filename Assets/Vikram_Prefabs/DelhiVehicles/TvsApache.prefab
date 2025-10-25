@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7599565325749413862}
   - component: {fileID: 8231874847891550718}
   - component: {fileID: 110773310015293501}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: TvsApache
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   frontTransform: {fileID: 3486794214015458007}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 6
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
@@ -120,8 +120,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.94343734, y: 1.8645524, z: 2.0917826}
-  m_Center: {x: -0.006270051, y: 0.8491083, z: 0.056645215}
+  m_Size: {x: 0.94343734, y: 1.3464994, z: 2.0917826}
+  m_Center: {x: -0.006270051, y: 0.5900818, z: 0.056645155}
 --- !u!114 &110773310015293501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,12 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.3
   wheels:
   - {fileID: 8534134823250619401}
   - {fileID: 8050498146455946700}
+  currentSpeed: 0
+  wheelRadius: 0.3
   rotationAngle: 0
+  movementDirection: 0
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1001 &7537589659010533550
 PrefabInstance:
   m_ObjectHideFlags: 0

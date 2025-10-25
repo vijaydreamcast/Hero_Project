@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8714748154838862829}
   - component: {fileID: 2050319073645982920}
   - component: {fileID: 7812528346763093344}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: SuzukiViror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   frontTransform: {fileID: 1613489330157507868}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 9
+  maxSpeed: 10
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
@@ -134,14 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.2
   wheels:
   - {fileID: 610949317042106484}
   - {fileID: 1313033688566462252}
   - {fileID: 6468258245876877117}
   - {fileID: 5821379510790788308}
+  currentSpeed: 0
+  wheelRadius: 0.2
   rotationAngle: 0
+  movementDirection: 1
+  X: 0
+  Y: 0
+  Z: 1
 --- !u!1001 &5414486894838533572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7210915053733160688, guid: 2c1db24ff7b03124caca1723274cf898, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9504615
+      value: 0.9570669
       objectReference: {fileID: 0}
     - target: {fileID: -7210915053733160688, guid: 2c1db24ff7b03124caca1723274cf898, type: 3}
       propertyPath: m_LocalRotation.y
@@ -228,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7210915053733160688, guid: 2c1db24ff7b03124caca1723274cf898, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.31084234
+      value: -0.28986716
       objectReference: {fileID: 0}
     - target: {fileID: -7210915053733160688, guid: 2c1db24ff7b03124caca1723274cf898, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 36.22
+      value: -33.7
       objectReference: {fileID: 0}
     - target: {fileID: -6785999986570073797, guid: 2c1db24ff7b03124caca1723274cf898, type: 3}
       propertyPath: m_Name
