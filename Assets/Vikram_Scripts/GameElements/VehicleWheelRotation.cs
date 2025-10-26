@@ -20,12 +20,14 @@ public class VehicleWheelRotation : MonoBehaviour
     public float rotationAngle = 0f;
 
     public MovementDirection movementDirection;
+    public float speedFactor = 2f;
 
     // cached initial local rotations (keeps other local rotations / offsets intact)
     private List<Quaternion> initialLocalRotations;
 
     void Start()
     {
+        speedFactor = 60;
         // Cache initial local rotations to avoid overwriting existing orientation offsets
         if (wheels == null)
             wheels = new List<Transform>();
@@ -37,7 +39,7 @@ public class VehicleWheelRotation : MonoBehaviour
 
     void Update()
     {
-        if (wheels == null || wheels.Count == 0)
+        /*if (wheels == null || wheels.Count == 0)
             return;
 
         // Protect against invalid radius
@@ -71,6 +73,20 @@ public class VehicleWheelRotation : MonoBehaviour
 
         // Keep a bounded cumulative angle for display / logic. Use Repeat and remap to [-180,180].
         rotationAngle += deltaAngle;
-        rotationAngle = Mathf.Repeat(rotationAngle + 180f, 360f) - 180f;
+        rotationAngle = Mathf.Repeat(rotationAngle + 180f, 360f) - 180f;*/
+
+        for (int i = 0; i < wheels.Count; i++)
+        {
+            var wheel = wheels[i];
+            if (wheel == null)
+                continue;
+
+            // Multiply by incremental rotation so any existing offset from initial rotation is preserved
+            //wheel.localRotation *= Quaternion.AngleAxis(deltaAngle, axis);
+            //float deltaAngle = (currentSpeed / wheelRadius) * Mathf.Rad2Deg * Time.deltaTime;
+            Vector3 rotationSpeed = new Vector3(X * currentSpeed, Y * currentSpeed, Z * currentSpeed);
+            wheel.Rotate(rotationSpeed*Time.deltaTime*speedFactor);
+        }
+
     }
 }
