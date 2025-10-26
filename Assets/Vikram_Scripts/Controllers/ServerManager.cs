@@ -15,10 +15,13 @@ public class ServerManager : MonoBehaviour
 
 
     // local variables
-    private UdpClient udpServer;
+    public UdpClient udpServer;
     private Thread receiveThread;
-    private bool isRunning;
+    public bool isRunning;
 
+    [Header("Inspector Broadcast")]
+    [Tooltip("Message to send when you click the inspector button (Play mode only)")]
+    public string inspectorBroadcastMessage = "Hello from ServerManager";
 
     public void OnEnable()
     {
@@ -77,6 +80,7 @@ public class ServerManager : MonoBehaviour
 
         while (isRunning)
         {
+            Debug.Log("[ServerManager] Waiting for data...");
             try
             {
                 byte[] data = udpServer.Receive(ref remoteEndPoint);
@@ -85,9 +89,9 @@ public class ServerManager : MonoBehaviour
 
                 Debug.Log("Received " + message);
 
-                //// Optional: Echo back to client
-                //byte[] echoBytes = Encoding.UTF8.GetBytes("Echo: " + message);
-                //udpServer.Send(echoBytes, echoBytes.Length, remoteEndPoint);
+                // Optional: Echo back to client
+                byte[] echoBytes = Encoding.UTF8.GetBytes("Echo: " + message);
+                udpServer.Send(echoBytes, echoBytes.Length, remoteEndPoint);
             }
             catch (System.Exception ex)
             {
@@ -124,6 +128,14 @@ public class ServerManager : MonoBehaviour
         {
             Debug.LogError($"[ServerManager] Broadcast failed: {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Convenience method for the inspector editor to call.
+    /// </summary>
+    public void BroadcastInspectorMessage()
+    {
+        BroadCastData(inspectorBroadcastMessage);
     }
 
 }

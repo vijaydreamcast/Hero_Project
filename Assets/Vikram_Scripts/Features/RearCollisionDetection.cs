@@ -90,8 +90,6 @@ public class RearCollisionDetection : MonoBehaviour
 
         gameData.RestartGameEvent -= Reset;
 
-
-
     }
 
 

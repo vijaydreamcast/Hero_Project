@@ -92,8 +92,7 @@ public class FrontCollisionDetection : MonoBehaviour
 
 
     private void FrontCollisionTriggerEnter()
-    {
-      
+    {     
         if (!isBikeinFrontCollisionZone)
         {
             uiData.TakeAction();
@@ -105,8 +104,7 @@ public class FrontCollisionDetection : MonoBehaviour
 
     private void FrontCollisionTriggerExit()
     {
-   
-      
+     
         if (!isBikeCollided && isBikeinFrontCollisionZone)
         {
             isBikeinFrontCollisionZone = false;
@@ -124,7 +122,6 @@ public class FrontCollisionDetection : MonoBehaviour
         }
 
     }
-
 
     private void BikeCollidedWithVehicle(GameObject collidedObject)
     {
