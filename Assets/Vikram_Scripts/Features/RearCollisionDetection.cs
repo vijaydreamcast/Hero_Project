@@ -24,6 +24,7 @@ public class RearCollisionDetection : MonoBehaviour
 
 
     [Header(" Game Objects")]
+    public GameObject TriggerObject;
     public GameObject HeroBike;
     public GameObject BikeSteering;
     public GameObject BikeStartPoint;
@@ -94,8 +95,7 @@ public class RearCollisionDetection : MonoBehaviour
 
 
     private void RearCollisionTriggerEnter()
-    {
-  
+    {  
         if (!isBikeinRearCollisionZone)
         {
             uiData.TakeAction();
@@ -103,8 +103,6 @@ public class RearCollisionDetection : MonoBehaviour
             isBikeinRearCollisionZone = true;
         }
     }
-
-
     private void RearCollisionTriggerExit()
     {
     
@@ -125,7 +123,8 @@ public class RearCollisionDetection : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.RearVehicle, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
+           
         }
 
     }
@@ -149,7 +148,13 @@ public class RearCollisionDetection : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
+           
+        }
+
+        else if (!isBikeinRearCollisionZone && (collidedObject.tag == "RightCar" || collidedObject.tag == "LeftCar"))
+        {
+            RightLaneCarMovement.currentSpeed = 0;
         }
     }
     private void Reset()

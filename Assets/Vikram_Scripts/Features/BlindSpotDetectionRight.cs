@@ -26,6 +26,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
 
     [Header(" Game Objects")]
+    public GameObject TriggerObject;
     public GameObject HeroBike;
     public GameObject BikeSteering;
     public GameObject BikeStartPoint;
@@ -113,7 +114,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
 
-            gameObject.SetActive(false);    
+            TriggerObject.SetActive(false);    
         }
 
         isBikeinBlindSpotZone = false;
@@ -144,7 +145,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
 
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
 
         }
     }

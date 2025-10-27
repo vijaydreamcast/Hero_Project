@@ -18,12 +18,6 @@ public class BikeCollision : MonoBehaviour
         {
            
             bikeData.BikeCollided(collision.gameObject);
-
-            // Determine collision side
-         //   CollisionType type = GetCollisionSide(collision);
-
-        //    bikeData.BikeCollidedDirection(type);
-         //   collisionSoundAS.Play();
            
         }
     }

@@ -24,6 +24,7 @@ public class FrontCollisionDetection : MonoBehaviour
 
 
     [Header(" Game Objects")]
+    public GameObject TriggerObject;
     public GameObject HeroBike;
     public GameObject BikeSteering;
     public GameObject BikeStartPoint;
@@ -119,7 +120,7 @@ public class FrontCollisionDetection : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
         }
 
     }
@@ -143,7 +144,8 @@ public class FrontCollisionDetection : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
+
         }
     }
     private void Reset()
