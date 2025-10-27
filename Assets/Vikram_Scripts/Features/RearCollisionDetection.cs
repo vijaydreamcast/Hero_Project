@@ -125,6 +125,7 @@ public class RearCollisionDetection : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.RearVehicle, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
+            gameObject.SetActive(false);
         }
 
     }
@@ -148,6 +149,7 @@ public class RearCollisionDetection : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
+            gameObject.SetActive(false);
         }
     }
     private void Reset()

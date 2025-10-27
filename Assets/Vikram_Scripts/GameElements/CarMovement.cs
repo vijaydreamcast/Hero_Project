@@ -6,7 +6,6 @@ public class CarMovement : MonoBehaviour, IVehicleMovement
 {
     [Header("Vehicle Properties")]
     public VehicleWheelRotation vehicleWheelRotation;
-    public Transform frontTransform;
     public SplineContainer splineContainer;
     public float splineLength;
 
@@ -18,6 +17,7 @@ public class CarMovement : MonoBehaviour, IVehicleMovement
     public float toleranceDistance = 0.3f;
 
     [Header("Detection Settings")]
+    public Transform frontTransform;
     public float vehicleHalfLength = 0.5f;
     public float vehicleHalfBreadth = 0.5f;
     public float vehicleHalfHeight = 0.5f;

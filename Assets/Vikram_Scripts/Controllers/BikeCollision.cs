@@ -13,7 +13,7 @@ public class BikeCollision : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        
+        Debug.Log("Collision with object: " + collision.gameObject.name);
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 7 || collision.gameObject.layer == 8)
         {
            

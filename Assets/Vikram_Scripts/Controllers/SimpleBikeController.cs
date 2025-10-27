@@ -42,12 +42,20 @@ public class SimpleBikeController : MonoBehaviour
     public float currentSpeed;
     public bool isBikeStarted = false;
 
+    [Header("Detection Settings")]
+    public Transform frontTransform;
+    public float vehicleHalfLength = 0.5f;
+    public float vehicleHalfBreadth = 0.5f;
+    public float vehicleHalfHeight = 0.5f;
+    public float maxRayCastDistance = 0.5f;
+    public LayerMask obstacleMask;
+
 
     // local variables
     private float steerInput;
     private float throttleInput;
     private Vector3 lastPosition;
- 
+
     private Quaternion initialSteerLocalRot;
     private Quaternion initialFWheelLocalRot;
     private Quaternion initialRWheelLocalRot;
@@ -87,6 +95,16 @@ public class SimpleBikeController : MonoBehaviour
     }
 
 
+    // For readability in scene view
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color =  Color.green;
+        Gizmos.matrix = Matrix4x4.TRS(frontTransform.position, frontTransform.rotation, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.forward * maxRayCastDistance / 2,
+            new Vector3(vehicleHalfLength * 2, vehicleHalfHeight * 2, maxRayCastDistance));
+    }
+
+
     private void StartBike()
     {
         isBikeStarted = true;
@@ -96,8 +114,6 @@ public class SimpleBikeController : MonoBehaviour
     {
         isBikeStarted = false;
     }
-
-
 
     private void ApplyLeftBrake(float strength)
     {
@@ -114,7 +130,7 @@ public class SimpleBikeController : MonoBehaviour
         throttleInput = 0f;
         currentSpeed = 0f;
         steerInput = 0f;
-      
+
     }
 
     private void ApplyThrottle(float throttle)
@@ -143,7 +159,29 @@ public class SimpleBikeController : MonoBehaviour
 
     void Update()
     {
-         if (!isBikeStarted) return;
+
+        float distanceToObstacle = maxRayCastDistance;
+        bool hitObstacle = Physics.BoxCast(
+            frontTransform.position,
+            new Vector3(vehicleHalfLength, vehicleHalfBreadth, vehicleHalfHeight),
+            frontTransform.forward,
+            out RaycastHit hitInfo,
+            frontTransform.rotation,
+            maxRayCastDistance,
+            obstacleMask
+
+        );
+
+        if (hitObstacle)
+        {
+           
+            Quaternion ObstacleOrienattion = hitInfo.collider.transform.rotation;
+            transform.rotation = ObstacleOrienattion;
+          //  currentSpeed = 5f;
+
+        }
+
+        if (!isBikeStarted) return;
 
         // Smoothly interpolate steer input
         smoothedSteerInput = Mathf.Lerp(smoothedSteerInput, steerInput, Time.deltaTime * turnSpeed * 4f);
@@ -222,7 +260,7 @@ public class SimpleBikeController : MonoBehaviour
     {
         if (speed > 1)
         {
-            float volume = Normalize(speed, 0, maxSpeed)*0.75f;
+            float volume = Normalize(speed, 0, maxSpeed) * 0.75f;
             bikeRacingSound.volume = volume;
             bikeIdleSound.volume = 0;
         }
@@ -234,12 +272,6 @@ public class SimpleBikeController : MonoBehaviour
     }
 
 
-    void OnDrawGizmosSelected()
-    {
-        if (!drawGizmos) return;
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, transform.forward * 3f);
-    }
 
     public void SetConstantSpeed(bool canIMove)
     {
@@ -262,11 +294,10 @@ public class SimpleBikeController : MonoBehaviour
     /// Normalizes a value between min and max to a 0-1 range.
     /// If min == max, returns 0.
     /// </summary>
-    public  float Normalize(float value, float min, float max)
+    public float Normalize(float value, float min, float max)
     {
         if (Mathf.Approximately(max, min))
             return 0f;
         return Mathf.Clamp01((value - min) / (max - min));
     }
 }
-

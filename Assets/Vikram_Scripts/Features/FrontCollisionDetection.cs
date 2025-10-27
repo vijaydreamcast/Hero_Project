@@ -119,6 +119,7 @@ public class FrontCollisionDetection : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
+            gameObject.SetActive(false);
         }
 
     }
@@ -142,6 +143,7 @@ public class FrontCollisionDetection : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
+            gameObject.SetActive(false);
         }
     }
     private void Reset()

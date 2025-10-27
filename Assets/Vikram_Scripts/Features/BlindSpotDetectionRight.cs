@@ -112,6 +112,8 @@ public class BlindSpotDetectionRight : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
+
+            gameObject.SetActive(false);    
         }
 
         isBikeinBlindSpotZone = false;
@@ -141,6 +143,8 @@ public class BlindSpotDetectionRight : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Wrong);
             inputData.DeactivateInput();
             bikeController.Reset();
+
+            gameObject.SetActive(false);
 
         }
     }

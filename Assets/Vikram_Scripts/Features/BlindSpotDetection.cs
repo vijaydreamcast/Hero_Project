@@ -68,32 +68,20 @@ public class BlindSpotDetection : MonoBehaviour
     private void OnEnable()
     {
         bikeData.BlindSpotZoneEnterEvent += StartCarsAndBikeAnimation;
-
-
         sensorData.LeftBlindSpotTriggerEnterEvent += BlindSpotTriggerEnter;
         sensorData.LeftBlindSpotTriggerExitEvent += BlindSpotTriggerExit;
-
         bikeData.BikeCollidedEvent += BikeCollidedWithVehicle;
-
         gameData.RestartGameEvent += Reset;
-
     }
 
     private void OnDisable()
     {
         bikeData.BlindSpotZoneEnterEvent -= StartCarsAndBikeAnimation;
-
-
         sensorData.LeftBlindSpotTriggerEnterEvent -= BlindSpotTriggerEnter;
         sensorData.LeftBlindSpotTriggerExitEvent -= BlindSpotTriggerExit;
-
-
         bikeData.BikeCollidedEvent -= BikeCollidedWithVehicle;
-
         gameData.RestartGameEvent -= Reset;
-
     }
-
 
     private void BlindSpotTriggerEnter()
     {
@@ -101,9 +89,7 @@ public class BlindSpotDetection : MonoBehaviour
         {
             inputData.ActivateInput();
             uiData.TakeAction();
-
-            Debug.Log("Blind spot trigger enter ");
-      
+            Debug.Log("Blind spot trigger enter "); 
             isBikeinBlindSpotZone = true;
         }
     }
@@ -124,6 +110,7 @@ public class BlindSpotDetection : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
+            gameObject.SetActive(false);
 
         }
 
@@ -150,6 +137,7 @@ public class BlindSpotDetection : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Wrong);
             inputData.DeactivateInput();
             bikeController.Reset();
+            gameObject.SetActive(false);
 
         }
     }
