@@ -108,13 +108,14 @@ MonoBehaviour:
   - {fileID: 2725323003716048346}
   - {fileID: 3240555821053740355}
   - {fileID: 2618167590853506546}
-  currentSpeed: 0
+  currentSpeed: 15
   wheelRadius: 0.2
   X: 1
   Y: 0
   Z: 0
   rotationAngle: 0
   movementDirection: 0
+  speedFactor: 2
 --- !u!1 &8837055922240173278
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +158,22 @@ PrefabInstance:
     - target: {fileID: -9030124401459419753, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
       propertyPath: m_Name
       value: Wheel3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8874964412867885385, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5246647
+      objectReference: {fileID: 0}
+    - target: {fileID: -8874964412867885385, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.85130906
+      objectReference: {fileID: 0}
+    - target: {fileID: -8874964412867885385, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8874964412867885385, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
       propertyPath: m_LocalScale.x
@@ -208,6 +225,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7613073036251032554, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5246647
+      objectReference: {fileID: 0}
+    - target: {fileID: -7613073036251032554, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.85130906
+      objectReference: {fileID: 0}
+    - target: {fileID: -7613073036251032554, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7613073036251032554, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6992485226205158233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5246647
+      objectReference: {fileID: 0}
+    - target: {fileID: -6992485226205158233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.85130906
+      objectReference: {fileID: 0}
+    - target: {fileID: -6992485226205158233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6992485226205158233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6957391940703845233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5246647
+      objectReference: {fileID: 0}
+    - target: {fileID: -6957391940703845233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.85130906
+      objectReference: {fileID: 0}
+    - target: {fileID: -6957391940703845233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6957391940703845233, guid: 7f16c93e8192c564a824f88520866b07, type: 3}
+      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3167299574701864104, guid: 7f16c93e8192c564a824f88520866b07, type: 3}

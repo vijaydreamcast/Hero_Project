@@ -293,7 +293,7 @@ public class BlindSpotDetection : MonoBehaviour
     private IEnumerator WaitAndDeactivateSensor()
     {
         yield return new WaitForSeconds(4f);
-        sensorData.RightBlindSpotTriggerExitEvent?.Invoke();
+        sensorData.LeftBlindSpotTriggerExitEvent?.Invoke();
     }
     public void AnimateCarsAlongSpline()
     {

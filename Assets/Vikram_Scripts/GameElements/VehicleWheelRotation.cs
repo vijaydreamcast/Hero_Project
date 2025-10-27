@@ -39,54 +39,39 @@ public class VehicleWheelRotation : MonoBehaviour
 
     void Update()
     {
-        /*if (wheels == null || wheels.Count == 0)
-            return;
-
-        // Protect against invalid radius
-        if (wheelRadius <= 0f)
-            return;
-
-        // Compute incremental rotation (degrees) for this frame
-        float deltaAngle = (currentSpeed / wheelRadius) * Mathf.Rad2Deg * Time.deltaTime;
-
-        // Direction
-        if (movementDirection == MovementDirection.CounterClockWise)
-            deltaAngle = -deltaAngle;
-
-        // Build rotation axis from inspector values
-        Vector3 axis = new Vector3(X, Y, Z);
-        if (axis.sqrMagnitude < 1e-6f)
-            axis = Vector3.right; // fallback axis
-        else
-            axis.Normalize();
-
-        // Apply incremental rotation to each wheel using quaternions (smooth, avoids Euler gimbal issues)
         for (int i = 0; i < wheels.Count; i++)
         {
             var wheel = wheels[i];
             if (wheel == null)
                 continue;
 
-            // Multiply by incremental rotation so any existing offset from initial rotation is preserved
-            wheel.localRotation *= Quaternion.AngleAxis(deltaAngle, axis);
-        }
-
-        // Keep a bounded cumulative angle for display / logic. Use Repeat and remap to [-180,180].
-        rotationAngle += deltaAngle;
-        rotationAngle = Mathf.Repeat(rotationAngle + 180f, 360f) - 180f;*/
-
-        for (int i = 0; i < wheels.Count; i++)
-        {
-            var wheel = wheels[i];
-            if (wheel == null)
-                continue;
-
-            // Multiply by incremental rotation so any existing offset from initial rotation is preserved
-            //wheel.localRotation *= Quaternion.AngleAxis(deltaAngle, axis);
-            //float deltaAngle = (currentSpeed / wheelRadius) * Mathf.Rad2Deg * Time.deltaTime;
+            if(movementDirection == MovementDirection.CounterClockWise)
+            {
+                currentSpeed = -currentSpeed;
+            }
             Vector3 rotationSpeed = new Vector3(X * currentSpeed, Y * currentSpeed, Z * currentSpeed);
-            wheel.Rotate(rotationSpeed*Time.deltaTime*speedFactor);
+            wheel.Rotate(rotationSpeed * Time.deltaTime * speedFactor);
         }
+    }
 
+    // Public helper so editor tools can advance rotation in edit mode without requiring Play mode.
+    // Call with a simulated deltaTime (seconds) to rotate wheels the same way as Update.
+    public void EditorTick(float deltaTime)
+    {
+        if (wheels == null) return;
+
+        for (int i = 0; i < wheels.Count; i++)
+        {
+            var wheel = wheels[i];
+            if (wheel == null)
+                continue;
+
+            if (movementDirection == MovementDirection.CounterClockWise)
+            {
+                currentSpeed = -currentSpeed;
+            }
+            Vector3 rotationSpeed = new Vector3(X * currentSpeed, Y * currentSpeed, Z * currentSpeed);
+            wheel.Rotate(rotationSpeed * deltaTime * speedFactor, Space.Self);
+        }
     }
 }

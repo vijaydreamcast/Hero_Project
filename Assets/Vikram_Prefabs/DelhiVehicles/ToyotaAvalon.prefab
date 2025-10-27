@@ -108,13 +108,14 @@ MonoBehaviour:
   - {fileID: 6818585206752239556}
   - {fileID: 8847257332728225032}
   - {fileID: 4212624934377427557}
-  currentSpeed: 0
+  currentSpeed: 15
   wheelRadius: 0.2
   X: 1
   Y: 0
   Z: 0
   rotationAngle: 0
   movementDirection: 0
+  speedFactor: 2
 --- !u!1 &5448593362097528879
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +211,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheel1
       objectReference: {fileID: 0}
+    - target: {fileID: -7164736901498871327, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7853628
+      objectReference: {fileID: 0}
+    - target: {fileID: -7164736901498871327, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.61903584
+      objectReference: {fileID: 0}
+    - target: {fileID: -7164736901498871327, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7164736901498871327, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5118900581829057747, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7853628
+      objectReference: {fileID: 0}
+    - target: {fileID: -5118900581829057747, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.61903584
+      objectReference: {fileID: 0}
+    - target: {fileID: -5118900581829057747, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5118900581829057747, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 688255452808413857, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
       propertyPath: m_Name
       value: Wheel4
@@ -222,9 +255,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheel2
       objectReference: {fileID: 0}
+    - target: {fileID: 4406149622536699562, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7853628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406149622536699562, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.61903584
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406149622536699562, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406149622536699562, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4723318972315858231, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
       propertyPath: m_Name
       value: Wheel3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638367535957782156, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7853628
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638367535957782156, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.61903584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638367535957782156, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638367535957782156, guid: e0b274498e680024bb16411ab0fc633c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -20,20 +20,31 @@ public class GameManager : MonoBehaviour
     public ArduinoInitilaze arduinoInitilaze;
     public ArduinoInput arduinoInput;
 
-     IEnumerator Start()
+    IEnumerator Start()
     {
         yield return new WaitForSeconds(1.0f);
-        CurvedCanvas.GetComponent<CurvedUIRaycaster>().enabled = false;
-        string data = File.ReadAllText(Application.streamingAssetsPath + "/Settings/setting.JSON");
-        GameSetting game_setting = JsonUtility.FromJson<GameSetting>(data);
-        if (game_setting.ArduinoEnable)
+
+        try
         {
-            arduinoInitilaze.enabled = true;
-            arduinoInput.enabled = true;
-            inputManager.enabled = false;
+            CurvedCanvas.GetComponent<CurvedUIRaycaster>().enabled = false;
+            string data = File.ReadAllText(Application.streamingAssetsPath + "/Settings/setting.JSON");
+            GameSetting game_setting = JsonUtility.FromJson<GameSetting>(data);
+            if (game_setting.ArduinoEnable)
+            {
+                arduinoInitilaze.enabled = true;
+                arduinoInput.enabled = true;
+                inputManager.enabled = false;
+            }
+            else
+            {
+                arduinoInitilaze.enabled = false;
+                arduinoInput.enabled = false;
+                inputManager.enabled = true;
+            }
         }
-        else
+        catch(System.Exception e)
         {
+            Debug.Log("Exception: " + e.Message);
             arduinoInitilaze.enabled = false;
             arduinoInput.enabled = false;
             inputManager.enabled = true;
@@ -41,9 +52,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-       
-            gameData.RestartGameEvent += Restart;
+    {      
+        gameData.RestartGameEvent += Restart;
     }
 
     private void OnDisable()
