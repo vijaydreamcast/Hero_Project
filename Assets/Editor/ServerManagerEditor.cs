@@ -26,7 +26,7 @@ public class ServerManagerEditor : Editor
         {
             if (GUILayout.Button("Broadcast Message"))
             {
-                server.BroadcastInspectorMessage();
+                server.SendDataToClients("Score");
             }
         }
 

@@ -18,6 +18,7 @@ public class ServerManager : MonoBehaviour
     [Header(" Scriptable Object")]
     public SocketDataSO socketData; // Your scriptable object holding IP/port config
     public UIDataSO uiData;
+    public PacketData packetData;
 
 
     // TCP server variables
@@ -119,6 +120,14 @@ public class ServerManager : MonoBehaviour
             try
             {
                 TcpClient client = tcpListener.AcceptTcpClient();
+
+                // Disable Nagle's algorithm so small messages are sent immediately.
+                try
+                {
+                    client.NoDelay = true;
+                }
+                catch { }
+
                 lock (connectedClients)
                 {
                     connectedClients.Add(client);
@@ -150,15 +159,27 @@ public class ServerManager : MonoBehaviour
 
         if(isMessageReceived)
         {
-            LoadScene();
             isMessageReceived = false;
+
+            if(packetData.eventCode == EventCode.PlayerInfo)
+            {
+                int sceneNumber = (int)uiData.PlayerInfo.selectedCity + 1;
+                LoadScene(sceneNumber);
+            }
+
+            else if(packetData.eventCode == EventCode.Home)
+            {
+               LoadScene(0);
+            }
+
+
         }
     }
 
-    private void LoadScene()
+    private void LoadScene(int index)
     {
-        int sceneNumber = (int)uiData.PlayerInfo.selectedCity;
-        SceneManager.LoadSceneAsync(sceneNumber+1);
+       
+        SceneManager.LoadSceneAsync(index);
     }
 
     /// <summary>
@@ -183,12 +204,18 @@ public class ServerManager : MonoBehaviour
                 }
 
                 string receivedMsg = Encoding.UTF8.GetString(message, 0, bytesRead);
-                Debug.Log($"[ServerManager] Received from {client.Client.RemoteEndPoint}: {receivedMsg}");
+              
 
-                if(receivedMsg.Length > 50) // Assuming valid PlayerInfo JSON is longer than 50 characters
+                if(!string.IsNullOrEmpty(receivedMsg) && receivedMsg.Length > 4) // Assuming valid PlayerInfo JSON is longer than 50 characters
                 {
+                    Debug.Log($" Received {receivedMsg}");
+                   
+                    packetData = JsonUtility.FromJson<PacketData>(receivedMsg);
                     isMessageReceived = true;
-                    uiData.PlayerInfo = JsonUtility.FromJson<PlayerInfo>(receivedMsg);
+                    if (packetData.eventCode == EventCode.PlayerInfo)
+                    {
+                        uiData.PlayerInfo = JsonUtility.FromJson<PlayerInfo>(packetData.jsonData);
+                    }
                 }
                 
                 
@@ -221,6 +248,10 @@ public class ServerManager : MonoBehaviour
             return;
         }
 
+        // Add newline so clients using ReadLine() get the message immediately.
+        if (!data.EndsWith("\n"))
+            data += "\n";
+
         byte[] bytes = Encoding.UTF8.GetBytes(data);
         lock (connectedClients)
         {
@@ -232,6 +263,8 @@ public class ServerManager : MonoBehaviour
                     {
                         NetworkStream stream = client.GetStream();
                         stream.Write(bytes, 0, bytes.Length);
+                        try { stream.Flush(); } catch { } // Flush is harmless; some Streams noop.
+                        Debug.Log($"[ServerManager] Broadcast wrote {bytes.Length} bytes to {client.Client.RemoteEndPoint}");
                     }
                     catch (System.Exception ex)
                     {
@@ -240,7 +273,7 @@ public class ServerManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log($"[ServerManager] Broadcasted: \"{data}\" to all clients.");
+        Debug.Log($"[ServerManager] Broadcasted: \"{data.TrimEnd()}\" to all clients.");
     }
 
     /// <summary>
@@ -255,6 +288,10 @@ public class ServerManager : MonoBehaviour
             return;
         }
 
+        // Add newline so clients using ReadLine() get the message immediately.
+        if (!data.EndsWith("\n"))
+            data += "\n";
+
         byte[] bytes = Encoding.UTF8.GetBytes(data);
         lock (connectedClients)
         {
@@ -266,6 +303,8 @@ public class ServerManager : MonoBehaviour
                     {
                         NetworkStream stream = client.GetStream();
                         stream.Write(bytes, 0, bytes.Length);
+                        try { stream.Flush(); } catch { }
+                        Debug.Log($"[ServerManager] Sent {bytes.Length} bytes to {client.Client.RemoteEndPoint}");
                     }
                     catch (System.Exception ex)
                     {
@@ -274,7 +313,7 @@ public class ServerManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log($"[ServerManager] Sent: \"{data}\" to all existing clients.");
+        Debug.Log($"[ServerManager] Sent: \"{data.TrimEnd()}\" to all existing clients.");
     }
 
     /// <summary>

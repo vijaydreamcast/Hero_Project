@@ -285,6 +285,15 @@ public class BlindSpotDetection : MonoBehaviour
 
         bikeAnimRoutine = null;
 
+        sensorData.LeftBlindSpotTriggerEnterEvent?.Invoke();
+        StartCoroutine(WaitAndDeactivateSensor());
+
+    }
+
+    private IEnumerator WaitAndDeactivateSensor()
+    {
+        yield return new WaitForSeconds(4f);
+        sensorData.RightBlindSpotTriggerExitEvent?.Invoke();
     }
     public void AnimateCarsAlongSpline()
     {

@@ -7,6 +7,7 @@ public class RestartPanel : MonoBehaviour
     public UIDataSO uiData;
     public InputDataSO inputData;
     public GameDataSO gameData;
+    public SocketDataSO socketData;
 
     [Header("UI Elements")]
     public CanvasGroup canvasGroup;
@@ -23,6 +24,8 @@ public class RestartPanel : MonoBehaviour
         {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
+
+        socketData.SendDataToClient("Score is: " + gameData.currentScore.ToString());
     }
 
 
@@ -30,12 +33,12 @@ public class RestartPanel : MonoBehaviour
     private void OnEnable()
     {        
         isFading = false;
-        inputData.RightUIButtonClickedEvent += RightCliked;
+      //  inputData.RightUIButtonClickedEvent += RightCliked;
     }
 
     private void OnDisable()
     {    
-        inputData.RightUIButtonClickedEvent -= RightCliked;
+      //  inputData.RightUIButtonClickedEvent -= RightCliked;
     }
 
     private void RightCliked(float val)

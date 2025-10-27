@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using UnityEngine;
 
@@ -38,6 +39,16 @@ public enum City { Delhi, Milan, SaoPaulo, Manila }
 
 [Serializable]
 public enum Language { English, Italian }
+
+[Serializable]
+public enum EventCode { PlayerInfo = 1, StartGame = 2, ScoreUpdated =3,Home = 4}
+
+[Serializable]
+public  class PacketData
+{
+    public EventCode eventCode;
+    public string jsonData;
+}
 
 
 [Serializable]
