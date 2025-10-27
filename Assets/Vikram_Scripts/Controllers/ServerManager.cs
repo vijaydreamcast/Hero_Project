@@ -3,37 +3,66 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 /// <summary>
-/// A simple UDP server that binds to a port and listens for client messages.
+/// A simple TCP server that binds to a port and listens for client connections and messages.
 /// Works in Unity Editor/Build on desktop.
 /// </summary>
 public class ServerManager : MonoBehaviour
 {
+    // Singleton instance
+    public static ServerManager Instance { get; private set; }
+
     [Header(" Scriptable Object")]
     public SocketDataSO socketData; // Your scriptable object holding IP/port config
+    public UIDataSO uiData;
 
 
-    // local variables
-    public UdpClient udpServer;
-    private Thread receiveThread;
+    // TCP server variables
+    private TcpListener tcpListener;
+    private Thread listenThread;
+    private List<TcpClient> connectedClients = new List<TcpClient>();
     public bool isRunning;
+    private bool isClientConnected;
+    private bool isMessageReceived;
+    
 
     [Header("Inspector Broadcast")]
     [Tooltip("Message to send when you click the inspector button (Play mode only)")]
     public string inspectorBroadcastMessage = "Hello from ServerManager";
 
+    private void Awake()
+    {
+        // Singleton pattern implementation
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void OnEnable()
     {
+        string localIP = GetLocalIPv4();
+        Debug.Log($"[ServerManager] Local IPv4 Address: {localIP}");
+        socketData.SetServerIp(localIP);
         StartServer(socketData.serverPort);
+
+        socketData.SendDataToClientEvent += SendDataToClients;
     }
 
     public void OnDisable()
     {
+        socketData.SendDataToClientEvent -= SendDataToClients;
         StopServer();
     }
+
     /// <summary>
-    /// Start the server by binding to the given port.
+    /// Start the TCP server by binding to the given port.
     /// </summary>
     public void StartServer(int port)
     {
@@ -41,18 +70,19 @@ public class ServerManager : MonoBehaviour
 
         try
         {
-            udpServer = new UdpClient(port); // bind to the specific port
+            tcpListener = new TcpListener(IPAddress.Any, port);
+            tcpListener.Start();
             isRunning = true;
 
-            receiveThread = new Thread(() => ReceiveLoop(port));
-            receiveThread.IsBackground = true;
-            receiveThread.Start();
+            listenThread = new Thread(ListenForClients);
+            listenThread.IsBackground = true;
+            listenThread.Start();
 
-            Debug.Log($"[ServerManager] Server started. Listening on port {port}");
+            Debug.Log($"[ServerManager] TCP Server started. Listening on port {port}");
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"[ServerManager] Failed to start server: {ex.Message}");
+            Debug.LogError($"[ServerManager] Failed to start TCP server: {ex.Message}");
         }
     }
 
@@ -64,70 +94,187 @@ public class ServerManager : MonoBehaviour
         isRunning = false;
         try
         {
-            udpServer?.Close();
-            receiveThread?.Abort();
+            tcpListener?.Stop();
+            lock (connectedClients)
+            {
+                foreach (var client in connectedClients)
+                {
+                    client?.Close();
+                }
+                connectedClients.Clear();
+            }
+            listenThread?.Abort();
         }
         catch { }
-        Debug.Log("[ServerManager] Server stopped.");
+        Debug.Log("[ServerManager] TCP Server stopped.");
     }
 
     /// <summary>
-    /// Background loop to receive UDP messages.
+    /// Thread loop to accept incoming TCP clients.
     /// </summary>
-    private void ReceiveLoop(int port)
+    private void ListenForClients()
     {
-        IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, port);
-
         while (isRunning)
         {
-            Debug.Log("[ServerManager] Waiting for data...");
             try
             {
-                byte[] data = udpServer.Receive(ref remoteEndPoint);
-                string message = Encoding.UTF8.GetString(data);
+                TcpClient client = tcpListener.AcceptTcpClient();
+                lock (connectedClients)
+                {
+                    connectedClients.Add(client);
+                }
+                Debug.Log($"[ServerManager] Client connected: {client.Client.RemoteEndPoint}");
+                isClientConnected = true;
+               
 
-
-                Debug.Log("Received " + message);
-
-                // Optional: Echo back to client
-                byte[] echoBytes = Encoding.UTF8.GetBytes("Echo: " + message);
-                udpServer.Send(echoBytes, echoBytes.Length, remoteEndPoint);
+                // Start a thread to handle communication with this client
+                Thread clientThread = new Thread(() => HandleClientComm(client));
+                clientThread.IsBackground = true;
+                clientThread.Start();
             }
-            catch (System.Exception ex)
+            catch (SocketException ex)
             {
-                Debug.LogError($"[ServerManager] Receive failed: {ex.Message}");
+                if (isRunning)
+                    Debug.LogError($"[ServerManager] Accept failed: {ex.Message}");
             }
         }
     }
 
+    private void Update()
+    {
+        if(isClientConnected)
+        {
+            socketData.ClientConnected();
+            isClientConnected = false;
+        }
 
+        if(isMessageReceived)
+        {
+            LoadScene();
+            isMessageReceived = false;
+        }
+    }
+
+    private void LoadScene()
+    {
+        int sceneNumber = (int)uiData.PlayerInfo.selectedCity;
+        SceneManager.LoadSceneAsync(sceneNumber+1);
+    }
+
+    /// <summary>
+    /// Handles communication with a connected TCP client.
+    /// </summary>
+    private void HandleClientComm(TcpClient client)
+    {
+        NetworkStream clientStream = client.GetStream();
+        byte[] message = new byte[4096];
+        int bytesRead;
+
+        try
+        {
+            while (isRunning && client.Connected)
+            {
+                bytesRead = 0;
+                bytesRead = clientStream.Read(message, 0, 4096);
+                if (bytesRead == 0)
+                {
+                    // The client has disconnected
+                    break;
+                }
+
+                string receivedMsg = Encoding.UTF8.GetString(message, 0, bytesRead);
+                Debug.Log($"[ServerManager] Received from {client.Client.RemoteEndPoint}: {receivedMsg}");
+
+                if(receivedMsg.Length > 50) // Assuming valid PlayerInfo JSON is longer than 50 characters
+                {
+                    isMessageReceived = true;
+                    uiData.PlayerInfo = JsonUtility.FromJson<PlayerInfo>(receivedMsg);
+                }
+                
+                
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[ServerManager] Client communication error: {ex.Message}");
+        }
+        finally
+        {
+            Debug.Log($"[ServerManager] Client disconnected: {client.Client.RemoteEndPoint}");
+           // socketData.ClientDisconnected(); // <-- Add this line to notify disconnection
+            lock (connectedClients)
+            {
+                connectedClients.Remove(client);
+            }
+            client.Close();
+        }
+    }
+
+    /// <summary>
+    /// Broadcasts data to all connected TCP clients.
+    /// </summary>
     public void BroadCastData(string data)
     {
-        if (!isRunning || udpServer == null)
+        if (!isRunning || tcpListener == null)
         {
             Debug.LogWarning("[ServerManager] Cannot broadcast, server not running.");
             return;
         }
 
-        try
+        byte[] bytes = Encoding.UTF8.GetBytes(data);
+        lock (connectedClients)
         {
-            // Convert string to bytes
-            byte[] bytes = Encoding.UTF8.GetBytes(data);
-
-            // Enable broadcast on the socket
-            udpServer.EnableBroadcast = true;
-
-            // Broadcast to all clients on the local subnet
-            IPEndPoint broadcastEndPoint = new IPEndPoint(IPAddress.Broadcast, socketData.clientPort);
-
-            udpServer.Send(bytes, bytes.Length, broadcastEndPoint);
-
-            Debug.Log($"[ServerManager] Broadcasted: \"{data}\" to {broadcastEndPoint}");
+            foreach (var client in connectedClients)
+            {
+                if (client.Connected)
+                {
+                    try
+                    {
+                        NetworkStream stream = client.GetStream();
+                        stream.Write(bytes, 0, bytes.Length);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogError($"[ServerManager] Broadcast to {client.Client.RemoteEndPoint} failed: {ex.Message}");
+                    }
+                }
+            }
         }
-        catch (System.Exception ex)
+        Debug.Log($"[ServerManager] Broadcasted: \"{data}\" to all clients.");
+    }
+
+    /// <summary>
+    /// Sends data to all currently connected TCP clients.
+    /// </summary>
+    /// <param name="data">The string data to send.</param>
+    public void SendDataToClients(string data)
+    {
+        if (!isRunning || tcpListener == null)
         {
-            Debug.LogError($"[ServerManager] Broadcast failed: {ex.Message}");
+            Debug.LogWarning("[ServerManager] Cannot send data, server not running.");
+            return;
         }
+
+        byte[] bytes = Encoding.UTF8.GetBytes(data);
+        lock (connectedClients)
+        {
+            foreach (var client in connectedClients)
+            {
+                if (client.Connected)
+                {
+                    try
+                    {
+                        NetworkStream stream = client.GetStream();
+                        stream.Write(bytes, 0, bytes.Length);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogError($"[ServerManager] Send to {client.Client.RemoteEndPoint} failed: {ex.Message}");
+                    }
+                }
+            }
+        }
+        Debug.Log($"[ServerManager] Sent: \"{data}\" to all existing clients.");
     }
 
     /// <summary>
@@ -138,4 +285,28 @@ public class ServerManager : MonoBehaviour
         BroadCastData(inspectorBroadcastMessage);
     }
 
+    /// <summary>
+    /// Gets the first local IPv4 address found on the machine.
+    /// </summary>
+    private string GetLocalIPv4()
+    {
+        string localIP = "Not found";
+        try
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    localIP = ip.ToString();
+                    break;
+                }
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[ServerManager] Failed to get local IPv4 address: {ex.Message}");
+        }
+        return localIP;
+    }
 }

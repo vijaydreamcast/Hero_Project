@@ -6,7 +6,7 @@ public class UIDataSO : ScriptableObject
 {
 
     // Variables
-
+    public PlayerInfo PlayerInfo;
 
 
     //Actions
@@ -22,11 +22,17 @@ public class UIDataSO : ScriptableObject
 
     public Action<FeatureType> ShowZoneEnterPopUpEvent;
     public Action TakeActionEvent;
-
     public Action<int> FadeCanvasEvent;
 
 
+    public Action SwitchSceneEvent;
+
     //Methods
+
+    public void SwitchScene()
+    {
+        SwitchSceneEvent?.Invoke();
+    }
 
     public void FadeCanvas(int endAlpha)
     {
