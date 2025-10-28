@@ -5,6 +5,7 @@ public class AudioManager : MonoBehaviour
     [Header(" AudioSources")]
     public AudioSource backGroundAS;
     public AudioSource freeRideAS;
+    public AudioSource trafficAS;
 
     public static AudioManager instance;
 

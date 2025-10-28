@@ -133,6 +133,14 @@ public class SimpleBikeController : MonoBehaviour
 
     }
 
+    public void ResetThrotlleAndSteer()
+    {
+        throttleInput = 0f;
+        steerInput = 0;
+        
+
+    }
+
     private void ApplyThrottle(float throttle)
     {
         throttleInput = throttle;

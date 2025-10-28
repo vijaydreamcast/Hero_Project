@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticsUtility;
 
 public class BikeCollision : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BikeCollision : MonoBehaviour
     public InputDataSO inputData;
 
     [Header(" Other Objects")]
+    public SimpleBikeController controller;
     public GameObject startTransform;
     public AudioSource collisionSoundAS;
 
@@ -27,8 +29,9 @@ public class BikeCollision : MonoBehaviour
     {
         if(other.gameObject.tag == "EndBlock")
         {
-        
-            bikeData.ResetSpeed();
+
+            //  bikeData.ResetSpeed();
+            controller.ResetThrotlleAndSteer();
             inputData.DeactivateInput();
 
             transform.rotation = other.gameObject.transform.rotation;
@@ -40,31 +43,36 @@ public class BikeCollision : MonoBehaviour
 
     private IEnumerator BikeStoppingRoutine(float forwardDistance = 5f, float duration = 2f)
     {
-        // immediate placement if duration is zero or negative
-        if (duration <= 0f)
+        //// immediate placement if duration is zero or negative
+        //if (duration <= 0f)
+        //{
+        //    Vector3 endImmediate = transform.position + transform.forward * forwardDistance;
+        //    transform.position = endImmediate;
+        //    yield break;
+        //}
+
+        //Vector3 startPos = transform.position;
+        //Vector3 endPos = startPos + transform.forward * forwardDistance;
+
+        //float elapsed = 0f;
+        //while (elapsed < duration)
+        //{
+        //    float t = Mathf.Clamp01(elapsed / duration);
+        //    Vector3 newPos = Vector3.Lerp(startPos, endPos, t);
+
+        //     transform.position = newPos;
+
+        //    // advance in fixed steps so physics-aware movement is smooth
+        //    elapsed += Time.deltaTime;
+        //    yield return null;
+        //}
+
+       // transform.position = endPos;
+
+        while(bikeData.currentSpeed > 0.1f)
         {
-            Vector3 endImmediate = transform.position + transform.forward * forwardDistance;
-            transform.position = endImmediate;
-            yield break;
-        }
-
-        Vector3 startPos = transform.position;
-        Vector3 endPos = startPos + transform.forward * forwardDistance;
-
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            float t = Mathf.Clamp01(elapsed / duration);
-            Vector3 newPos = Vector3.Lerp(startPos, endPos, t);
-
-             transform.position = newPos;
-
-            // advance in fixed steps so physics-aware movement is smooth
-            elapsed += Time.deltaTime;
             yield return null;
         }
-
-        transform.position = endPos;
 
         bikeData.RaceCompleted();
     }
