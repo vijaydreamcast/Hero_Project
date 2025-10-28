@@ -199,8 +199,6 @@ public class RearCollisionDetection : MonoBehaviour
         Vector3 endPos = BikeStartPoint.transform.position;
         Quaternion endRot = BikeStartPoint.transform.rotation;
 
-        //Debug.Log("Bike speed is " + (endPos - startPos).magnitude / bikePositioningDuration);
-
         // Direction from scooter to animation point
         Vector3 toTarget = (endPos - startPos).normalized;
         Quaternion pathDirectionRot = Quaternion.LookRotation(toTarget, Vector3.up);

@@ -16,8 +16,10 @@ public class FeatureDisplayPanel : MonoBehaviour
     public CanvasGroup group;
     public GameObject CorrectActionImage;
     public GameObject WrongActionImage;
-    public TMP_Text headingText;
+    public GameObject NextButton;
+   
     public Image featureIcon;
+    public TMP_Text headingText;
     public TMP_Text correctDesciptionText;
     public TMP_Text wrongDescriptionText;
 
@@ -41,12 +43,14 @@ public class FeatureDisplayPanel : MonoBehaviour
 
     private void TurnOffPanel(float val)
     {
-        if (group.alpha == 1)
+        if (group.alpha == 1 && isFeatureShown)
         {
             uiData.ClearText();
             inputData.ActivateInput();
             group.alpha = 0f;
             container.alpha = 0;
+            isFeatureShown = false;
+            NextButton.SetActive(false);
         }
 
     }
@@ -115,6 +119,10 @@ public class FeatureDisplayPanel : MonoBehaviour
             yield return null;
         }
         group.alpha = 1f;
+
+        yield return new WaitForSeconds(1); // slight delay
+        isFeatureShown = true;
+        NextButton.SetActive(true);
 
     }
 }

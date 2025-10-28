@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleWheelRotation: {fileID: 5615336851810099767}
-  frontTransform: {fileID: 1076909084687142367}
   splineContainer: {fileID: 0}
   splineLength: 0
   maxSpeed: 8
@@ -88,13 +87,14 @@ MonoBehaviour:
   acceleration: 4
   deceleration: 4
   toleranceDistance: 0.5
+  frontTransform: {fileID: 1076909084687142367}
   vehicleHalfLength: 1
   vehicleHalfBreadth: 0.4
   vehicleHalfHeight: 0.3
   maxRayCastDistance: 3
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 192
   movementDirection: 0
   forwardDirection: 1
   upDirection: 1
@@ -134,14 +134,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d370862bae78642acb62037bdc3584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  wheelRadius: 0.2
   wheels:
   - {fileID: 5424911084391832317}
   - {fileID: 4021614908850721729}
   - {fileID: 7286436580083150431}
   - {fileID: 387324654489406013}
+  currentSpeed: 0
+  wheelRadius: 0.2
+  X: 1
+  Y: 0
+  Z: 0
   rotationAngle: 0
+  movementDirection: 0
+  speedFactor: 2
 --- !u!1001 &8925576580745945484
 PrefabInstance:
   m_ObjectHideFlags: 0
