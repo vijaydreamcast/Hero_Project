@@ -137,7 +137,8 @@ public class SimpleBikeController : MonoBehaviour
     {
         throttleInput = 0f;
         steerInput = 0;
-        
+        leftBrakeInput = 1;
+        rightBrakeInput = 1;
 
     }
 

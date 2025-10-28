@@ -212,6 +212,54 @@ MonoBehaviour:
   socketData: {fileID: 11400000, guid: 8f1e1e3a5b3361945b246ad3db8cf237, type: 2}
   serverIpText: {fileID: 480804150}
   connectionText: {fileID: 1383739358}
+--- !u!1 &258355734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 258355735}
+  - component: {fileID: 258355736}
+  m_Layer: 0
+  m_Name: SceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &258355735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258355734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &258355736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258355734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce70cc4c01b81e4f87fb9ede40a8c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DelhiScene: 49
+  MilanScene: 50
+  SaoPauloScene: 51
+  ManilaScene: 52
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,3 +1081,4 @@ SceneRoots:
   - {fileID: 429096893}
   - {fileID: 373503885}
   - {fileID: 885826683}
+  - {fileID: 258355735}
