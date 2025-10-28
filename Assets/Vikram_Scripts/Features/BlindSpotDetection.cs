@@ -24,6 +24,7 @@ public class BlindSpotDetection : MonoBehaviour
  
 
     [Header(" Game Objects")]
+    public GameObject TriggerObject;
     public GameObject HeroBike;
     public GameObject BikeSteering;
     public GameObject BikeStartPoint;
@@ -98,9 +99,7 @@ public class BlindSpotDetection : MonoBehaviour
     private void BlindSpotTriggerExit()
     {
         
-        isBikeinBlindSpotZone = false;
-
-        if(!isBikeCollided)
+        if(!isBikeCollided && isBikeinBlindSpotZone)
         {
             Debug.Log("Correct Action ");
             triggerEndCorrectAudioAs.Play();
@@ -110,11 +109,12 @@ public class BlindSpotDetection : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
 
         }
 
         isBikeCollided = false;
+        isBikeinBlindSpotZone = false;
 
     }
 
@@ -133,11 +133,12 @@ public class BlindSpotDetection : MonoBehaviour
             bikeController.SetConstantSpeed(false);
 
             isBikeCollided = true;
+            isBikeinBlindSpotZone = false;
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Wrong);
             inputData.DeactivateInput();
             bikeController.Reset();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
 
         }
     }

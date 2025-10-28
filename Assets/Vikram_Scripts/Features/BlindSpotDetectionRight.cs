@@ -146,6 +146,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
             bikeController.Reset();
 
             TriggerObject.SetActive(false);
+            isBikeinBlindSpotZone = false;
 
         }
     }

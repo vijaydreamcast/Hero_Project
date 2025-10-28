@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WelocmePopUpScreenScreen : MonoBehaviour
 {
@@ -8,14 +9,21 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
     public InputDataSO inputData;
 
     [Header("UI Elements")]
-    public AudioSource audioSource;
     public CanvasGroup canvasGroup;
     public GameObject nextPanel;
     public GameObject prevPanel;
+    public Image NextBtnImage;
+
+
+    [Header("Other Objects")]
+    public AudioSource audioSource;
+    public Color grayColor;
+    public Color hightlightColor;
+
+
+    [Header("Local Variables")]
     public float fadeDuration = 0.5f;
     public float waitTime;
-
-    // local variables
     public bool isFading = false;
     public bool canITransistion = false;
 
@@ -23,6 +31,7 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
     private void OnEnable()
     {
         canITransistion = false;
+        NextBtnImage.color = grayColor;
         isFading = false;
         inputData.RightUIButtonClickedEvent += RightBrakeClicked;
      
@@ -40,6 +49,7 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(audioSource.clip.length);
         canITransistion = true;
+        NextBtnImage.color = hightlightColor;
     }
 
 

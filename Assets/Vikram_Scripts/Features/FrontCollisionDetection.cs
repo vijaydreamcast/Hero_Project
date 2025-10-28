@@ -139,6 +139,7 @@ public class FrontCollisionDetection : MonoBehaviour
             RightLaneCarMovement.currentSpeed = 10f;
 
             isBikeCollided = true;
+            isBikeinFrontCollisionZone = false;
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.FrontVehicle, FeatureResult.Wrong);
 
