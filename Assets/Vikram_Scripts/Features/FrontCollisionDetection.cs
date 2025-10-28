@@ -228,6 +228,8 @@ public class FrontCollisionDetection : MonoBehaviour
             }
 
             elapsed += Time.deltaTime;
+            bikeController.SetBikeSounds(bikeConstantSpeed);
+            bikeData.SetSpeed(bikeConstantSpeed);
             yield return null;
         }
 
@@ -260,6 +262,8 @@ public class FrontCollisionDetection : MonoBehaviour
             HeroBikeMovement.progress = Mathf.Lerp(bikeStart, bikeEnd, t);
 
             elapsed += Time.deltaTime;
+            bikeController.SetBikeSounds(bikeConstantSpeed);
+            bikeData.SetSpeed(bikeConstantSpeed);
             yield return null;
         }
 
@@ -301,7 +305,10 @@ public class FrontCollisionDetection : MonoBehaviour
 
         // Optionally, enable movement if needed
         RightLaneCarMovement.enabled = true;
-        RightLaneCarMovement.SetMovement(true);
+
+        // Now apply a constant speed for both
+        RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
+       
        
 
         while (elapsed < totalTime)
@@ -318,9 +325,9 @@ public class FrontCollisionDetection : MonoBehaviour
 
         // Ensure final progress is set
         RightLaneCarMovement.progress = rightEnd;
+        RightLaneCarMovement.SetMovement(true);
 
 
-        // Now apply a constant speed for both
-        RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
+
     }
 }
