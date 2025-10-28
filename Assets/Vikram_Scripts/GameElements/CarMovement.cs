@@ -67,7 +67,7 @@ public class CarMovement : MonoBehaviour, IVehicleMovement
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isMoving) return;
 
