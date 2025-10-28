@@ -523,6 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623266626382754169}
   - component: {fileID: 5545897988127769902}
+  - component: {fileID: 4362620230126338943}
   m_Layer: 0
   m_Name: mesh_0.001
   m_TagString: Untagged
@@ -743,6 +744,28 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0019589674, y: 0.0015002387, z: 0.00046006817}
     m_Extent: {x: 0.009626983, y: 0.0034255502, z: 0.0021423358}
   m_DirtyAABB: 0
+--- !u!95 &4362620230126338943
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483129604033332274}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 597a288dd7d625c46843dc26eb10fb88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1495961141739286099
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1498672439817486262}
+  - component: {fileID: 6498973628055006189}
   m_Layer: 0
   m_Name: Female Character-05
   m_TagString: Untagged
@@ -937,6 +961,28 @@ Transform:
   - {fileID: 1623266626382754169}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &6498973628055006189
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778206461298811423}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 053a7d2e3a181124dabdf09be5cbf9ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1784358480494696930
 GameObject:
   m_ObjectHideFlags: 0
