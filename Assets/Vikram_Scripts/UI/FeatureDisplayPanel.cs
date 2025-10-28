@@ -120,7 +120,7 @@ public class FeatureDisplayPanel : MonoBehaviour
         }
         group.alpha = 1f;
 
-        yield return new WaitForSeconds(1); // slight delay
+        yield return new WaitForSeconds(2); // slight delay
         isFeatureShown = true;
         NextButton.SetActive(true);
 
