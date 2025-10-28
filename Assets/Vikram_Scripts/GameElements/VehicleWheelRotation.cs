@@ -27,6 +27,7 @@ public class VehicleWheelRotation : MonoBehaviour
 
     void Start()
     {
+        currentSpeed = 0f;
         speedFactor = 60;
         // Cache initial local rotations to avoid overwriting existing orientation offsets
         if (wheels == null)

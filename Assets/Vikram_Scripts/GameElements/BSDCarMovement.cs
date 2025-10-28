@@ -83,6 +83,8 @@ public class BSDCarMovement : MonoBehaviour
         {
             
             isMoving = false;
+            currentSpeed = 0f;
+            WheelRotation.currentSpeed = 0f;
         }
     }
 }
