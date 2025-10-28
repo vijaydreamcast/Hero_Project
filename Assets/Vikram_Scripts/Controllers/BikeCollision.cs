@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BikeCollision : MonoBehaviour
@@ -26,13 +27,48 @@ public class BikeCollision : MonoBehaviour
     {
         if(other.gameObject.tag == "EndBlock")
         {
-            //transform.position = startTransform.transform.position;
-            //transform.rotation = startTransform.transform.rotation;
+        
             bikeData.ResetSpeed();
             inputData.DeactivateInput();
-            bikeData.RaceCompleted();
+
+            transform.rotation = other.gameObject.transform.rotation;
+
+            StartCoroutine(BikeStoppingRoutine(5f, 2f));
+
         }
     }
+
+    private IEnumerator BikeStoppingRoutine(float forwardDistance = 5f, float duration = 2f)
+    {
+        // immediate placement if duration is zero or negative
+        if (duration <= 0f)
+        {
+            Vector3 endImmediate = transform.position + transform.forward * forwardDistance;
+            transform.position = endImmediate;
+            yield break;
+        }
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = startPos + transform.forward * forwardDistance;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            float t = Mathf.Clamp01(elapsed / duration);
+            Vector3 newPos = Vector3.Lerp(startPos, endPos, t);
+
+             transform.position = newPos;
+
+            // advance in fixed steps so physics-aware movement is smooth
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = endPos;
+
+        bikeData.RaceCompleted();
+    }
+
 
     /// <summary>
     /// Determines which side (front, back, left, right) the collision occurred on relative to the bike.
