@@ -231,8 +231,9 @@ public class BlindSpotDetection : MonoBehaviour
 
             elapsed += Time.deltaTime;
             bikeController.SetBikeSounds(bikeConstantSpeed);
-            bikeData.SetSpeed(bikeConstantSpeed);
+          
             yield return null;
+            bikeData.SetSpeed(bikeConstantSpeed);
         }
 
         // Ensure final position and rotation
@@ -262,8 +263,9 @@ public class BlindSpotDetection : MonoBehaviour
 
             elapsed += Time.deltaTime;
             bikeController.SetBikeSounds(bikeConstantSpeed);
-            bikeData.SetSpeed(bikeConstantSpeed);
+           
             yield return null;
+            bikeData.SetSpeed(bikeConstantSpeed);
         }
 
         HeroBikeMovement.progress = bikeEnd;
