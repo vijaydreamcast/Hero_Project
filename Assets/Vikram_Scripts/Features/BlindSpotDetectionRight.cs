@@ -146,6 +146,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
             bikeController.Reset();
 
             TriggerObject.SetActive(false);
+            isBikeinBlindSpotZone = false;
 
         }
     }
@@ -181,8 +182,6 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
     private void StartCarsAndBikeAnimation()
     {
-     
-
         uiData.ShowZoneEnterPopUp(FeatureType.BlindSpot);
         inputData.SendHapticFeedBack();
         RightLaneCarMovement.gameObject.SetActive(true);
@@ -257,6 +256,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
             elapsed += Time.deltaTime;
             bikeController.SetBikeSounds(bikeConstantSpeed);
+            bikeData.SetSpeed(bikeConstantSpeed);
             yield return null;
         }
 
@@ -288,6 +288,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
             elapsed += Time.deltaTime;
             bikeController.SetBikeSounds(bikeConstantSpeed);
+            bikeData.SetSpeed(bikeConstantSpeed);
             yield return null;
         }
 
@@ -321,10 +322,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
     {
         float totalTime = bikePositioningDuration + bikeMovementDuration;
         float elapsed = 0f;
-
-        LeftLaneCarMovement.SetMovement(true);
-        RightLaneCarMovement.SetMovement(true);
-
+  
         float leftStart = LeftLaneCarMovement.progress;
         float leftEnd = leftCarFinalProgress;
         float rightStart = RightLaneCarMovement.progress;
@@ -334,6 +332,10 @@ public class BlindSpotDetectionRight : MonoBehaviour
         // Optionally, enable movement if needed
         LeftLaneCarMovement.enabled = true;
         RightLaneCarMovement.enabled = true;
+
+        // Now apply a constant speed for both
+        LeftLaneCarMovement.currentSpeed = leftCarConstantSpeed;
+        RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
 
 
         while (elapsed < totalTime)
@@ -354,9 +356,10 @@ public class BlindSpotDetectionRight : MonoBehaviour
 
         }
 
-        // Now apply a constant speed for both
-        LeftLaneCarMovement.currentSpeed = leftCarConstantSpeed;
-        RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
+        LeftLaneCarMovement.SetMovement(true);
+        RightLaneCarMovement.SetMovement(true);
+
+
     }
 
 }

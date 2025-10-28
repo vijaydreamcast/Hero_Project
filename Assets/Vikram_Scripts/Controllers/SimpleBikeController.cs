@@ -173,12 +173,9 @@ public class SimpleBikeController : MonoBehaviour
         );
 
         if (hitObstacle)
-        {
-           
+        {          
             Quaternion ObstacleOrienattion = hitInfo.collider.transform.rotation;
             transform.rotation = ObstacleOrienattion;
-          //  currentSpeed = 5f;
-
         }
 
         if (!isBikeStarted) return;
@@ -205,8 +202,6 @@ public class SimpleBikeController : MonoBehaviour
             float brake = (totalBrake > 0f) ? brakeStrength * totalBrake : brakeStrength;
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, brake * Time.deltaTime);
         }
-
-        bikeData.currentSpeed = currentSpeed;
 
         if (Mathf.Abs(smoothedSteerInput) > 0.01f && Mathf.Abs(currentSpeed) > 0.1f)
         {
@@ -249,9 +244,10 @@ public class SimpleBikeController : MonoBehaviour
         }
 
         distance += currentSpeed * Time.deltaTime;
-        bikeData.SetSpeed(speed);
-        bikeData.SetDistance(distance);
 
+
+        bikeData.SetSpeed(currentSpeed);
+        bikeData.SetDistance(distance);
         SetBikeSounds(currentSpeed);
     }
 
@@ -270,8 +266,6 @@ public class SimpleBikeController : MonoBehaviour
             bikeIdleSound.volume = 0.5f;
         }
     }
-
-
 
     public void SetConstantSpeed(bool canIMove)
     {

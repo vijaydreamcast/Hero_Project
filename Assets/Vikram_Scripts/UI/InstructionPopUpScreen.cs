@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class InstructionPopUpScreen : MonoBehaviour
 {
@@ -9,13 +10,20 @@ public class InstructionPopUpScreen : MonoBehaviour
     public InputDataSO inputData;
 
     [Header("UI Elements")]
-    public AudioSource audioSource;
     public CanvasGroup canvasGroup;
     public GameObject nextPanel;
     public GameObject prevPanel;
-    public float fadeDuration = 0.5f;
+    public Image NextBtnImage;
+    public Image PreviousBtnImage;
+
+    [Header("Other Objects")]
+    public AudioSource audioSource;
+    public Color grayColor;
+    public Color hightlightColor;
 
     // local variables
+    [Header("Local Variables")]
+    public float fadeDuration = 0.5f;
     public bool isFading = false;
     public bool canITransistion = false;
 
@@ -25,6 +33,9 @@ public class InstructionPopUpScreen : MonoBehaviour
     {
         canITransistion = false;
         isFading = false;
+        NextBtnImage.color = grayColor;
+        PreviousBtnImage.color = grayColor;
+
         inputData.RightUIButtonClickedEvent += RightBrakeClicked;
         inputData.LeftUIButtonClickedEvent += LeftBrakeClicked;
         StartCoroutine(WaitAndTransistion());
@@ -41,6 +52,8 @@ public class InstructionPopUpScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(audioSource.clip.length);
         canITransistion = true;
+        NextBtnImage.color = hightlightColor;
+        PreviousBtnImage.color = hightlightColor;
     }
 
 

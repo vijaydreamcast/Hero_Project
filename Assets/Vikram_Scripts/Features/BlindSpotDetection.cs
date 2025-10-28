@@ -24,6 +24,7 @@ public class BlindSpotDetection : MonoBehaviour
  
 
     [Header(" Game Objects")]
+    public GameObject TriggerObject;
     public GameObject HeroBike;
     public GameObject BikeSteering;
     public GameObject BikeStartPoint;
@@ -98,9 +99,7 @@ public class BlindSpotDetection : MonoBehaviour
     private void BlindSpotTriggerExit()
     {
         
-        isBikeinBlindSpotZone = false;
-
-        if(!isBikeCollided)
+        if(!isBikeCollided && isBikeinBlindSpotZone)
         {
             Debug.Log("Correct Action ");
             triggerEndCorrectAudioAs.Play();
@@ -110,11 +109,12 @@ public class BlindSpotDetection : MonoBehaviour
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
 
         }
 
         isBikeCollided = false;
+        isBikeinBlindSpotZone = false;
 
     }
 
@@ -133,11 +133,12 @@ public class BlindSpotDetection : MonoBehaviour
             bikeController.SetConstantSpeed(false);
 
             isBikeCollided = true;
+            isBikeinBlindSpotZone = false;
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Wrong);
             inputData.DeactivateInput();
             bikeController.Reset();
-            gameObject.SetActive(false);
+            TriggerObject.SetActive(false);
 
         }
     }
@@ -230,6 +231,7 @@ public class BlindSpotDetection : MonoBehaviour
 
             elapsed += Time.deltaTime;
             bikeController.SetBikeSounds(bikeConstantSpeed);
+            bikeData.SetSpeed(bikeConstantSpeed);
             yield return null;
         }
 
@@ -260,6 +262,7 @@ public class BlindSpotDetection : MonoBehaviour
 
             elapsed += Time.deltaTime;
             bikeController.SetBikeSounds(bikeConstantSpeed);
+            bikeData.SetSpeed(bikeConstantSpeed);
             yield return null;
         }
 
@@ -307,8 +310,12 @@ public class BlindSpotDetection : MonoBehaviour
         RightLaneCarMovement.enabled = true;
 
 
-        LeftLaneCarMovement.SetMovement(true);
-        RightLaneCarMovement.SetMovement(true);
+        // Now apply a constant speed for both
+        LeftLaneCarMovement.currentSpeed = leftCarConstantSpeed;
+        RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
+
+        //LeftLaneCarMovement.SetMovement(true);
+        //RightLaneCarMovement.SetMovement(true);
 
         while (elapsed < totalTime)
         {
@@ -327,8 +334,12 @@ public class BlindSpotDetection : MonoBehaviour
         RightLaneCarMovement.progress = rightEnd;
 
 
-        // Now apply a constant speed for both
-        LeftLaneCarMovement.currentSpeed = leftCarConstantSpeed;
-        RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
+        LeftLaneCarMovement.SetMovement(true);
+        RightLaneCarMovement.SetMovement(true);
+
+
+        //// Now apply a constant speed for both
+        //LeftLaneCarMovement.currentSpeed = leftCarConstantSpeed;
+        //RightLaneCarMovement.currentSpeed = rightCarConstantSpeed;
     }
 }
