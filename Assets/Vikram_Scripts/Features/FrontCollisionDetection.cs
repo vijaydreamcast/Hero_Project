@@ -121,6 +121,7 @@ public class FrontCollisionDetection : MonoBehaviour
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
             TriggerObject.SetActive(false);
+            isBikeinFrontCollisionZone = false;
         }
 
     }
@@ -145,6 +146,7 @@ public class FrontCollisionDetection : MonoBehaviour
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
             TriggerObject.SetActive(false);
+            isBikeinFrontCollisionZone = false;
 
         }
     }

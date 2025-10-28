@@ -124,6 +124,7 @@ public class RearCollisionDetection : MonoBehaviour
             inputData.DeactivateInput();
             bikeController.Reset();
             TriggerObject.SetActive(false);
+            isBikeinRearCollisionZone = false;
            
         }
 
@@ -149,6 +150,7 @@ public class RearCollisionDetection : MonoBehaviour
             bikeController.Reset();
             sensorData.DeActivateAllSensors();
             TriggerObject.SetActive(false);
+            isBikeinRearCollisionZone = false;
            
         }
 
