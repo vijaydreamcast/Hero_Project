@@ -17,7 +17,7 @@ public class SpeedAndDistancePanel : MonoBehaviour
         timeCoroutine = StartCoroutine(UpdateTimeCoroutine());
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         speedText.text = ((int)bikeData.currentSpeed).ToString("00");
         distanceText.text = bikeData.currentDistance.ToString("F2") + "Km";
