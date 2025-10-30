@@ -36,6 +36,9 @@ public class BikeDataSO : ScriptableObject
     public Action<CollisionType> BikeCollidedDirectionEvent;
 
 
+    public Action<CollisionType> CloseVehicleEvent;
+
+
     public Action StartBikeEvent;
     public Action StopBikeEvent;
 
@@ -48,6 +51,11 @@ public class BikeDataSO : ScriptableObject
         currentSpeed = 0;
         currentDistance = 0;
        
+    }
+
+    public void CloseVehicle(CollisionType collisionType)
+    {
+        CloseVehicleEvent?.Invoke(collisionType);
     }
 
     public void StartBike()

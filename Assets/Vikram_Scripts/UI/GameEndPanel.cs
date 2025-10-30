@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Drawing;
+using TMPro;
 using UnityEngine;
 
 public class GameEndPanel : MonoBehaviour
@@ -6,8 +8,10 @@ public class GameEndPanel : MonoBehaviour
     [Header("Scriptable Objects")]
     public UIDataSO uiData;
     public InputDataSO inputData;
+    public GameDataSO gameData;
 
     [Header("UI Elements")]
+    public TMP_Text scoreText;
     public CanvasGroup container;
     public CanvasGroup canvasGroup;
     public GameObject nextPanel;
@@ -32,6 +36,9 @@ public class GameEndPanel : MonoBehaviour
         container.alpha = 1;
         isFading = false;
         inputData.RightUIButtonClickedEvent += RightCliked;
+        string score = gameData.currentScore.ToString();
+        scoreText.text = $"Your Score:<color=#FF0000>{score}</color>";
+        
     }
 
     private void OnDisable()

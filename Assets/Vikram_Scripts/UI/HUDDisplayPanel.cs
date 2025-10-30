@@ -19,6 +19,14 @@ public class HUDDisplayPanel : MonoBehaviour
     public CanvasGroup LeftCollisionImage;
     public CanvasGroup RightCollisionImage;
 
+    [Header("CloseVehicle Images")]
+
+    public CanvasGroup FrontImage;
+    public CanvasGroup RearImage;
+    public CanvasGroup LeftImage;
+    public CanvasGroup RightImage;
+
+
 
     // local variables
     private Coroutine displayRoutine;
@@ -30,6 +38,9 @@ public class HUDDisplayPanel : MonoBehaviour
         sensorData.RightBlindSpotTriggerEnterEvent += RightBlindSpotTriggerEnter;
         sensorData.FrontCollisionTriggerEnterEvent += FrontCollisionEnter;
         sensorData.RearCollisionTriggerEnterEvent += RearCollisionEnter;
+
+
+        bikeData.CloseVehicleEvent += ShowCloseVehicleIcons;
 
 
         sensorData.LeftBlindSpotTriggerExitEvent += ClearMessage;
@@ -49,6 +60,8 @@ public class HUDDisplayPanel : MonoBehaviour
         sensorData.RightBlindSpotTriggerEnterEvent -= RightBlindSpotTriggerEnter;
 
 
+        bikeData.CloseVehicleEvent -= ShowCloseVehicleIcons;
+
         sensorData.LeftBlindSpotTriggerExitEvent -= ClearMessage;
         sensorData.FrontCollisionTriggerExitEvent -= ClearMessage;
         sensorData.RearCollisionTriggerExitEvent -= ClearMessage;
@@ -56,6 +69,8 @@ public class HUDDisplayPanel : MonoBehaviour
         uiData.ClearAllTextEvent -= ClearMessage;
 
     }
+
+
 
     private void BlindSpotTriggerEnter()
     {
@@ -83,14 +98,50 @@ public class HUDDisplayPanel : MonoBehaviour
 
 
     private void ClearMessage()
-    {
-     
+    { 
         StopAllCoroutines();
         ResetIcons();
-        beepSoundAS.Stop();
-        
+        beepSoundAS.Stop();        
     }
 
+
+    private void ShowCloseVehicleIcons(CollisionType type)
+    {
+        if(type == CollisionType.Front)
+        {
+            StartCoroutine(ShowCloseVehicleIconsRoutine(FrontImage, 2f));
+        }
+        else if(type == CollisionType.Rear)
+        {
+           StartCoroutine(ShowCloseVehicleIconsRoutine(RearImage, 2f));
+        }
+        else if(type == CollisionType.Left)
+        {
+           StartCoroutine(ShowCloseVehicleIconsRoutine(LeftImage, 2f));
+        }
+        else if(type == CollisionType.Right)
+        {
+           StartCoroutine(ShowCloseVehicleIconsRoutine(RightImage, 2f));
+        }
+    }
+
+    private IEnumerator ShowCloseVehicleIconsRoutine(CanvasGroup targetGroup, float displaySeconds)
+    {
+       
+        yield return StartCoroutine(FadeCoroutine(targetGroup, true, 0.2f));
+
+        // Wait the requested display time
+        float elapsed = 0f;
+        while (elapsed < displaySeconds)
+        {
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Fade out and clear reference
+        yield return StartCoroutine(FadeCoroutine(targetGroup, false, 0.25f));
+     
+    }
 
 
     public IEnumerator FadeCoroutine(CanvasGroup targetGroup, bool canIShow,float fadeDuration = 0.5f)
@@ -134,6 +185,25 @@ public class HUDDisplayPanel : MonoBehaviour
         if(RightCollisionImage.alpha > 0.5f)
         {
             StartCoroutine(FadeCoroutine(RightCollisionImage, false));
+        }
+
+        if(LeftImage.alpha > 0.5f)
+        {
+            StartCoroutine(FadeCoroutine(LeftImage, false));
+        }
+
+        if (FrontImage.alpha > 0.5f)
+        {
+            StartCoroutine(FadeCoroutine(FrontImage, false));
+        }
+
+        if (RearImage.alpha > 0.5f)
+        {
+            StartCoroutine(FadeCoroutine(RearImage, false));
+        }
+        if (RightImage.alpha > 0.5f)
+        {
+            StartCoroutine(FadeCoroutine(RightImage, false));
         }
 
     }

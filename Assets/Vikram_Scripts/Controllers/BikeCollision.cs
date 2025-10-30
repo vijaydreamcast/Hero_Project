@@ -8,11 +8,13 @@ public class BikeCollision : MonoBehaviour
     public UIDataSO uiData;
     public BikeDataSO bikeData;
     public InputDataSO inputData;
+    public GameDataSO gameData;
 
     [Header(" Other Objects")]
     public SimpleBikeController controller;
     public GameObject startTransform;
     public AudioSource collisionSoundAS;
+    private bool canIUpdate = true;
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -23,6 +25,28 @@ public class BikeCollision : MonoBehaviour
             bikeData.BikeCollided(collision.gameObject);
            
         }
+
+
+        if(collision.gameObject.layer == 6 && collision.gameObject.tag != "RightCar" && collision.gameObject.tag != "LeftCar")
+        {
+          
+            if (canIUpdate)
+            {
+                Debug.Log("Collision Detected with Traffic Vehicle");
+                bikeData.CloseVehicle(GetCollisionSide(collision));
+                gameData.UpdateScore(-5);
+                canIUpdate = false;
+                StartCoroutine(WaitForUpdate());
+
+            }
+        }
+    }
+
+
+    private IEnumerator WaitForUpdate()
+    {
+        yield return new WaitForSeconds(2f);
+        canIUpdate = true;
     }
 
     public void OnTriggerEnter(Collider other)

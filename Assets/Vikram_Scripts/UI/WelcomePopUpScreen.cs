@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
     public GameObject nextPanel;
     public GameObject prevPanel;
     public Image NextBtnImage;
+    public TMP_Text NameText;
 
 
     [Header("Other Objects")]
@@ -34,7 +36,10 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
         NextBtnImage.color = grayColor;
         isFading = false;
         inputData.RightUIButtonClickedEvent += RightBrakeClicked;
-     
+
+
+        string playerName = uiData.PlayerInfo.playerName;
+        NameText.text = $"Welcome\n<color=#FF0000>{playerName}</color>";
         StartCoroutine(WaitAndTransistion());
     }
 

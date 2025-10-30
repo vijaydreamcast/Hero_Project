@@ -29,6 +29,28 @@ public class GameDataSO : ScriptableObject
     {
         RestartGameEvent?.Invoke();
     }
+
+    public void SetScore(int score)
+    {
+        currentScore = score;
+    }
+
+    public void UpdateScore(int delta)
+    {
+        if (currentScore > 20 )
+        {
+            currentScore += delta;
+        }
+        else if (delta > 0)
+        {
+            currentScore += delta;
+        }
+    }
+
+    public int GetScore()
+    {
+        return currentScore;
+    }
 }
 
 

@@ -109,6 +109,8 @@ public class BlindSpotDetectionRight : MonoBehaviour
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
 
+            gameData.UpdateScore(10);
+
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.BlindSpot, FeatureResult.Correct);
             inputData.DeactivateInput();
@@ -138,6 +140,7 @@ public class BlindSpotDetectionRight : MonoBehaviour
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
 
+            gameData.UpdateScore(-10);
 
             isBikeCollided = true;
 

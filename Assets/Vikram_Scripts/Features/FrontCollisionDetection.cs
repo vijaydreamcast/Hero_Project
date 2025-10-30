@@ -116,6 +116,8 @@ public class FrontCollisionDetection : MonoBehaviour
             triggerEndCorrectAudioAs.Play();
             RightLaneCarMovement.currentSpeed = 10f;
 
+            gameData.UpdateScore(10);
+
             featureDetectionPanel.ShowFeatureResult(FeatureType.FrontVehicle, FeatureResult.Correct);
             inputData.DeactivateInput();
             bikeController.Reset();
@@ -140,6 +142,8 @@ public class FrontCollisionDetection : MonoBehaviour
 
             isBikeCollided = true;
             isBikeinFrontCollisionZone = false;
+
+            gameData.UpdateScore(-10);
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.FrontVehicle, FeatureResult.Wrong);
 

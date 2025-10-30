@@ -116,7 +116,8 @@ public class RearCollisionDetection : MonoBehaviour
             triggerEndCorrectAudioAs.Play();
             HeroBikeMovement.SetMovement(false);
             bikeController.SetConstantSpeed(false);
- 
+
+            gameData.UpdateScore(10);
 
             RightLaneCarMovement.currentSpeed = 0;
          
@@ -144,6 +145,8 @@ public class RearCollisionDetection : MonoBehaviour
             bikeController.SetConstantSpeed(false);
 
             isBikeCollided = true;
+
+            gameData.UpdateScore(-10);
 
             featureDetectionPanel.ShowFeatureResult(FeatureType.RearVehicle, FeatureResult.Wrong);
             inputData.DeactivateInput();

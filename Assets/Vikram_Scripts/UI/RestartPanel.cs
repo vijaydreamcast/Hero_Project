@@ -25,7 +25,7 @@ public class RestartPanel : MonoBehaviour
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
 
-        socketData.SendDataToClient("Score is: " + gameData.currentScore.ToString());
+        socketData.SendDataToClient("Score is: " + gameData.GetScore().ToString());
     }
 
 
