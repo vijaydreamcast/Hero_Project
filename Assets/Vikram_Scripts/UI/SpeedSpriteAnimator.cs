@@ -28,7 +28,7 @@ public class SpeedSpriteAnimator : MonoBehaviour
     private float manualSpeed = 0f;
     private float smoothNorm = 0f;
 
-    void Update()
+    void LateUpdate()
     {
         if (frames == null || frames.Count == 0) return;
 
