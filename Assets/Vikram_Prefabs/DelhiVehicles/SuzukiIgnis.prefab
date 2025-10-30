@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2472700454697505026}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 0.6, z: 2.7}
+  m_LocalPosition: {x: 0.06, y: 0.6, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,15 +80,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleWheelRotation: {fileID: 7664105595720296123}
-  frontTransform: {fileID: 3441524858517043360}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 10
+  maxSpeed: 8
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
   toleranceDistance: 0.5
-  vehicleHalfLength: 1
+  frontTransform: {fileID: 3441524858517043360}
+  vehicleHalfLength: 1.5
   vehicleHalfBreadth: 0.4
   vehicleHalfHeight: 0.3
   maxRayCastDistance: 3

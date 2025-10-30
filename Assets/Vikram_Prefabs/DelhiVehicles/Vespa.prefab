@@ -80,14 +80,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleWheelRotation: {fileID: 9210303267882457375}
-  frontTransform: {fileID: 1631218194916008763}
   splineContainer: {fileID: 0}
   splineLength: 0
-  maxSpeed: 10
+  maxSpeed: 8
   minSpeed: 1.5
   acceleration: 4
   deceleration: 4
   toleranceDistance: 0.5
+  frontTransform: {fileID: 1631218194916008763}
   vehicleHalfLength: 0.5
   vehicleHalfBreadth: 0.25
   vehicleHalfHeight: 0.25
@@ -144,6 +144,7 @@ MonoBehaviour:
   Z: 0
   rotationAngle: 0
   movementDirection: 0
+  speedFactor: 2
 --- !u!1001 &7956700662522435520
 PrefabInstance:
   m_ObjectHideFlags: 0
