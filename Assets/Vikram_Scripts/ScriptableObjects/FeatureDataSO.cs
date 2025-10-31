@@ -27,8 +27,10 @@ public class FeatureData
     public FeatureType featureType;
     public string featureName;
     public string featureDescription;
-    public string correctAction;
-    public string wrongAction;
+    public string EnglishCorrectAction;
+    public string ItalianCorrectAction;
+    public string EnglishWrongAction;
+    public string ItalianWrongAction;
     public string safetyMessage;
     public Sprite featureIcon;
 }

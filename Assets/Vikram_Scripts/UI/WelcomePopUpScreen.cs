@@ -14,7 +14,8 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
     public GameObject nextPanel;
     public GameObject prevPanel;
     public Image NextBtnImage;
-    public TMP_Text NameText;
+    public TMP_Text EnglishNameText;
+    public TMP_Text ItalianNameText;
 
 
     [Header("Other Objects")]
@@ -39,7 +40,8 @@ public class WelocmePopUpScreenScreen : MonoBehaviour
 
 
         string playerName = uiData.PlayerInfo.playerName;
-        NameText.text = $"Welcome\n<color=#FF0000>{playerName}</color>";
+        EnglishNameText.text = $"Welcome <color=#FF0000>{playerName}</color>";
+        ItalianNameText.text = $"Benvenuto <color=#FF0000>{playerName}</color>";
         StartCoroutine(WaitAndTransistion());
     }
 

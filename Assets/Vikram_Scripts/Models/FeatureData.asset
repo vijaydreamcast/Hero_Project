@@ -16,39 +16,41 @@ MonoBehaviour:
     featureType: 0
     featureName: "BSD \u2014Blind Spot Detection"
     featureDescription: 
-    correctAction: When a vehicle slips out of your mirror, BSD signals your blind
-      zone. Holding your line keeps  everyone safe
-    wrongAction: "BSD warns when a vehicle enters your blind zone. Avoid drifting
-      or stopping in live traffic\u2014hold lane  until clear."
+    EnglishCorrectAction: "BSD helps you sense what you can\u2019t see. Staying focussed
+      in your lane and taking the right action keeps you confident and safe."
+    ItalianCorrectAction: 
+    EnglishWrongAction: "BSD highlights hidden motion in your blind zone. Hold lane
+      until clear \u2014 avoid drifting or stopping suddenly."
+    ItalianWrongAction: 
     safetyMessage: "Vehicle beside you\u2014hold lane."
     featureIcon: {fileID: 21300000, guid: 4c13fc9a31f528d4a8d7047ec4bc95b4, type: 3}
   FrontCollisionData:
     featureType: 1
     featureName: "FCW \u2014Forward Collision Warning"
     featureDescription: 
-    correctAction: FCW gives critical seconds before a sudden stop ahead. Smooth,
-      early control protects you and others.
-    wrongAction: "When FCW activates, respond promptly and smoothly. Sudden stops
-      happen\u2014measured control  prevents collisions."
+    EnglishCorrectAction: 
+    ItalianCorrectAction: 
+    EnglishWrongAction: 
+    ItalianWrongAction: 
     safetyMessage: "Brake\u2014smooth and early."
     featureIcon: {fileID: 21300000, guid: f3252cbf44cc44c4596af697dd49e1f6, type: 3}
   RearCollisionData:
     featureType: 2
     featureName: "RCW \u2014Rear Collision Warning"
     featureDescription: 
-    correctAction: RCW warns of fast traffic approaching from behind. Staying predictable
-      helps others pass you safely
-    wrongAction: When RCW activates, avoid sudden braking or swerving. Predictable
-      movement reduces rear-end risk
+    EnglishCorrectAction: 
+    ItalianCorrectAction: 
+    EnglishWrongAction: 
+    ItalianWrongAction: 
     safetyMessage: "Rear traffic closing\u2014steady line."
     featureIcon: {fileID: 21300000, guid: 3a61bd9c6d6329843a93af472ae164fb, type: 3}
   CloseVehicleData:
     featureType: 3
     featureName: "CVW \u2014Close Vehicle Warning"
     featureDescription: 
-    correctAction: "CVW highlights vehicles edging in\u2014stay centered, create
-      space."
-    wrongAction: "Don\u2019t move into the threat. CVW shows which side is closing
-      in."
+    EnglishCorrectAction: 
+    ItalianCorrectAction: 
+    EnglishWrongAction: 
+    ItalianWrongAction: 
     safetyMessage: "Space is safety\u2014stay centred."
     featureIcon: {fileID: 21300000, guid: a5c4bb4f6253c6747aa7c66db0c3f48b, type: 3}

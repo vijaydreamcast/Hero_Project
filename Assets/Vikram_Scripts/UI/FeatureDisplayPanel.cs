@@ -61,29 +61,29 @@ public class FeatureDisplayPanel : MonoBehaviour
         {
             headingText.text = featureData.BlindSpotData.featureName;
             featureIcon.sprite = featureData.BlindSpotData.featureIcon;
-            correctDesciptionText.text = featureData.BlindSpotData.correctAction;
-            wrongDescriptionText.text = featureData.BlindSpotData.wrongAction;
+            correctDesciptionText.text = featureData.BlindSpotData.EnglishCorrectAction;
+            wrongDescriptionText.text = featureData.BlindSpotData.EnglishWrongAction;
         }
         else if (featureType == FeatureType.FrontVehicle)
         {
             headingText.text = featureData.FrontCollisionData.featureName;
             featureIcon.sprite = featureData.FrontCollisionData.featureIcon;
-            correctDesciptionText.text = featureData.FrontCollisionData.correctAction;
-            wrongDescriptionText.text = featureData.FrontCollisionData.wrongAction;
+            correctDesciptionText.text = featureData.FrontCollisionData.EnglishCorrectAction;
+            wrongDescriptionText.text = featureData.FrontCollisionData.EnglishWrongAction;
         }
         else if (featureType == FeatureType.RearVehicle)
         {
             headingText.text = featureData.RearCollisionData.featureName;
             featureIcon.sprite = featureData.RearCollisionData.featureIcon;
-            correctDesciptionText.text = featureData.RearCollisionData.correctAction;
-            wrongDescriptionText.text = featureData.RearCollisionData.wrongAction;
+            correctDesciptionText.text = featureData.RearCollisionData.EnglishCorrectAction;
+            wrongDescriptionText.text = featureData.RearCollisionData.EnglishWrongAction;
         }
         else if (featureType == FeatureType.CloseVehicle)
         {
             headingText.text = featureData.CloseVehicleData.featureName;
             featureIcon.sprite = featureData.CloseVehicleData.featureIcon;
-            correctDesciptionText.text = featureData.CloseVehicleData.correctAction;
-            wrongDescriptionText.text = featureData.CloseVehicleData.wrongAction;
+            correctDesciptionText.text = featureData.CloseVehicleData.EnglishCorrectAction;
+            wrongDescriptionText.text = featureData.CloseVehicleData.EnglishWrongAction;
         }
 
         if(result == FeatureResult.Correct)
