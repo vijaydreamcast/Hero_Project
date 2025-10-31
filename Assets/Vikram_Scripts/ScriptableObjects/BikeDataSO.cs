@@ -10,6 +10,7 @@ public class BikeDataSO : ScriptableObject
     public float currentSpeed;
     public float currentDistance;
     public float totalTime;
+    public bool isRaceCompleted = false;
 
 
     //Actions
@@ -70,6 +71,7 @@ public class BikeDataSO : ScriptableObject
 
     public void RaceCompleted()
     {
+        isRaceCompleted = true;
         RaceCompletedEvent?.Invoke();
     }
 
