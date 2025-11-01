@@ -12,7 +12,8 @@ public class FeaturePopUpPanel : MonoBehaviour
     [Header(" UI Elements")]
     public CanvasGroup canvasGroup;
     public TMP_Text displayText;
-    public TMP_Text actionText;
+    public TMP_Text EnglishActionText;
+    public TMP_Text ItalianActionText;
     public Image timerImage;
     public float duration = 3;
 
@@ -49,7 +50,8 @@ public class FeaturePopUpPanel : MonoBehaviour
     }
     private void ShowActionPopup()
     {
-        actionText.text = "Take Action!";
+        EnglishActionText.text = "Take Action Now!";
+        ItalianActionText.text = "Agisci Ora!";
         canvasGroup.alpha = 1;
         timerImage.fillAmount = 1;
         StartCoroutine(StartTimer());
@@ -85,6 +87,8 @@ public class FeaturePopUpPanel : MonoBehaviour
         // Ensure it ends exactly at zero
         timerImage.fillAmount = 0f;
         canvasGroup.alpha = 0;
-        actionText.text = "";
+        EnglishActionText.text = "";
+        ItalianActionText.text = "";
+
     }
 }

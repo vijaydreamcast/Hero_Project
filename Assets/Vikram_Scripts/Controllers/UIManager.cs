@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -34,11 +35,15 @@ public class UIManager : MonoBehaviour
 
     private void RaceCompleted()
     {
-        if (!isFading)
-        {
-            raceCompletedAS.Play();
-            StartCoroutine(SwitchPanels(RaceCompletedPanel));
-        }
+        raceCompletedAS.Play();
+        SceneManager.LoadSceneAsync(0);
+
+
+        //if (!isFading)
+        //{
+        //    raceCompletedAS.Play();
+        //    StartCoroutine(SwitchPanels(RaceCompletedPanel));
+        //}
     }
 
     private void FadeCanvasGroup(int endAlpha)

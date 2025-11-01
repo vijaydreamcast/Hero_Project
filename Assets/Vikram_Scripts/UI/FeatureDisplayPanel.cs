@@ -20,8 +20,10 @@ public class FeatureDisplayPanel : MonoBehaviour
    
     public Image featureIcon;
     public TMP_Text headingText;
-    public TMP_Text correctDesciptionText;
-    public TMP_Text wrongDescriptionText;
+    public TMP_Text EnglishCorrectText;
+    public TMP_Text ItalianCorrectText;
+    public TMP_Text EnglishWrongText;
+    public TMP_Text ItalianWrongText;
 
     // local variables
     private Coroutine displayRoutine;
@@ -61,30 +63,30 @@ public class FeatureDisplayPanel : MonoBehaviour
         {
             headingText.text = featureData.BlindSpotData.featureName;
             featureIcon.sprite = featureData.BlindSpotData.featureIcon;
-            correctDesciptionText.text = featureData.BlindSpotData.EnglishCorrectAction;
-            wrongDescriptionText.text = featureData.BlindSpotData.EnglishWrongAction;
+            EnglishCorrectText.text = featureData.BlindSpotData.EnglishCorrectAction;
+            ItalianCorrectText.text = featureData.BlindSpotData.ItalianCorrectAction;
+            EnglishWrongText.text = featureData.BlindSpotData.EnglishWrongAction;
+            ItalianWrongText.text = featureData.BlindSpotData.ItalianWrongAction;
         }
         else if (featureType == FeatureType.FrontVehicle)
         {
             headingText.text = featureData.FrontCollisionData.featureName;
             featureIcon.sprite = featureData.FrontCollisionData.featureIcon;
-            correctDesciptionText.text = featureData.FrontCollisionData.EnglishCorrectAction;
-            wrongDescriptionText.text = featureData.FrontCollisionData.EnglishWrongAction;
+            EnglishCorrectText.text = featureData.FrontCollisionData.EnglishCorrectAction;
+            EnglishWrongText.text = featureData.FrontCollisionData.EnglishWrongAction;
+            ItalianCorrectText.text = featureData.FrontCollisionData.ItalianCorrectAction;
+            ItalianWrongText.text = featureData.FrontCollisionData.ItalianWrongAction;
         }
         else if (featureType == FeatureType.RearVehicle)
         {
             headingText.text = featureData.RearCollisionData.featureName;
             featureIcon.sprite = featureData.RearCollisionData.featureIcon;
-            correctDesciptionText.text = featureData.RearCollisionData.EnglishCorrectAction;
-            wrongDescriptionText.text = featureData.RearCollisionData.EnglishWrongAction;
+            EnglishCorrectText.text = featureData.RearCollisionData.EnglishCorrectAction;
+            EnglishWrongText.text = featureData.RearCollisionData.EnglishWrongAction;
+            ItalianCorrectText.text = featureData.RearCollisionData.ItalianCorrectAction;
+            ItalianWrongText.text = featureData.RearCollisionData.ItalianWrongAction;
         }
-        else if (featureType == FeatureType.CloseVehicle)
-        {
-            headingText.text = featureData.CloseVehicleData.featureName;
-            featureIcon.sprite = featureData.CloseVehicleData.featureIcon;
-            correctDesciptionText.text = featureData.CloseVehicleData.EnglishCorrectAction;
-            wrongDescriptionText.text = featureData.CloseVehicleData.EnglishWrongAction;
-        }
+
 
         if(result == FeatureResult.Correct)
         {

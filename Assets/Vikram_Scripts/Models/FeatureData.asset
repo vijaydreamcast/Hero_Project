@@ -18,30 +18,42 @@ MonoBehaviour:
     featureDescription: 
     EnglishCorrectAction: "BSD helps you sense what you can\u2019t see. Staying focussed
       in your lane and taking the right action keeps you confident and safe."
-    ItalianCorrectAction: 
+    ItalianCorrectAction: "Il sistema BSD ti aiuta a percepire ci\xF2 che non puoi
+      vedere. Rimanere concentrato nella tua corsia e reagire nel modo giusto ti
+      mantiene sicuro e fiducioso."
     EnglishWrongAction: "BSD highlights hidden motion in your blind zone. Hold lane
       until clear \u2014 avoid drifting or stopping suddenly."
-    ItalianWrongAction: 
+    ItalianWrongAction: "Il sistema BSD evidenzia i movimenti nascosti nella tua
+      zona cieca. Mantieni la corsia finch\xE9 non \xE8 libera \u2014 evita di deviare
+      o fermarti bruscamente"
     safetyMessage: "Vehicle beside you\u2014hold lane."
     featureIcon: {fileID: 21300000, guid: 4c13fc9a31f528d4a8d7047ec4bc95b4, type: 3}
   FrontCollisionData:
     featureType: 1
     featureName: "FCW \u2014Forward Collision Warning"
     featureDescription: 
-    EnglishCorrectAction: 
-    ItalianCorrectAction: 
-    EnglishWrongAction: 
-    ItalianWrongAction: 
+    EnglishCorrectAction: FCW gives you a critical and timely warning to react promptly
+    ItalianCorrectAction: Il sistema FCW ti fornisce un avviso tempestivo e fondamentale
+      per reagire prontamente
+    EnglishWrongAction: When the FCW alerts are received, early and calm actions
+      prevent sudden impact
+    ItalianWrongAction: Quando vengono ricevuti gli avvisi FCW, azioni anticipate
+      e calme evitano impatti improvvisi
     safetyMessage: "Brake\u2014smooth and early."
     featureIcon: {fileID: 21300000, guid: f3252cbf44cc44c4596af697dd49e1f6, type: 3}
   RearCollisionData:
     featureType: 2
     featureName: "RCW \u2014Rear Collision Warning"
     featureDescription: 
-    EnglishCorrectAction: 
-    ItalianCorrectAction: 
-    EnglishWrongAction: 
-    ItalianWrongAction: 
+    EnglishCorrectAction: "RCW keeps your awareness sharp for what\u2019s closing
+      in. Holding your line lets others pass safely"
+    ItalianCorrectAction: "Il sistema RCW mantiene alta la tua attenzione su ci\xF2
+      che si avvicina. Restare nella tua traiettoria consente agli altri di superarti
+      in sicurezza"
+    EnglishWrongAction: When RCW alerts are received, sudden moves should be avoided.
+      Steady movement builds trust on the road
+    ItalianWrongAction: "Quando vengono ricevuti gli avvisi RCW, \xE8 meglio evitare
+      movimenti improvvisi. Una guida costante ispira fiducia e sicurezza sulla strada"
     safetyMessage: "Rear traffic closing\u2014steady line."
     featureIcon: {fileID: 21300000, guid: 3a61bd9c6d6329843a93af472ae164fb, type: 3}
   CloseVehicleData:

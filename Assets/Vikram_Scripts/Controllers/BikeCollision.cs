@@ -64,8 +64,6 @@ public class BikeCollision : MonoBehaviour
 
     private IEnumerator BikeStoppingRoutine(float forwardDistance = 5f, float duration = 2f)
     {
-
-
         while(bikeData.currentSpeed > 0.1f)
         {
             yield return null;
