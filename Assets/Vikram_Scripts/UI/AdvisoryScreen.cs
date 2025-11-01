@@ -1,32 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AdvisoryScreen : MonoBehaviour
 {
     [Header("Scriptable Objects")]
     public UIDataSO uiData;
     public InputDataSO inputData;
-
-    [Header("UI Elements")]
-    public CanvasGroup canvasGroup;
-    public GameObject nextPanel;
-    public float fadeDuration = 0.5f;
-
-    // local variables
-    private bool isFading = false;
-
-    private void Awake()
-    {
-        canvasGroup = GetComponent<CanvasGroup>();
-        if (!canvasGroup)
-        {
-            canvasGroup = gameObject.AddComponent<CanvasGroup>();
-        }
-    }
+    public GameDataSO gameData;
 
     private void OnEnable()
-    {       
-        isFading = false;
+    {        
         inputData.RightUIButtonClickedEvent += RightClicked;
     }
 
@@ -38,44 +22,9 @@ public class AdvisoryScreen : MonoBehaviour
 
     private void RightClicked(float val)
     {
-        Debug.Log(" fading in advisory screen");
-        if (!isFading)
-            StartCoroutine(SwitchPanels());
+        int sceneNumber = (int)uiData.PlayerInfo.selectedCity + 1;
+        gameData.isGameCompleted = false;
+        SceneManager.LoadSceneAsync(sceneNumber);
     }
 
-    private IEnumerator SwitchPanels()
-    {
-        isFading = true;
-
-        // Fade out current
-        yield return FadeCanvas(canvasGroup, 1f, 0f, fadeDuration);
-        gameObject.SetActive(false);
-
-        // Fade in next
-        if (nextPanel)
-        {
-            nextPanel.SetActive(true);
-            var nextCanvas = nextPanel.GetComponent<CanvasGroup>();
-            if (!nextCanvas) nextCanvas = nextPanel.AddComponent<CanvasGroup>();
-            yield return FadeCanvas(nextCanvas, 0f, 1f, fadeDuration);
-        }
-
-        isFading = false;
-    }
-
-    private IEnumerator FadeCanvas(CanvasGroup group, float startAlpha, float endAlpha, float duration)
-    {
-        float elapsed = 0f;
-        group.alpha = startAlpha;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            group.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsed / duration);
-            yield return null;
-        }
-
-        group.alpha = endAlpha;
-      
-    }
 }

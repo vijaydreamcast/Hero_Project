@@ -68,7 +68,7 @@ public class BikeCollision : MonoBehaviour
         {
             yield return null;
         }
-
+        gameData.isGameCompleted = true;
         bikeData.RaceCompleted();
     }
 

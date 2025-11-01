@@ -7,6 +7,7 @@ public class GameDataSO : ScriptableObject
 
     // Variables
     public int currentScore = 100;
+    public bool isGameCompleted = false;
 
 
     //Actions
@@ -17,12 +18,18 @@ public class GameDataSO : ScriptableObject
 
     private void OnEnable()
     {
+        isGameCompleted = false ;
         currentScore = 100;
     }
 
     private void OnDisable()
     {
        
+    }
+
+    public void CompleteGame()
+    {
+        isGameCompleted = true;
     }
 
     public void RestartGame()

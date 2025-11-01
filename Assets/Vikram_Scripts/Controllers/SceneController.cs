@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public GameDataSO gameData;
+
     [Header("Scene Key Bindings")]
     public KeyCode HomeScene = KeyCode.Alpha0;
     public KeyCode DelhiScene = KeyCode.Alpha1;
@@ -33,20 +35,23 @@ public class SceneController : MonoBehaviour
         if (Input.GetKeyDown(DelhiScene))
         {
            SceneManager.LoadSceneAsync(1);
-
+            gameData.isGameCompleted = false;
             Debug.Log("Delhi Scene Loaded");
         }
         else if (Input.GetKeyDown(MilanScene))
         {
           SceneManager.LoadSceneAsync(2);
+            gameData.isGameCompleted = false;
         }
         else if (Input.GetKeyDown(SaoPauloScene))
         {
           SceneManager.LoadSceneAsync(3);
+            gameData.isGameCompleted = false;
         }
         else if (Input.GetKeyDown(ManilaScene))
         {
            SceneManager.LoadSceneAsync(4);
+            gameData.isGameCompleted = false;
         }
 
         else if (Input.GetKeyDown(HomeScene))

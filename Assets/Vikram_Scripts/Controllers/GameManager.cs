@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
 
         if (!bikeData.isRaceCompleted)
         {
+            gameData.isGameCompleted = true;
             inputData.DeactivateInput();
             bikeData.RaceCompleted();
         }

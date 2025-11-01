@@ -163,8 +163,7 @@ public class ServerManager : MonoBehaviour
 
             if(packetData.eventCode == EventCode.PlayerInfo)
             {
-                int sceneNumber = (int)uiData.PlayerInfo.selectedCity + 1;
-                LoadScene(sceneNumber);
+              
             }
 
             else if(packetData.eventCode == EventCode.Home)
