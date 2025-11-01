@@ -2,10 +2,24 @@ using CurvedUI;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
+    [Header("Scriptable Objects")]
     public GameDataSO gameData;
+    public UIDataSO uiData;
+    public SocketDataSO socketData;
+
+    [Header("Key Codes")]
+    public KeyCode leaderBoardKey = KeyCode.L;
+    public KeyCode videoPanelKey = KeyCode.V;
+  
+
+    public GameObject leaderBoardPanel;
+    public GameObject videoPanel;
+    public TMP_Text serverIPText1;
+    public TMP_Text serverIPText2;
 
 
     [Header("English UI Elements")]
@@ -34,6 +48,18 @@ public class UIController : MonoBehaviour
         {
             ShowAdvisoryPanel();
         }
+        socketData.SetServerIpEvent += UpdateServerIP;
+    }
+
+    private void OnDisable()
+    {
+        socketData.SetServerIpEvent -= UpdateServerIP;
+    }
+
+    private void UpdateServerIP(string ip)
+    {
+        serverIPText1.text = $"Server IP: {ip}";
+        serverIPText2.text = $"Server IP: {ip}";
     }
 
     private IEnumerator Start()
@@ -60,6 +86,8 @@ public class UIController : MonoBehaviour
         string redScore = $"<color=#FF0000>{gameData.currentScore}</color>";
         englishScoreText.text = $"Your Score : {redScore}";
         italianScoreText.text = $"Il tuo punteggio : {redScore}";
+
+        gameData.isGameCompleted = false; // Reset for next session
     }
 
     private void ResetPanels()
@@ -69,4 +97,21 @@ public class UIController : MonoBehaviour
         EnglishScorePanel.SetActive(false);
         ItalianScorePanel.SetActive(false);
     }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(leaderBoardKey))
+        {
+            leaderBoardPanel.SetActive(true);
+            videoPanel.SetActive(false);
+        }
+        if (Input.GetKeyDown(videoPanelKey))
+        {
+             videoPanel.SetActive(true);
+              leaderBoardPanel.SetActive(false);
+        }
+    
+    }
 }
+

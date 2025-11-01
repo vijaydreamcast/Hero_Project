@@ -4,7 +4,6 @@ public class AudioManager : MonoBehaviour
 {
     [Header(" AudioSources")]
     public AudioSource backGroundAS;
-    public AudioSource freeRideAS;
     public AudioSource trafficAS;
 
     public static AudioManager instance;
@@ -26,14 +25,5 @@ public class AudioManager : MonoBehaviour
         backGroundAS.Stop();
     }
 
-    public void PlayFreeRide()
-    {
-        freeRideAS.Play();
-    }
-
-    public void StopFreeRide()
-    {
-        freeRideAS.Stop();
-    }
 
 }

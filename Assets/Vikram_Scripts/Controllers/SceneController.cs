@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
     public KeyCode MilanScene = KeyCode.Alpha2;
     public KeyCode SaoPauloScene = KeyCode.Alpha3;
     public KeyCode ManilaScene = KeyCode.Alpha4;
+    public KeyCode resetGameKey = KeyCode.R;
 
 
     // Singleton instance
@@ -45,7 +46,7 @@ public class SceneController : MonoBehaviour
         }
         else if (Input.GetKeyDown(SaoPauloScene))
         {
-          SceneManager.LoadSceneAsync(3);
+            SceneManager.LoadSceneAsync(3);
             gameData.isGameCompleted = false;
         }
         else if (Input.GetKeyDown(ManilaScene))
@@ -57,6 +58,12 @@ public class SceneController : MonoBehaviour
         else if (Input.GetKeyDown(HomeScene))
         {
             SceneManager.LoadSceneAsync(0);
+        }
+        else if (Input.GetKeyDown(resetGameKey))
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadSceneAsync(currentSceneIndex);
+            gameData.isGameCompleted = false;
         }
     }
 }

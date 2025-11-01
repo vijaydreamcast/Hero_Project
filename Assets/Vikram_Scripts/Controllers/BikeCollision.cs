@@ -51,15 +51,15 @@ public class BikeCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "EndBlock" && !bikeData.isRaceCompleted)
-        {
-            //  bikeData.ResetSpeed();
-            controller.ResetThrotlleAndSteer();
-            inputData.DeactivateInput();
-            transform.rotation = other.gameObject.transform.rotation;
-            StartCoroutine(BikeStoppingRoutine(5f, 2f));
+        //if(other.gameObject.tag == "EndBlock" && !bikeData.isRaceCompleted)
+        //{
+        //    //  bikeData.ResetSpeed();
+        //    controller.ResetThrotlleAndSteer();
+        //    inputData.DeactivateInput();
+        //    transform.rotation = other.gameObject.transform.rotation;
+        //    StartCoroutine(BikeStoppingRoutine(5f, 2f));
 
-        }
+        //}
     }
 
     private IEnumerator BikeStoppingRoutine(float forwardDistance = 5f, float duration = 2f)

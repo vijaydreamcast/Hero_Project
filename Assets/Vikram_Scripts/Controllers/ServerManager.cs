@@ -19,6 +19,7 @@ public class ServerManager : MonoBehaviour
     public SocketDataSO socketData; // Your scriptable object holding IP/port config
     public UIDataSO uiData;
     public PacketData packetData;
+    public GameDataSO gameData;
 
 
     // TCP server variables
@@ -163,7 +164,9 @@ public class ServerManager : MonoBehaviour
 
             if(packetData.eventCode == EventCode.PlayerInfo)
             {
-              
+                int sceneNumber = (int)uiData.PlayerInfo.selectedCity + 1;
+                gameData.isGameCompleted = false;
+                SceneManager.LoadSceneAsync(sceneNumber);
             }
 
             else if(packetData.eventCode == EventCode.Home)
@@ -210,11 +213,13 @@ public class ServerManager : MonoBehaviour
                     Debug.Log($" Received {receivedMsg}");
                    
                     packetData = JsonUtility.FromJson<PacketData>(receivedMsg);
-                    isMessageReceived = true;
+                  
                     if (packetData.eventCode == EventCode.PlayerInfo)
                     {
                         uiData.PlayerInfo = JsonUtility.FromJson<PlayerInfo>(packetData.jsonData);
                     }
+
+                    isMessageReceived = true;
                 }
                 
                 

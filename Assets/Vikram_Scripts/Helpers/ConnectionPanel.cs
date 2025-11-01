@@ -27,7 +27,7 @@ public class ConnectionPanel : MonoBehaviour
     }
 
 
-    public void SetIp()
+    public void SetIp(string ip)
     {
         serverIpText.text = "Server Ip: " + socketData.serverIP;
     }

@@ -20,7 +20,7 @@ public class SocketDataSO : ScriptableObject
 
     public Action<string> SendDataToServerEvent;
     public Action<string> SendDataToClientEvent;
-    public Action SetServerIpEvent;
+    public Action<string> SetServerIpEvent;
 
     public Action<string> ClientConnectedEvent;
     public Action<string> ClientDisConnectedEvent;
@@ -31,7 +31,7 @@ public class SocketDataSO : ScriptableObject
     public void SetServerIp(string ip)
     {
         serverIP = ip;
-        SetServerIpEvent?.Invoke();
+        SetServerIpEvent?.Invoke(ip);
     }
     public void ConnectToServer()
     {

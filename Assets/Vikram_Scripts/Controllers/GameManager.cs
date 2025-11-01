@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public InputDataSO inputData;
     public SensorDataSO sensorData;
     public BikeDataSO bikeData;
+    public SocketDataSO socketData;
 
     [Header("Game Elements")]
     public SimpleBikeController controller;
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
 
         sensorData.FrontCollisionTriggerExitEvent += FCWComplete;
         sensorData.RearCollisionTriggerExitEvent += RCWComplete;
+
+        inputData.RightUIButtonClickedEvent += CheckFeatureStatus;
     }
 
     void OnDisable()
@@ -54,28 +57,29 @@ public class GameManager : MonoBehaviour
 
         sensorData.FrontCollisionTriggerExitEvent -= FCWComplete;
         sensorData.RearCollisionTriggerExitEvent -= RCWComplete;
+
+        inputData.RightUIButtonClickedEvent -= CheckFeatureStatus;
     }
 
     private void RCWComplete()
     {
         isRCWCompleted = true;
-        CheckFeatureStatus();
+      
     }
 
     private void FCWComplete()
     {
        isFCWCompleted = true;
-        CheckFeatureStatus();
+    
     }
 
     private void BlindspotComplete()
     {
         isBlindspotCompleted = true;
-        CheckFeatureStatus();
+    
     }
 
-
-    private void CheckFeatureStatus()
+    private void CheckFeatureStatus(float val)
     {
         if(isBlindspotCompleted && isFCWCompleted && isRCWCompleted )
         {        
@@ -91,6 +95,10 @@ public class GameManager : MonoBehaviour
 
         if (!bikeData.isRaceCompleted)
         {
+            PacketData packet = new PacketData();
+            packet.eventCode = EventCode.ScoreUpdated;
+            packet.jsonData = gameData.GetScore().ToString();
+            socketData.SendDataToClient(JsonUtility.ToJson(packet));
             gameData.isGameCompleted = true;
             inputData.DeactivateInput();
             bikeData.RaceCompleted();
