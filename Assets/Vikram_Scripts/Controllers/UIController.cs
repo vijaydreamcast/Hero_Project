@@ -123,5 +123,18 @@ public class UIController : MonoBehaviour
         }
     
     }
+
+    public void ShowBtnClicked()
+    {
+        if(serverIPText1.gameObject.activeInHierarchy)
+        {
+            serverIPText1.gameObject.SetActive(false);
+           
+        }
+        else
+        {
+            serverIPText1.gameObject.SetActive(true);            
+        }
+    }
 }
 
