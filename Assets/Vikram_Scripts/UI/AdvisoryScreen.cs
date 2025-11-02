@@ -11,12 +11,12 @@ public class AdvisoryScreen : MonoBehaviour
 
     private void OnEnable()
     {        
-        inputData.RightUIButtonClickedEvent += RightClicked;
+      //  inputData.RightUIButtonClickedEvent += RightClicked;
     }
 
     private void OnDisable()
     {    
-        inputData.RightUIButtonClickedEvent -= RightClicked;
+      //  inputData.RightUIButtonClickedEvent -= RightClicked;
     }
 
 
