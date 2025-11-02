@@ -1690,7 +1690,7 @@ Transform:
   m_GameObject: {fileID: 7662760978978533988}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 0.6, z: 0.923}
+  m_LocalPosition: {x: -0.16, y: 0.6, z: 0.923}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1824,7 +1824,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8712060543031792006}
-  - {fileID: 1113525732323146367}
+  - {fileID: 376419843816349636}
   - {fileID: 2333237203414265968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1881,8 +1881,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4577916, y: 1.7553315, z: 2.8064718}
-  m_Center: {x: -0.0095745325, y: 0.7170119, z: 0.08919072}
+  m_Size: {x: 1.8110425, y: 1.7553315, z: 2.2297132}
+  m_Center: {x: -0.18620014, y: 0.7170119, z: -0.19918856}
 --- !u!114 &847000691979192949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,9 +1896,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheels:
-  - {fileID: 1456139881025899265}
-  - {fileID: 7964503450359157822}
-  - {fileID: 3581696050463674836}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currentSpeed: 15
   wheelRadius: 0.2
   X: 1
@@ -1970,7 +1970,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4859632129165740842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &648149724429147540
+--- !u!1001 &194770410249238575
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2018,44 +2018,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -40412614907736486, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
-      propertyPath: m_Name
-      value: Wheel3
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
       propertyPath: m_Name
       value: Tricycle
-      objectReference: {fileID: 0}
-    - target: {fileID: 6340861587343259564, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
-      propertyPath: m_Name
-      value: Wheel2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8653909006750398859, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
-      propertyPath: m_Name
-      value: Wheel1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
---- !u!4 &1113525732323146367 stripped
+--- !u!4 &376419843816349636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
-  m_PrefabInstance: {fileID: 648149724429147540}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1456139881025899265 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -7148462494685997419, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
-  m_PrefabInstance: {fileID: 648149724429147540}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3581696050463674836 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4128126479400913984, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
-  m_PrefabInstance: {fileID: 648149724429147540}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7964503450359157822 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -1839393835938346582, guid: a42a81e12bf825a49b792ad365d9518f, type: 3}
-  m_PrefabInstance: {fileID: 648149724429147540}
+  m_PrefabInstance: {fileID: 194770410249238575}
   m_PrefabAsset: {fileID: 0}

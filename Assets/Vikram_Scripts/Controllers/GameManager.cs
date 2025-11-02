@@ -93,8 +93,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(10);
 
-        if (!bikeData.isRaceCompleted)
-        {
+
             PacketData packet = new PacketData();
             packet.eventCode = EventCode.ScoreUpdated;
             packet.jsonData = gameData.GetScore().ToString();
@@ -102,7 +101,7 @@ public class GameManager : MonoBehaviour
             gameData.isGameCompleted = true;
             inputData.DeactivateInput();
             bikeData.RaceCompleted();
-        }
+        
     }
     IEnumerator Start()
     {

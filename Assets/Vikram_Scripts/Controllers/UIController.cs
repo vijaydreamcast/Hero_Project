@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public GameDataSO gameData;
     public UIDataSO uiData;
     public SocketDataSO socketData;
+    public LeaderBoardDataSO leaderBoardData;
 
     [Header("Key Codes")]
     public KeyCode leaderBoardKey = KeyCode.L;
@@ -86,6 +87,15 @@ public class UIController : MonoBehaviour
         string redScore = $"<color=#FF0000>{gameData.currentScore}</color>";
         englishScoreText.text = $"Your Score : {redScore}";
         italianScoreText.text = $"Il tuo punteggio : {redScore}";
+
+
+        LeaderBoardEntry leaderBoardEntry = new LeaderBoardEntry
+        {
+            playerName = uiData.PlayerInfo.playerName,
+            score = gameData.currentScore
+        };
+
+        leaderBoardData.AddEntry(leaderBoardEntry);
 
         gameData.isGameCompleted = false; // Reset for next session
     }
