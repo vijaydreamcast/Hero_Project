@@ -37,7 +37,6 @@ public class SensorDisplayPanel : MonoBehaviour
         sensorData.RearCollisionTriggerEnterEvent += RearCollisionEnter;
         sensorData.CloseVehicleTriggerEnterEvent += CloseVehicleEnter;
 
-
         uiData.ClearAllTextEvent += ClearMessage;
 
 

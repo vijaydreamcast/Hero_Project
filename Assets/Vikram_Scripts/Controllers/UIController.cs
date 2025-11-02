@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class UIController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class UIController : MonoBehaviour
     public KeyCode leaderBoardKey = KeyCode.L;
     public KeyCode videoPanelKey = KeyCode.V;
   
-
+    public VideoPlayer videoPlayer;
     public GameObject leaderBoardPanel;
     public GameObject videoPanel;
     public TMP_Text serverIPText1;
@@ -50,6 +51,8 @@ public class UIController : MonoBehaviour
             ShowAdvisoryPanel();
         }
         socketData.SetServerIpEvent += UpdateServerIP;
+
+        StartCoroutine(LoadAndPlayFirstVideoInStreamingAssets());
     }
 
     private void OnDisable()
@@ -98,6 +101,9 @@ public class UIController : MonoBehaviour
         leaderBoardData.AddEntry(leaderBoardEntry);
 
         gameData.isGameCompleted = false; // Reset for next session
+
+        leaderBoardPanel.SetActive(true);
+        videoPanel.SetActive(false);
     }
 
     private void ResetPanels()
@@ -136,5 +142,83 @@ public class UIController : MonoBehaviour
             serverIPText1.gameObject.SetActive(true);            
         }
     }
+
+    // Call with: StartCoroutine(LoadAndPlayFirstVideoInStreamingAssets());
+    private IEnumerator LoadAndPlayFirstVideoInStreamingAssets(bool loop = true, float timeout = 10f)
+    {
+        if (videoPlayer == null)
+        {
+            Debug.LogWarning("[UIController] VideoPlayer is not assigned.");
+            yield break;
+        }
+
+        string videosDir = System.IO.Path.Combine(Application.streamingAssetsPath, "Videos");
+        if (!System.IO.Directory.Exists(videosDir))
+        {
+            Debug.LogError($"[UIController] Videos folder not found: {videosDir}");
+            yield break;
+        }
+
+        string[] allowedExt = new[] { ".mp4", ".mov", ".mkv", ".webm", ".ogv", ".ogg" };
+        string foundPath = null;
+
+        // Get files in deterministic order (alphabetical)
+        var files = System.IO.Directory.GetFiles(videosDir);
+        System.Array.Sort(files);
+
+        foreach (var file in files)
+        {
+            string ext = System.IO.Path.GetExtension(file);
+            if (string.IsNullOrEmpty(ext)) continue;
+            if (!System.Array.Exists(allowedExt, e => e.Equals(ext, System.StringComparison.OrdinalIgnoreCase)))
+                continue;
+
+            foundPath = file;
+            break;
+        }
+
+        if (string.IsNullOrEmpty(foundPath))
+        {
+            Debug.LogError($"[UIController] No supported video file found in {videosDir}");
+            yield break;
+        }
+
+        string url;
+        try
+        {
+            url = new System.Uri(foundPath).AbsoluteUri; // yields file:///... on desktop
+        }
+        catch
+        {
+            url = "file:///" + foundPath.Replace("\\", "/");
+        }
+
+        if (videoPlayer.isPlaying) videoPlayer.Stop();
+
+        videoPlayer.source = VideoSource.Url;
+        videoPlayer.url = url;
+        videoPlayer.isLooping = loop;
+
+        videoPlayer.Prepare();
+        float timer = 0f;
+        while (!videoPlayer.isPrepared && timer < timeout)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        if (!videoPlayer.isPrepared)
+            Debug.LogWarning("[UIController] VideoPlayer did not prepare within timeout; attempting Play anyway.");
+
+        videoPlayer.Play();
+    }
+}
+
+[System.Serializable]
+public class VideoSetting
+{
+    public string url;
+    public bool loop = true;
+    // add other fields if needed (startTime, subtitles, etc.)
 }
 
