@@ -17,7 +17,8 @@ public class UIController : MonoBehaviour
     public KeyCode leaderBoardKey = KeyCode.L;
     public KeyCode videoPanelKey = KeyCode.V;
   
-    public VideoPlayer videoPlayer;
+    public VideoPlayer videoPlayer1;
+    public VideoPlayer videoPlayer2;
     public GameObject leaderBoardPanel;
     public GameObject videoPanel;
     public TMP_Text serverIPText1;
@@ -146,7 +147,7 @@ public class UIController : MonoBehaviour
     // Call with: StartCoroutine(LoadAndPlayFirstVideoInStreamingAssets());
     private IEnumerator LoadAndPlayFirstVideoInStreamingAssets(bool loop = true, float timeout = 10f)
     {
-        if (videoPlayer == null)
+        if (videoPlayer1 == null)
         {
             Debug.LogWarning("[UIController] VideoPlayer is not assigned.");
             yield break;
@@ -193,24 +194,30 @@ public class UIController : MonoBehaviour
             url = "file:///" + foundPath.Replace("\\", "/");
         }
 
-        if (videoPlayer.isPlaying) videoPlayer.Stop();
+        if (videoPlayer1.isPlaying) videoPlayer1.Stop();
 
-        videoPlayer.source = VideoSource.Url;
-        videoPlayer.url = url;
-        videoPlayer.isLooping = loop;
+        videoPlayer1.source = VideoSource.Url;
+        videoPlayer1.url = url;
+        videoPlayer1.isLooping = loop;
 
-        videoPlayer.Prepare();
+        videoPlayer2.source = VideoSource.Url;
+        videoPlayer2.url = url;
+        videoPlayer2.isLooping = loop;
+
+        videoPlayer1.Prepare();
+        videoPlayer2.Prepare();
         float timer = 0f;
-        while (!videoPlayer.isPrepared && timer < timeout)
+        while (!videoPlayer1.isPrepared && timer < timeout)
         {
             timer += Time.deltaTime;
             yield return null;
         }
 
-        if (!videoPlayer.isPrepared)
+        if (!videoPlayer1.isPrepared)
             Debug.LogWarning("[UIController] VideoPlayer did not prepare within timeout; attempting Play anyway.");
 
-        videoPlayer.Play();
+        videoPlayer1.Play();
+        videoPlayer2.Play();
     }
 }
 
