@@ -2,7 +2,7 @@
 - Project name: Hero_Project
 - Unity version: Unity 6000.0.58f2
 - Active game object:
-  - Name: Path1
+  - Name: HeadingText
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

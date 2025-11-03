@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     private void RaceCompleted()
     {
-        raceCompletedAS.Play();
+    //    raceCompletedAS.Play();
         SceneManager.LoadSceneAsync(0);
 
 

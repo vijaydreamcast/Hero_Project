@@ -39,8 +39,14 @@ public class UIController : MonoBehaviour
     public GameObject ItalianUI;
 
 
-    private void OnEnable()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.1f); // Small delay to ensure all systems are initialized
+        EnglishUI.GetComponent<CurvedUIRaycaster>().enabled = false;
+        ItalianUI.GetComponent<CurvedUIRaycaster>().enabled = false;
+
+
+        yield return new WaitForSeconds(1);
         ResetPanels();
         if (gameData.isGameCompleted)
         {
@@ -64,13 +70,6 @@ public class UIController : MonoBehaviour
     {
         serverIPText1.text = $"Server IP: {ip}";
         serverIPText2.text = $"Server IP: {ip}";
-    }
-
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(0.1f); // Small delay to ensure all systems are initialized
-        EnglishUI.GetComponent<CurvedUIRaycaster>().enabled = false;
-        ItalianUI.GetComponent<CurvedUIRaycaster>().enabled = false;
     }
 
 
@@ -126,6 +125,7 @@ public class UIController : MonoBehaviour
         {
              videoPanel.SetActive(true);
               leaderBoardPanel.SetActive(false);
+            StartCoroutine(LoadAndPlayFirstVideoInStreamingAssets());
         }
     
     }

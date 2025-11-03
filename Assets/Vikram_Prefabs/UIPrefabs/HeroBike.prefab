@@ -21959,6 +21959,84 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6989384462467285212, guid: e3fc8c02b033ac648a2a6c37ab2b8d67, type: 3}
   m_PrefabInstance: {fileID: 787294351390528153}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &793027765140144083
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6558787442818756010}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.646756
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.6467552
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.6467555
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.115828015
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3383979
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.19728862
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.23345834
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.37573454
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6882826
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5749676
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 38.028
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 51.338
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -274.111
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_Name
+      value: xoom 160 logo (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+--- !u!4 &904062378554841144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+  m_PrefabInstance: {fileID: 793027765140144083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1070716957041453754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23610,6 +23688,12 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2c5c6259a0da714f96ee48f785b88ba, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 8651717021234219184}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2c5c6259a0da714f96ee48f785b88ba, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 904062378554841144}
     - targetCorrespondingSourceObject: {fileID: -3914881796915750890, guid: e2c5c6259a0da714f96ee48f785b88ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9030886772337019713}
@@ -24268,3 +24352,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dirty: 0
+--- !u!1001 &9195131869851594587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6558787442818756010}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.6467555
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.6467552
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.646755
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07159783
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3292743
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.18482964
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7310444
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6687243
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.10264861
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.08857316
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 84.821
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 178.807
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 4.948
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+      propertyPath: m_Name
+      value: xoom 160 logo (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+--- !u!4 &8651717021234219184 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b4020f1e7d41ef540ac90e812383c45e, type: 3}
+  m_PrefabInstance: {fileID: 9195131869851594587}
+  m_PrefabAsset: {fileID: 0}
