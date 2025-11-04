@@ -39,7 +39,10 @@ public class UIController : MonoBehaviour
     public GameObject EnglishUI;
     public GameObject ItalianUI;
 
-
+    private void OnEnable()
+    {
+        socketData.SetServerIpEvent += UpdateServerIP;
+    }
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(0.1f); // Small delay to ensure all systems are initialized
@@ -57,7 +60,7 @@ public class UIController : MonoBehaviour
         {
             ShowAdvisoryPanel();
         }
-        socketData.SetServerIpEvent += UpdateServerIP;
+       
 
         StartCoroutine(LoadAndPlayFirstVideoInStreamingAssets());
     }
@@ -69,6 +72,8 @@ public class UIController : MonoBehaviour
 
     private void UpdateServerIP(string ip)
     {
+
+        Debug .Log(" setting ip in ui controller "+ ip);
         serverIPText1.text = $"Server IP: {ip}";
         serverIPText2.text = $"Server IP: {ip}";
     }
@@ -92,11 +97,15 @@ public class UIController : MonoBehaviour
         italianScoreText.text = $"Il tuo punteggio : {redScore}";
 
 
-        LeaderBoardEntry leaderBoardEntry = new LeaderBoardEntry
+        LeaderBoardEntry leaderBoardEntry = new LeaderBoardEntry();
+
+
+        leaderBoardEntry.playerName = uiData.PlayerInfo.playerName;
+        leaderBoardEntry.score = gameData.currentScore;
+        if(string.IsNullOrEmpty(leaderBoardEntry.playerName))
         {
-            playerName = uiData.PlayerInfo.playerName,
-            score = gameData.currentScore
-        };
+            leaderBoardEntry.playerName = "Guest_User";
+        }
 
         leaderBoardData.AddEntry(leaderBoardEntry);
 
