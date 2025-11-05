@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,79 +9,132 @@ public class ReSpawnManager : MonoBehaviour
     public BikeDataSO bikeData;
     public InputDataSO inputData;
     public UIDataSO uiData;
+    public SocketDataSO socketData;
 
     [Header("Game Objects")]
+    public GameManager gameManager;
     public GameObject HeroBike;
-    public List<ZoneProperties> zonePropeties;
-    public List<ZoneProperties> OutOfZonePropeties;
 
+    [Header("Respawn Points")]
+    public Transform startPoint;
+    public Transform bsdPoint;
+    public Transform fcwPoint;
+    public Transform rcwPoint;
 
     private void OnEnable()
     {
-        bikeData.TrafficZoneEnterEvent += TrafficZoneEntered;
-        bikeData.OutsideZoneEnteredEvent += OutsideEntered;
+        socketData.ReSpawnEvent += Respawn;
     }
 
     private void OnDisable()
     {
-        bikeData.TrafficZoneEnterEvent -= TrafficZoneEntered;
-        bikeData.OutsideZoneEnteredEvent -= OutsideEntered;
+        socketData.ReSpawnEvent -= Respawn;
     }
 
-    private void OutsideEntered(string name)
+    /// <summary>
+    /// Public entry to perform a respawn. Selects one of the completed checkpoints (or start if none)
+    /// If more than one checkpoint is completed, the nearest completed point to the hero bike is chosen.
+    /// </summary>
+    public void Respawn()
     {
-   
-        for (int i = 0; i < OutOfZonePropeties.Count; i++)
-        {
-            var zone = OutOfZonePropeties[i];
-            if (zone.Name == name)
-            {
-                    Debug.Log(" Out Of Zone "+name);
-                    bikeData.ResetSpeed();
-                    inputData.DeactivateInput();
-                    StartCoroutine(WaitAndReSpawn(zone.SpawnPoint.transform));
-            }
-        }
+        bikeData.ResetSpeed();
+        inputData.DeactivateInput();
+
+        // Build list of available respawn points based on completed features
+        List<Transform> available = GetAvailableRespawnPoints();
+
+        // If none available, fallback to startPoint
+        Transform chosen = (available.Count > 0) ? ChooseRespawnPoint(available) : startPoint;
+
+        StartCoroutine(WaitAndReSpawn(chosen));
     }
 
-    private void TrafficZoneEntered(string name)
+    /// <summary>
+    /// Returns a list of completed respawn transforms (blindspot, FCW, RCW) in no particular order.
+    /// </summary>
+    private List<Transform> GetAvailableRespawnPoints()
     {
-        for (int i = 0; i < zonePropeties.Count; i++)
-        {
-            var zone = zonePropeties[i];
-            if (zone.Name == name)
-            {
-                if (zone.isCrossed)
-                {
-                    Debug.Log(" Zone already crossed ");
-                    bikeData.ResetSpeed();
-                    inputData.DeactivateInput();
-                    StartCoroutine(WaitAndReSpawn(zone.SpawnPoint.transform));
+        var list = new List<Transform>();
 
-                    // Reset isCrossed for the next zone if it exists
-                    int nextIndex = i + 1;
-                    if (nextIndex < zonePropeties.Count)
-                    {
-                        zonePropeties[nextIndex].isCrossed = false;
-                    }
-                }
-                else
-                {
-                    Debug.Log(" Zone  crossed first time");
-                    zone.isCrossed = true;
-                }
+        try
+        {
+            if (gameManager != null)
+            {
+                if (gameManager.isBlindspotCompleted && bsdPoint != null)
+                    list.Add(bsdPoint);
+                if (gameManager.isFCWCompleted && fcwPoint != null)
+                    list.Add(fcwPoint);
+                if (gameManager.isRCWCompleted && rcwPoint != null)
+                    list.Add(rcwPoint);
+            }
+            else
+            {
+                Debug.LogWarning("[ReSpawnManager] gameManager not assigned — using startPoint as fallback.");
             }
         }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[ReSpawnManager] Error while collecting available respawn points: {ex.Message}");
+        }
+
+        return list;
+    }
+
+    /// <summary>
+    /// Choose a respawn point from the available list.
+    /// Strategy: if more than one, pick the one nearest to the HeroBike; otherwise pick the single available one.
+    /// Falls back to startPoint when HeroBike is not assigned.
+    /// </summary>
+    private Transform ChooseRespawnPoint(List<Transform> available)
+    {
+        if (available == null || available.Count == 0)
+            return startPoint;
+
+        if (available.Count == 1)
+            return available[0];
+
+        // If HeroBike is available, pick nearest respawn point to the bike
+        if (HeroBike != null)
+        {
+            Transform nearest = null;
+            float bestSqr = float.MaxValue;
+            Vector3 bikePos = HeroBike.transform.position;
+
+            foreach (var t in available)
+            {
+                if (t == null) continue;
+                float sqr = (t.position - bikePos).sqrMagnitude;
+                if (sqr < bestSqr)
+                {
+                    bestSqr = sqr;
+                    nearest = t;
+                }
+            }
+
+            if (nearest != null)
+                return nearest;
+        }
+
+        // Fallback: if no HeroBike or nearest not found, pick random
+        int idx = UnityEngine.Random.Range(0, available.Count);
+        return available[idx] ?? startPoint;
     }
 
     private IEnumerator WaitAndReSpawn(Transform reSpawnPoint)
     {
+        if (reSpawnPoint == null)
+            reSpawnPoint = startPoint;
+
         uiData.FadeCanvas(1);
-        yield return new WaitForSeconds(1);
-        HeroBike.transform.position = reSpawnPoint.transform.position;
-        HeroBike.transform.rotation = reSpawnPoint.transform.rotation;
+        yield return new WaitForSeconds(1f);
+
+        // Place hero bike at respawn point and reset orientation/state
+        HeroBike.transform.position = reSpawnPoint.position;
+        HeroBike.transform.rotation = reSpawnPoint.rotation;
+
+        // ensure inputs and speed reset after fade
         uiData.FadeCanvas(0);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
 
         inputData.ActivateInput();
     }

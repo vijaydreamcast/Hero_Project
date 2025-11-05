@@ -41,7 +41,7 @@ public enum City { Delhi, Milan, SaoPaulo, Manila }
 public enum Language { English, Italian }
 
 [Serializable]
-public enum EventCode { PlayerInfo = 1, StartGame = 2, ScoreUpdated =3,Home = 4}
+public enum EventCode { PlayerInfo = 1, StartGame = 2, ScoreUpdated =3,Home = 4,ReSpawn = 5}
 
 [Serializable]
 public  class PacketData

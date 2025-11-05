@@ -63,6 +63,7 @@ public class SimpleBikeController : MonoBehaviour
     private float frontWheelAngle = 0f;
     private float rearWheelAngle = 0f;
     private float distance = 0;
+    public float YDist = 0;
 
     // Add this field to store the smoothed steer value
     private float smoothedSteerInput = 0f;
@@ -185,6 +186,7 @@ public class SimpleBikeController : MonoBehaviour
         {          
             Quaternion ObstacleOrienattion = hitInfo.collider.transform.rotation;
             transform.rotation = ObstacleOrienattion;
+            transform.position  =new Vector3(transform.position.x, YDist, transform.position.z);
         }
 
         if (!isBikeStarted) return;
@@ -219,6 +221,13 @@ public class SimpleBikeController : MonoBehaviour
         }
 
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime, Space.Self);
+
+        // Ensure bike Y stays at YDist (prevents sinking below or floating above road)
+        Vector3 posAfterMove = transform.position;
+ 
+        posAfterMove.y = YDist;
+         transform.position = posAfterMove;
+        
 
 
         if (steering != null)

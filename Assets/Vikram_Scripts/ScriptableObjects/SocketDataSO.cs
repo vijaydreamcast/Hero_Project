@@ -26,7 +26,15 @@ public class SocketDataSO : ScriptableObject
     public Action<string> ClientDisConnectedEvent;
 
 
+    public Action ReSpawnEvent;
+
+
     //Methods
+
+    public void ReSpawn()
+    {
+        ReSpawnEvent?.Invoke();
+    }   
 
     public void SetServerIp(string ip)
     {

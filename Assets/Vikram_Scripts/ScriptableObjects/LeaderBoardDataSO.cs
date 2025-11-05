@@ -13,6 +13,7 @@ public class LeaderBoardDataSO : ScriptableObject
     // file settings
     [Tooltip("Relative file name under StreamingAssets/Settings")]
     public string leaderBoardFileName = "leaderboard.json";
+    public string playersFileName = "players.json";
 
 
     private void OnEnable()
@@ -162,6 +163,58 @@ public class LeaderBoardDataSO : ScriptableObject
         return Path.Combine(settingsFolder, leaderBoardFileName).Replace('\\', '/');
     }
 
+    // ----------------------------
+    // Player entries: append/save to StreamingAssets/Settings/players.json
+    // No in-memory load required for adding; method will append to existing file if present.
+    // ----------------------------
+    public void AddPlayerEntry(PlayerEntry playerEntry)
+    {
+        try
+        {
+            string filePath = GetPlayersFilePath();
+            string dir = Path.GetDirectoryName(filePath);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            PlayersContainer container = new PlayersContainer();
+
+            if (File.Exists(filePath))
+            {
+                string existing = File.ReadAllText(filePath);
+                if (!string.IsNullOrEmpty(existing))
+                {
+                    try
+                    {
+                        container = JsonUtility.FromJson<PlayersContainer>(existing) ?? new PlayersContainer();
+                    }
+                    catch
+                    {
+                        container = new PlayersContainer();
+                    }
+                }
+            }
+
+            if (container.players == null)
+                container.players = new List<PlayerEntry>();
+
+            container.players.Add(playerEntry);
+
+            string outJson = JsonUtility.ToJson(container, true);
+            File.WriteAllText(filePath, outJson);
+            Debug.Log($"[LeaderBoardDataSO] Added player entry and saved to: {filePath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[LeaderBoardDataSO] Failed to add player entry: {ex.Message}");
+        }
+    }
+
+    private string GetPlayersFilePath()
+    {
+        string settingsFolder = Path.Combine(Application.streamingAssetsPath, "Settings");
+        return Path.Combine(settingsFolder, playersFileName).Replace('\\', '/');
+    }
+
 }
 
 [Serializable]
@@ -169,6 +222,22 @@ public class LeaderBoardEntry
 {
     public string playerName;
     public int score;
+}
+
+[Serializable]
+public class PlayerEntry
+{
+    public string playerName;
+    public string emailID;
+    public int score;
+    // store ISO 8601 string for portability/JsonUtility compatibility
+    public string datePlayed;
+}
+
+[Serializable]
+public class PlayersContainer
+{
+    public List<PlayerEntry> players;
 }
 
 [Serializable]

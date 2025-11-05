@@ -174,7 +174,10 @@ public class ServerManager : MonoBehaviour
                LoadScene(0);
             }
 
-
+            else if(packetData.eventCode == EventCode.ReSpawn)
+            {
+               socketData.ReSpawn();
+            }
         }
     }
 

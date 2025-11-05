@@ -104,10 +104,26 @@ public class UIController : MonoBehaviour
         leaderBoardEntry.score = gameData.currentScore;
         if(string.IsNullOrEmpty(leaderBoardEntry.playerName))
         {
-            leaderBoardEntry.playerName = "Guest_User";
+            leaderBoardEntry.playerName = "Rider";
         }
 
         leaderBoardData.AddEntry(leaderBoardEntry);
+
+
+        PlayerEntry playerEntry = new PlayerEntry();
+        playerEntry.playerName = uiData.PlayerInfo.playerName;
+        if (string.IsNullOrEmpty(playerEntry.playerName))
+        {
+            playerEntry.playerName = "Rider";
+        }
+        playerEntry.emailID = uiData.PlayerInfo.playerEmail;
+        playerEntry.score = gameData.currentScore;
+
+        // Keep only date and hour:minute, and use a space between date and time:
+        // Example output: "2025-11-04 18:04"
+        playerEntry.datePlayed = System.DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm");
+
+        leaderBoardData.AddPlayerEntry(playerEntry);
 
         gameData.isGameCompleted = false; // Reset for next session
 
